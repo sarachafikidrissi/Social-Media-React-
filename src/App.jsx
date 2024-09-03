@@ -10,9 +10,11 @@ import Setting from "./pages/Setting/Setting";
 import SignUp from "./pages/SingUp/SignUp";
 import LoginProfile from "./pages/LoginProfile/LoginProfile";
 import Profile from "./pages/Profile/Profile";
+import { AuthProvider } from "./context";
 const App = () => {
   return (
-    <div className="py-6 px-4 sm-px-[5vw] md-px-[7vw] lg-px-[9vw]">
+    <AuthProvider>
+      <div className="py-6 px-4 sm-px-[5vw] md-px-[7vw] lg-px-[9vw]">
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
@@ -25,6 +27,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
       </Routes>
     </div>
+    </AuthProvider>
   );
 };
 
