@@ -1,5 +1,5 @@
 import React from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../../assets/images/friendwave-removebg-preview.png'
 const LoginPage = () => {
   const navigate =useNavigate()
@@ -17,10 +17,24 @@ const LoginPage = () => {
         </svg>
     </div>
       </div>
-      <div className='rightNav flex gap-5'>
-          <h3>user user</h3>
-          <img width={50} src={logo} className='rounded-full  bg-white '/>
+      
+      
+      <div class="group relative cursor-pointer py-2">
+
+      <div class="flex items-center justify-between space-x-5 bg-white px-4">
+      <h3>user user</h3>
+          <img width={50} src={logo} className='menu-hover rounded-full  bg-white '/>
+         
       </div>
+
+      <div class="invisible absolute z-50 flex w-full flex-col bg-[#fcfc] py-3 px-4 text-gray-800 shadow-xl group-hover:visible">
+            
+            <a  className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/profil"}>Profile</Link></a>
+            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/editProfil"}>Edit</Link></a>
+            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/login"}>logout</Link></a>
+      </div>
+  </div>
+ 
     </div>
     <section class="py-10 my-auto dark:bg-gray-900 ">
     <div class="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
