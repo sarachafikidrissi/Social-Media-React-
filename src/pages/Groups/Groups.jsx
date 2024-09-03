@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Orders = () => {
+const Groups = () => {
   return (
     <div>
-      orders page
+      Groups
     </div>
   )
 }
 
-export default Orders
+export default Groups

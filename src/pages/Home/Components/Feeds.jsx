@@ -1,11 +1,11 @@
 import React from 'react'
 
-const NotFound = () => {
+const Feeds = () => {
   return (
     <div>
-      error 404
+      Feeds 
     </div>
   )
 }
 
-export default NotFound
+export default Feeds
