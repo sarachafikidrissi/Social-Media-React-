@@ -5,7 +5,7 @@ import RightSideBar from './Components/RightSideBar'
 
 const Home = () => {
   return (
-    <div>
+    <div className='flex gap-x-2'>
       <LeftSideBar />
       <Feeds />
       <RightSideBar />
