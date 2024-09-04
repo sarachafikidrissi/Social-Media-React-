@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { FaRegCommentAlt } from 'react-icons/fa';
 import { IoIosPhotos } from 'react-icons/io';
-import { IoBookmark, IoHeart, IoText, IoVideocam } from 'react-icons/io5';
+import { IoBookmark, IoHeart, IoVideocam } from 'react-icons/io5';
 
 const Feeds = () => {
   const [tasks, setTasks] = useState([]);
