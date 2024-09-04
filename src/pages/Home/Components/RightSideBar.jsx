@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { assets } from "../../../assets";
 import { CiSearch  } from "react-icons/ci";
-import { useAuth } from "../../../context";
 
 const RightSideBar = () => {
-
-  const {users, setUsers} = useAuth()
-
 
   const [activeStories, setActiveStories] = useState({});
 
@@ -30,7 +26,6 @@ const RightSideBar = () => {
   useEffect(() => {
     let timeout;
     if (activeStories) {
-      // Set a timeout to deactivate the story after 5 seconds (5000 ms)
       timeout = setTimeout(() => {
         setActiveStories({});
       }, 3000);
