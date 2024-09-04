@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import logo from '../../../assets/images/friendwave-removebg-preview.png'
+import { useNavigate } from 'react-router-dom'
 import { useRef } from 'react'
+import { useAuth } from '../../../context'
 
 const LoginPage = () => {
+    const {users}=useAuth()
+    console.log(users);
+    
   const navigate =useNavigate()
   const inputRef =useRef(null)
   const [image,setImage]=useState("")
@@ -15,13 +18,11 @@ const LoginPage = () => {
   const handleChange =(event)=>{
     const file =event.target.files[0]
     console.log(file);
+
     setImage(event.target.files[0])
+    
 
   }
-
-
-
-
   const handlCOverClick =()=>{
     inputRefCover.current.click()
   }
@@ -32,38 +33,7 @@ const LoginPage = () => {
 
   }
   return (
-    <div className=''>
-    <div className='navbar flex justify-between  px-5 '>
-      <div className='leftNav flex gap-52'>
-        <img width={50} src={logo}/>
-        <div class="relative  items-center hidden md:inline-flex">
-        <input type="text" placeholder="Search" class="border border-gray-200 rounded-md py-1 px-2 w-[35vw]"/>
-        <svg class="absolute right-2 h-6 w-6 text-gray-400 hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-        </svg>
-    </div>
-      </div>
-      
-      
-      <div class="group relative cursor-pointer py-2">
-
-      <div class="flex items-center justify-between space-x-5 bg-white px-4">
-      <h3>user user</h3>
-          <img width={50} src={logo} className='menu-hover rounded-full  bg-white '/>
-         
-      </div>
-
-      <div class="invisible absolute z-50 flex w-full flex-col bg-[#fcfc] py-3 px-4 text-gray-800 shadow-xl group-hover:visible">
-            
-            <a  className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/profil"}>Profile</Link></a>
-            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/editProfil"}>Edit</Link></a>
-            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/login"}>logout</Link></a>
-      </div>
-  </div>
- 
-    </div>
+      <div className=''>
     <section class="py-10 my-auto dark:bg-gray-900 ">
     <div class="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
         <div
@@ -98,13 +68,14 @@ const LoginPage = () => {
                             <label for="" class="mb-2 dark:text-gray-300">First Name</label>
                             <input type="text"
                                     class="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                    placeholder="First Name"/>
+                                    placeholder="First Name" defaultValue={users.name}/>
                         </div>
                         <div class="w-full  mb-4 lg:mt-6">
                             <label for="" class=" dark:text-gray-300">User Name</label>
                             <input type="text"
                                     class="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                    placeholder="User Name"/>
+                                    placeholder="User Name" 
+                                    defaultValue={users.email}/>
                         </div>
                     </div>
 

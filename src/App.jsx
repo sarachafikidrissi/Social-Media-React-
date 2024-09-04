@@ -17,14 +17,14 @@ const App = () => {
       <div className="py-6 px-4 sm-px-[5vw] md-px-[7vw] lg-px-[9vw]">
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
         <Route path="/login-profile" element={<LoginProfile />} />
         <Route path="/friends" element={<Friends />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/market" element={<MarketPlace />} />
         <Route path="/setting" element={<Setting />} />
-        <Route path="/sign-up" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/sign-up" element={<SignUp />} />
       </Routes>
     </div>
     </AuthProvider>
