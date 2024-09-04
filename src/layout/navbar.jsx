@@ -1,8 +1,11 @@
 import React from 'react';
 import logo from "../../src/assets/images/friendwave-removebg-preview.png"
 import { Link } from 'react-router-dom';
+import { useAuth } from '../context';
 
 const Navbar = () => {
+    const {users}=useAuth()
+
     return (
         <div className='navbar flex justify-between  px-5 '>
       <div className='leftNav flex gap-52'>
@@ -21,15 +24,17 @@ const Navbar = () => {
       <div class="group relative cursor-pointer py-2">
 
       <div class="flex items-center justify-between space-x-5 bg-white px-4">
-      <h3>user user</h3>
+      {users.map((e)=>
+      <h3 className='text-black'>{e.username}</h3>
+    )}
           <img width={50} src={logo} className='menu-hover rounded-full  bg-white '/>
          
       </div>
 
       <div class="invisible absolute z-50 flex w-full flex-col bg-[#fcfc] py-3 px-4 text-gray-800 shadow-xl group-hover:visible">
             
-            <a  className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/profil"}>Profile</Link></a>
-            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/editProfil"}>Edit</Link></a>
+            <a  className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/profile"}>Profile</Link></a>
+            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/edit-profile"}>Edit</Link></a>
             <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/login"}>logout</Link></a>
       </div>
   </div>

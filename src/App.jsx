@@ -11,6 +11,7 @@ import SignUp from "./pages/SingUp/SignUp";
 import LoginProfile from "./pages/LoginProfile/LoginProfile";
 import Profile from "./pages/Profile/Profile";
 import { AuthProvider } from "./context";
+import EditProfil from "./EditProfil/EditProfil";
 const App = () => {
   return (
     <AuthProvider>
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/market" element={<MarketPlace />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/edit-profile" element={<EditProfil />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>

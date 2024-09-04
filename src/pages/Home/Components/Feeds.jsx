@@ -82,7 +82,7 @@ const Feeds = () => {
   };
 
   return (
-    <div className=' w-[50%] flex flex-col  items-center my-4'>
+    <div className=' w-[50%] flex flex-col  items-center my-4 bg-[#f5f5f5cc]'>
       {/* Input creating posts */}
       <div className='w-full max-w-md p-4 m-3 bg-white rounded-lg shadow-md'>
         <div className='flex items-center mb-4 gap-2'>
