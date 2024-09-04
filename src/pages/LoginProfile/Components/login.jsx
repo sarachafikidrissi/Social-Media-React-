@@ -1,25 +1,35 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useRef } from 'react'
 import { useAuth } from '../../../context'
 
 const LoginPage = () => {
-    const {users}=useAuth()
-    console.log(users);
+    const [users1,setUsers]=useState(null)
+    const [unername,setUsername]=useState(null)
     
+  const {users}=useAuth()
   const navigate =useNavigate()
   const inputRef =useRef(null)
   const [image,setImage]=useState("")
   const inputRefCover =useRef(null)
   const [cover,setCover]=useState("")
+
+  const handleNameChange = (event, index) => {
+    const updatedUsers = [...users];
+    updatedUsers[index].name = event.target.value;
+    setUsers(updatedUsers); // Make sure to have `setUsers` to update the state
+    };
+    const handleUserChange = (event, index) => {
+        const updatedUsers = [...users];
+        updatedUsers[index].username = event.target.value;
+        setUsername(updatedUsers); 
+        };
   const handleClick =()=>{
     inputRef.current.click()
   }
   const handleChange =(event)=>{
-    const file =event.target.files[0]
-    console.log(file);
 
-    setImage(event.target.files[0])
+setImage(event.target.files[0])
     
 
   }
@@ -32,6 +42,9 @@ const LoginPage = () => {
     setCover(event.target.files[0])
 
   }
+  
+        console.log(users);
+        
   return (
       <div className=''>
     <section class="py-10 my-auto dark:bg-gray-900 ">
@@ -52,7 +65,7 @@ const LoginPage = () => {
                 {/* create bg cover */}
                     <div className='pb-10 relative'>
                         <div className='bg-black w-full h-[40vh] ' onClick={handlCOverClick} >
-                        {  cover ? <img src={URL.createObjectURL(cover)} className='w-full h-[40vh]' /> : <div  className='w-full h-[40vh]'></div>   }
+                        {  cover ? <img src={URL.createObjectURL(cover)} className='w-full h-[40vh] bg-cover ' /> : <div  className='w-full h-[40vh]'></div>   }
                         <input type='file' ref={inputRefCover} onChange={handlChangeCover} className='hidden' />
                         </div>
                         <div className='w-[15vw] h-[30vh] rounded-full absolute bottom-0 translate-y-[-50%] left-[50%] translate-x-[-50%] ' onClick={handleClick}>
@@ -60,25 +73,37 @@ const LoginPage = () => {
                         <input type='file' ref={inputRef} onChange={handleChange} className='hidden' />
                         </div>
                     </div>
-                    
-                   
-                    <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                    
-                        <div class="w-full  mb-4 mt-6">
-                            <label for="" class="mb-2 dark:text-gray-300">First Name</label>
-                            <input type="text"
-                                    class="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                    placeholder="First Name" defaultValue={users.name}/>
+                    {users.map((e, index) => (
+                        <div
+                            key={index}
+                            className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full"
+                        >
+                            <div className="w-full mb-4 mt-6">
+                                <label htmlFor="" className="mb-2 dark:text-gray-300">First Name</label>
+                                <input
+                                    type="text"
+                                    className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="First Name"
+                                    value={e.name}
+                                    onChange={(event) => handleNameChange(event, index)} 
+                                />
+                            </div>
+                            <div className="w-full mb-4 lg:mt-6">
+                                <label htmlFor="" className="dark:text-gray-300">User Name</label>
+                                <input
+                                    type="text"
+                                    className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                                    placeholder="User Name"
+                                    value={e.username}
+                                    onChange={(event) => handleUserChange(event, index)}
+                                />
+                            </div>
                         </div>
-                        <div class="w-full  mb-4 lg:mt-6">
-                            <label for="" class=" dark:text-gray-300">User Name</label>
-                            <input type="text"
-                                    class="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                    placeholder="User Name" 
-                                    defaultValue={users.email}/>
-                        </div>
-                    </div>
-
+                    ))}
+                    
+                     
+                    
+                     
                     <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
                         <div class="w-full">
                             <h3 class="dark:text-gray-300 mb-2">Sex</h3>
@@ -95,8 +120,9 @@ const LoginPage = () => {
                                     class="text-grey p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"/>
                         </div>
                     </div>
+
                     <div class="w-full rounded-lg bg-[#ea4c89] mt-4 text-white text-lg font-semibold">
-                        <button type="submit" class="w-full p-4">Submit</button>
+                        <button class="w-full p-4"><Link to={"/"}>Submit</Link></button>
                     </div>
                 </form>
             </div>
