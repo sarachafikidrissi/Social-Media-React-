@@ -1,22 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { assets } from "../../../assets";
 import { CiSearch  } from "react-icons/ci";
-
-// import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { useAuth } from "../../../context";
 
 const RightSideBar = () => {
+
+  const {users, setUsers} = useAuth()
+
+
   const [activeStories, setActiveStories] = useState({});
+
   let a = 1
   let b = 2
 
-
+  let values = Object.values(activeStories)
+  let state = values.some(e => e)
 
   const toggleStory = (index) => {
-    setActiveStories((prev) => ({
-      ...prev,
-      [index]: !prev[index], 
-    }));
+    if(!state){
+      setActiveStories((prev) => ({
+        ...prev,
+        [index]: !prev[index], 
+      }));
+      
+      state = false
+    }
   };
+
+  useEffect(() => {
+    let timeout;
+    if (activeStories) {
+      // Set a timeout to deactivate the story after 5 seconds (5000 ms)
+      timeout = setTimeout(() => {
+        setActiveStories({});
+      }, 3000);
+    }
+
+    return () => clearTimeout(timeout);
+  }, [activeStories])
   return (
     <div className="w-[30%] p-2 flex flex-col gap-y-4 relative ">
       {/* search stories */}
@@ -31,23 +52,23 @@ const RightSideBar = () => {
 
         
       <div className="flex no-scrollbar  space-x-2 ps-2 py-2">
-        <div key={a} className=" w-[80px] h-[80px] rounded-full  outline outline-offset-2 outline-2 flex-shrink-0 cursor-pointer relative">
+        <div key={a} className="flex  w-[80px] h-[80px] rounded-full  outline outline-offset-2 outline-2 flex-shrink-0 cursor-pointer relative">
           <img
           onClick={() => toggleStory(a)}
            src={assets.test} alt="" className="w-full" />
-           {
-          activeStories[a]&& <div className="bg-white border-2 border-red-400 w-[20vw] h-[50vh] rounded-md absolute top-50 left-[50%] translate-x-[-50%] ">
+           { state === true  && (
+          activeStories[a] && <div className="bg-white border-2 border-red-400 w-[20vw] h-[50vh] rounded-md absolute top-0 z-10  ">
             <img src={assets.test} alt="" />
             
-          </div>
+          </div>)
         }
         </div>
         <div key={b} className=" w-[80px] h-[80px] rounded-full flex-shrink-0 cursor-pointer relative">
           <img onClick={() => toggleStory(b)} src={assets.test} alt="" className="w-full" />
-          {
-          activeStories[b] && <div  className={`bg-white border-2 border-red-400 w-[20vw] h-[50vh] rounded-md absolute top-50 left-[50%] translate-x-[-50%] `}>
+          { state === true && (
+          activeStories[b] && <div  className={`bg-white border-2 border-red-400 w-[20vw] h-[50vh] rounded-md absolute top-0`}>
             <img  src={assets.barbie} alt="" />
-          </div>
+          </div>)
         }
         </div>
         <div className=" w-[80px] h-[80px] rounded-full flex-shrink-0 cursor-pointer">
