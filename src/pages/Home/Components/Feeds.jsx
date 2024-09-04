@@ -11,7 +11,9 @@ const Feeds = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
   const [commentInput, setCommentInput] = useState('');
-
+  const date = new Date();
+  const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  
   // Function  image selection
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
@@ -37,6 +39,7 @@ const Feeds = () => {
       image: selectedImage,
       video: selectedVideo,
       likes: 0,
+      favorited:false,
       comments: [],
     };
 
@@ -50,8 +53,16 @@ const Feeds = () => {
   // Function to handle liking a post
   const handleLike = (index) => {
     const newTasks = [...tasks];
-    newTasks[index].likes += 1;
+    newTasks[index].likes = !newTasks[index].likes  ;
     setTasks(newTasks);
+ 
+  };
+  //function to favoris a post
+  const handleFavoris = (index) => {
+    const newTasks = [...tasks];
+    newTasks[index].favoris = !newTasks[index].favoris ;
+    setTasks(newTasks);
+ 
   };
 
   //  to open the comment modal
@@ -62,9 +73,7 @@ const Feeds = () => {
 
   // Function  adding a comment
   const handleAddComment = () => {
-    
-    
-
+  
     const newTasks = [...tasks];
     newTasks[currentTaskIndex].comments.push(commentInput);
     setTasks(newTasks);
@@ -75,7 +84,7 @@ const Feeds = () => {
   return (
     <div className=' w-[50%] flex flex-col  items-center my-4'>
       {/* Input creating posts */}
-      <div className='w-[90%] p-6 bg-red-400p-4 m-3 bg-white  rounded-lg shadow-md'>
+      <div className='w-full max-w-md p-4 m-3 bg-white rounded-lg shadow-md'>
         <div className='flex items-center mb-4 gap-2'>
           <img
             className='w-10 h-10 rounded-full'
@@ -91,16 +100,23 @@ const Feeds = () => {
           />
         </div>
         <div className='flex justify-between items-center gap-4'>
+        <div className='flex flex-col justify-between items-center '>
+        {selectedVideo && <video src={selectedVideo} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
           <label className='flex items-center text-slateGray hover:text-pink gap-2 cursor-pointer'>
             <IoVideocam />
             <span>Video</span>
             <input type='file' accept='video/*' onChange={handleVideoChange} className='hidden' />
           </label>
+          </div>
+          <div className='flex flex-col justify-between items-center '>
+            {selectedImage && <img src={selectedImage} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
           <label className='flex items-center text-slateGray hover:text-pink gap-2 cursor-pointer'>
             <IoIosPhotos />
             <span>Photos</span>
+            
             <input type='file' accept='image/*' onChange={handleImageChange} className='hidden' />
           </label>
+          </div>
           
           <button onClick={createTask} className='text-white bg-pink py-1 px-4 rounded-lg hover:bg-pink'>
             Post
@@ -109,7 +125,7 @@ const Feeds = () => {
       </div>
 
       
-      <div className=' w-[90%]'>
+      <div className='w-full max-w-md'>
         {tasks.map((task, index) => (
           <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md'>
             <div className='flex items-center mb-4'>
@@ -120,7 +136,7 @@ const Feeds = () => {
               />
               <div className='ml-3'>
                 <h3 className='font-semibold'>Rajae Bensafy</h3>
-                <p className='text-slateGray text-sm'>Casablanca, Morocco</p>
+                <p className='text-slateGray text-sm'>Casablanca, Morocco {timeString}</p>
               </div>
             </div>
             <div className='mb-2'>
@@ -137,8 +153,8 @@ const Feeds = () => {
                 className='flex items-center text-slateGray hover:text-royalBlue'
                 onClick={() => handleLike(index)}
               >
-                <IoHeart />
-                Like {task.likes > 0 && `(${task.likes})`}
+                {task.likes ?<IoHeart color='red' />:<IoHeart />}
+                 Like 
               </button>
               <button
                 className='flex items-center text-slateGray hover:text-royalBlue'
@@ -147,9 +163,11 @@ const Feeds = () => {
                 <FaRegCommentAlt />
                 Comments {task.comments.length > 0 && `(${task.comments.length})`}
               </button>
-              <button className='flex items-center text-slateGray hover:text-royalBlue'>
-                <IoBookmark />
-                Favoris
+              <button className='flex items-center text-slateGray hover:text-royalBlue'
+                onClick={() => handleFavoris(index)}>
+                  {task.favoris ? <IoBookmark color='yellow' />:<IoBookmark />}
+                favoris
+                
               </button>
             </div>
             {/*  comments */}

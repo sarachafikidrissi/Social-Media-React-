@@ -9,7 +9,7 @@ import { FiShoppingBag } from "react-icons/fi";
 import { MdOndemandVideo } from "react-icons/md";
 const LeftSideBar = () => {
   return (
-    <div className='w-[25%] pt-5 ps-10 '>
+    <div className=' pt-5 ps-10  '>
       <div className='text-slateGray text-xl gap-5 flex flex-col'>
       <div className='flex justify-start items-center  gap-3 hover:text-pink'> <IoHomeOutline /> <h2>Feed</h2></div>
       <div className='flex justify-start items-center gap-3  hover:text-pink'><FiShoppingBag /> <h2>MarketPlace</h2></div>
@@ -19,6 +19,7 @@ const LeftSideBar = () => {
       <div className='flex justify-start items-center  gap-3  hover:text-pink'><FaUsers /> <h2>Groupes</h2></div>
       <div className='flex justify-start items-center  gap-3  hover:text-pink'><CiSettings /> <h2>Settings</h2></div>
       </div>
+      {/* My Friends */}
       <div className='flex flex-col pt-12 gap-5'>
         <h1 className='text-xl font-bold text-charcoal'>My Friends</h1>
         <div className='flex flex-row gap-4'>
