@@ -10,10 +10,10 @@ import { useState } from 'react';
 const Login = () => {
   const navigate = useNavigate();
   const { users } = useAuth();
-  const [loginemail, setLoginEmail] = useState('');
+  const [loginUsername, setLoginusername] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
 const check = ()=>{
-  let user = users.find((e)=>e.email==loginemail && e.password==loginpassword)
+  let user = users.find((e)=>e.username==loginUsername && e.password==loginpassword)
   if (user) {
     alert("your loged in succesfully")
     navigate('/login-profile')
@@ -39,7 +39,7 @@ const check = ()=>{
             </a>
           </div>
           <span className="text-sm">or use your account</span>
-          <input type="email" placeholder="Email"  value={loginemail} onChange={(e) => setLoginEmail(e.target.value)} className="bg-gray-200 border-none p-3 my-2 w-full" />
+          <input type="text" placeholder="UserName"  value={loginUsername} onChange={(e) => setLoginusername(e.target.value)} className="bg-gray-200 border-none p-3 my-2 w-full" />
           <input type="password" placeholder="Password" value={loginpassword}  onChange={(e) => setLoginPassword(e.target.value)} className="bg-gray-200 border-none p-3 my-2 w-full" />
           <a href="#" className="text-blue-500 text-sm">Forgot your password?</a>
           <button onClick={check}  className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 ">

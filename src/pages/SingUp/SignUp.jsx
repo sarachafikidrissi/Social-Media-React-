@@ -9,6 +9,7 @@ const SignUp = () => {
   const [birthday, setBirthday] = useState('');
   const [gender, setGender] = useState('');
   const [password, setPassword] = useState('');
+  const [userName, setUserName] = useState('');
   const [code, setCode] = useState(''); 
   const [generatedCode, setGeneratedCode] = useState('');
   const { addUser } = useAuth();
@@ -16,8 +17,8 @@ const SignUp = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (code && code === generatedCode && name&& email&&gender&&birthday&&password) {
-      addUser(name, email, gender,  birthday, password);
+    if (code && code === generatedCode && name&& email&&gender&&birthday&&password&&userName) {
+      addUser(name, email, gender,  birthday, password,userName);
      
       setGeneratedCode("")
       alert("your account has been created succesfully")
@@ -70,7 +71,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[90vh] overflow-hidden flex">
+    <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[93vh] overflow-hidden flex">
       <div className="absolute top-0 right-0 h-full w-1/2 flex items-center justify-center">
         <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center" onSubmit={handleLogin}>
           <h1 className="text-3xl font-bold m-0">Sign Up</h1>
@@ -92,6 +93,13 @@ const SignUp = () => {
             className="bg-gray-200 border-none p-3 my-2 w-full"
             value={name}
             onChange={(e) => setName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="UserName"
+            className="bg-gray-200 border-none p-3 my-2 w-full"
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           />
           <input
             type="email"
