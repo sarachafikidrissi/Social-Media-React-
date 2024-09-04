@@ -1,9 +1,26 @@
+
+
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaFacebookF, FaGoogle, FaLinkedinIn } from 'react-icons/fa';
+import { useAuth } from '../../context';
+import { useState } from 'react';
 
 const Login = () => {
   const navigate = useNavigate();
+  const { users } = useAuth();
+  const [loginemail, setLoginEmail] = useState('');
+  const [loginpassword, setLoginPassword] = useState('');
+const check = ()=>{
+  let user = users.find((e)=>e.email==loginemail && e.password==loginpassword)
+  if (user) {
+    alert("your loged in succesfully")
+    navigate('/login-profile')
+  }else{
+    alert("not found")
+  }
+}
 
   return (
     <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[80vh] overflow-hidden flex">
@@ -22,10 +39,10 @@ const Login = () => {
             </a>
           </div>
           <span className="text-sm">or use your account</span>
-          <input type="email" placeholder="Email" className="bg-gray-200 border-none p-3 my-2 w-full" />
-          <input type="password" placeholder="Password" className="bg-gray-200 border-none p-3 my-2 w-full" />
+          <input type="email" placeholder="Email"  value={loginemail} onChange={(e) => setLoginEmail(e.target.value)} className="bg-gray-200 border-none p-3 my-2 w-full" />
+          <input type="password" placeholder="Password" value={loginpassword}  onChange={(e) => setLoginPassword(e.target.value)} className="bg-gray-200 border-none p-3 my-2 w-full" />
           <a href="#" className="text-blue-500 text-sm">Forgot your password?</a>
-          <button className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 ">
+          <button onClick={check}  className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 ">
             Login
           </button>
         </form>

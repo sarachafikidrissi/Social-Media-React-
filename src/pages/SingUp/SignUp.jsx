@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { FaFacebookF, FaGoogle, FaLinkedinIn } from 'react-icons/fa';
 import { useAuth } from '../../context';
 
-const Login = () => {
+const SignUp = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
@@ -16,10 +16,12 @@ const Login = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (code && code === generatedCode) {
+    if (code && code === generatedCode && name&& email&&gender&&birthday&&password) {
       addUser(name, email, gender,  birthday, password);
      
       setGeneratedCode("")
+      alert("your account has been created succesfully")
+      navigate('/login')
      
     } else {
       alert('Incorrect code. Please try again.');
@@ -155,4 +157,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default SignUp;
