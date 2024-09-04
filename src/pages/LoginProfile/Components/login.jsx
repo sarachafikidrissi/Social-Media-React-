@@ -80,12 +80,12 @@ const LoginPage = () => {
                 <h2 class="text-grey text-sm mb-4 dark:text-gray-400">Create Profile</h2>
                 <form>
                 {/* create bg cover */}
-                    <div className='pb-10'>
-                        <div className='bg-black w-full h-[40vh] relative' onClick={handlCOverClick} >
+                    <div className='pb-10 relative'>
+                        <div className='bg-black w-full h-[40vh] ' onClick={handlCOverClick} >
                         {  cover ? <img src={URL.createObjectURL(cover)} className='w-full h-[40vh]' /> : <div  className='w-full h-[40vh]'></div>   }
                         <input type='file' ref={inputRefCover} onChange={handlChangeCover} className='hidden' />
                         </div>
-                        <div className='w-[15vw] h-[30vh] rounded-full absolute bottom-24 left-[50%] translate-x-[-50%] ' onClick={handleClick}>
+                        <div className='w-[15vw] h-[30vh] rounded-full absolute bottom-0 translate-y-[-50%] left-[50%] translate-x-[-50%] ' onClick={handleClick}>
                         {  image ? <img src={URL.createObjectURL(image)} className='h-[200px] w-[200px] rounded-full' /> : <div  className='h-[200px] w-[200px] rounded-full bg-slate-300'></div>   }
                         <input type='file' ref={inputRef} onChange={handleChange} className='hidden' />
                         </div>
