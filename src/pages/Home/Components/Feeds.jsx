@@ -113,6 +113,7 @@ const Feeds = () => {
           <label className='flex items-center text-slateGray hover:text-pink gap-2 cursor-pointer'>
             <IoIosPhotos />
             <span>Photos</span>
+            
             <input type='file' accept='image/*' onChange={handleImageChange} className='hidden' />
           </label>
           </div>
