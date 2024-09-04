@@ -9,7 +9,7 @@ const Login = () => {
     <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[80vh] overflow-hidden flex">
       <div className="absolute top-0 right-0 h-full w-1/2 flex items-center justify-center">
         <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center">
-          <h1 className="text-3xl font-bold m-0">Sign In</h1>
+          <h1 className="text-3xl font-bold m-0">Login</h1>
           <div className="my-5 flex space-x-2">
             <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 hover:bg-pink">
               <FaFacebookF className="text-gray-700" />
@@ -26,7 +26,7 @@ const Login = () => {
           <input type="password" placeholder="Password" className="bg-gray-200 border-none p-3 my-2 w-full" />
           <a href="#" className="text-blue-500 text-sm">Forgot your password?</a>
           <button className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 ">
-            Sign In
+            Login
           </button>
         </form>
       </div>
@@ -48,23 +48,3 @@ export default Login;
 
 
 
-// import React from 'react';
-// import { useAuth } from '../../context';
-// const ExampleComponent = () => {
-//   const { users } = useAuth();
-
-//   return (
-//     <div>
-//       <h1>Users</h1>
-//       <ul>
-//         {users.map((user, index) => (
-//           <li key={index}>
-//             {user.name} - {user.email} - {user.birthday} - {user.gender}
-//           </li>
-//         ))}
-//       </ul>
-//     </div>
-//   );
-// };
-
-// export default ExampleComponent;

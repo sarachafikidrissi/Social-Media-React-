@@ -17,7 +17,7 @@ const Login = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (code && code === generatedCode) {
-      addUser(name, email, birthday, gender, password);
+      addUser(name, email, gender,  birthday, password);
      
       setGeneratedCode("")
      
@@ -71,7 +71,7 @@ const Login = () => {
     <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[90vh] overflow-hidden flex">
       <div className="absolute top-0 right-0 h-full w-1/2 flex items-center justify-center">
         <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center" onSubmit={handleLogin}>
-          <h1 className="text-3xl font-bold m-0">Sign In</h1>
+          <h1 className="text-3xl font-bold m-0">Sign Up</h1>
           <div className="my-5 flex space-x-2">
             <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 hover:bg-pink">
               <FaFacebookF className="text-gray-700" />
@@ -113,7 +113,6 @@ const Login = () => {
             <option value="" disabled>Select Gender</option>
             <option value="male">Male</option>
             <option value="female">Female</option>
-            <option value="other">Other</option>
           </select>
           <input
             type="password"
@@ -123,19 +122,20 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <a href="#" className="text-blue-500 text-sm">Forgot your password?</a>
-          <button type="button" onClick={notification} className="">Get Code</button>
+          <button type="button" onClick={notification}   className="">Get Code</button>
           <input
             type="text"
             placeholder="Enter code"
             className="bg-gray-200 border-none p-3 my-2 w-full"
             value={code}
             onChange={(e) => setCode(e.target.value)}
+            
           />
           <button
             type="submit"
             className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6" 
           >
-            Sign In
+            Sign Up
           </button>
         </form>
       </div>
@@ -147,7 +147,7 @@ const Login = () => {
             className="border border-pink text-black rounded-full py-2 px-6 text-sm font-bold hover:bg-pink hover:text-white"
             onClick={() => navigate('/login')}
           >
-            Sign Up
+            Login
           </button>
         </div>
       </div>
