@@ -10,6 +10,7 @@ import { useState } from 'react';
 const Login = () => {
   const navigate = useNavigate();
   const { users } = useAuth();
+  console.log(users);
   const [loginUsername, setLoginusername] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
 const check = ()=>{

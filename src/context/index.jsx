@@ -5,12 +5,13 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [market, setMarket] = useState([])
+  const [posts, setPosts] = useState({})
 
 
 
 
-  const addUser = (name, email, birthday, gender, password,username) => {
-    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username }]);
+  const addUser = (name, email, birthday, gender, password,username, userPost) => {
+    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost}]);
   };
 
   const addProduct = (title, price, productImg, category) => {
@@ -18,7 +19,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ users, addUser, market, addProduct }}>
+    <AuthContext.Provider value={{ users, addUser, market, addProduct, posts, setPosts }}>
       {children}
     </AuthContext.Provider>
   );

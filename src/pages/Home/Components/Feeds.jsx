@@ -2,8 +2,18 @@ import React, { useState } from 'react';
 import { FaRegCommentAlt } from 'react-icons/fa';
 import { IoIosPhotos } from 'react-icons/io';
 import { IoBookmark, IoHeart, IoVideocam } from 'react-icons/io5';
+import { FaTrash } from "react-icons/fa6";
+import { useAuth } from '../../../context';
+
+import { useParams } from 'react-router-dom';
 
 const Feeds = () => {
+
+  let connectedUser = useParams()
+
+  const { users } = useAuth();
+
+
   const [tasks, setTasks] = useState([]);
   const [inputChange, setInputChange] = useState('');
   const [selectedImage, setSelectedImage] = useState(null); 
@@ -11,6 +21,8 @@ const Feeds = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
   const [commentInput, setCommentInput] = useState('');
+ const {posts, setPosts} = useAuth()
+
   const date = new Date();
   const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   
@@ -33,7 +45,7 @@ const Feeds = () => {
    
 
     const newTab = [...tasks];
-
+   
     let newTask = {
       name: inputChange,
       image: selectedImage,
@@ -42,13 +54,27 @@ const Feeds = () => {
       favorited:false,
       comments: [],
     };
-
-    newTab.push(newTask);
-    setTasks(newTab);
-    setInputChange('');
-    setSelectedImage(null);
-    setSelectedVideo(null);
+    if(inputChange || selectedImage || selectedVideo){
+      
+      newTab.push(newTask);
+      setTasks(newTab);
+      setInputChange('');
+      setSelectedImage(null);
+      setSelectedVideo(null);
+    }
   };
+
+  //add posts to user data
+
+  setPosts(tasks)
+  console.log(posts);
+
+  let userIndex = users.find(e => e.username === connectedUser)
+  // users[userIndex].post = posts
+
+
+
+
 
   // Function to handle liking a post
   const handleLike = (index) => {
@@ -80,6 +106,14 @@ const Feeds = () => {
     setCommentInput('');
     setShowModal(false);
   };
+
+  // Remove Post
+
+  const removePost = (index) => {
+    const newTasks = [...tasks]
+    console.log(newTasks.splice(index, 1));
+    setTasks(newTasks)
+  }
 
   return (
     <div className=' w-[50%] flex flex-col  items-center my-4'>
@@ -126,8 +160,10 @@ const Feeds = () => {
 
       
       <div className='w-full max-w-md'>
+        
         {tasks.map((task, index) => (
-          <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md'>
+          <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md relative'>
+            <FaTrash  onClick={() => removePost(index)}  className='absolute right-4 text-xl text-pink'/>
             <div className='flex items-center mb-4'>
               <img
                 className='w-10 h-10 rounded-full'
