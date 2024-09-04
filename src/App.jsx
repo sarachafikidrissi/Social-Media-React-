@@ -17,8 +17,8 @@ const App = () => {
     <AuthProvider>
       <div className="py-6 px-4 sm-px-[5vw] md-px-[7vw] lg-px-[9vw]">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login-profile" element={<LoginProfile />} />
+        <Route path="/:username" element={<Home />} />
+        <Route path="/login-profile/:username" element={<LoginProfile />} />
         <Route path="/friends" element={<Friends />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/market" element={<MarketPlace />} />
@@ -26,7 +26,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfil />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/" element={<SignUp />} />
       </Routes>
     </div>
     </AuthProvider>

@@ -61,7 +61,8 @@ setImage(event.target.files[0])
                     Profile
                 </h1>
                 <h2 class="text-grey text-sm mb-4 dark:text-gray-400">Create Profile</h2>
-                <form>
+                <form className=''>
+                    <div className=' w-full'>
                 {/* create bg cover */}
                     <div className='pb-10 relative'>
                         <div className='bg-black w-full h-[40vh] ' onClick={handlCOverClick} >
@@ -121,10 +122,12 @@ setImage(event.target.files[0])
                         </div>
                     </div>
 
-                    <div class="w-full rounded-lg bg-[#ea4c89] mt-4 text-white text-lg font-semibold">
-                        <button class="w-full p-4"><Link to={"/"}>Submit</Link></button>
+                    <div class="flex items-center justify-center  mt-4 text-white text-lg font-semibold">
+                        <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={"/:username"}>Submit</Link></button>
+                    </div>
                     </div>
                 </form>
+                
             </div>
         </div>
     </div>
