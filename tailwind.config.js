@@ -11,7 +11,7 @@ module.exports = {
       colors: {
         lightGray: '#e7e7e9', 
         charcoal: '#2f2f2ffa',
-        coolGray: '##9e9ea7',
+        coolGray: '#9e9ea7',
         pink :'#ea4c89',
         slateGray:'#6e6d7a',
         royalBlue:'#336699',
