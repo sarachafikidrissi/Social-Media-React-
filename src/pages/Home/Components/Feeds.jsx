@@ -100,18 +100,22 @@ const Feeds = () => {
           />
         </div>
         <div className='flex justify-between items-center gap-4'>
+        <div className='flex flex-col justify-between items-center '>
+        {selectedVideo && <video src={selectedVideo} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
           <label className='flex items-center text-slateGray hover:text-pink gap-2 cursor-pointer'>
             <IoVideocam />
             <span>Video</span>
             <input type='file' accept='video/*' onChange={handleVideoChange} className='hidden' />
           </label>
-         
+          </div>
+          <div className='flex flex-col justify-between items-center '>
+            {selectedImage && <img src={selectedImage} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
           <label className='flex items-center text-slateGray hover:text-pink gap-2 cursor-pointer'>
             <IoIosPhotos />
             <span>Photos</span>
             <input type='file' accept='image/*' onChange={handleImageChange} className='hidden' />
           </label>
-         
+          </div>
           
           <button onClick={createTask} className='text-white bg-pink py-1 px-4 rounded-lg hover:bg-pink'>
             Post
