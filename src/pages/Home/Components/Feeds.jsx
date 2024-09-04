@@ -73,9 +73,9 @@ const Feeds = () => {
   };
 
   return (
-    <div className=' w-[50%] flex flex-col justify-center items-center my-4'>
+    <div className=' w-[50%] flex flex-col  items-center my-4'>
       {/* Input creating posts */}
-      <div className='w-full max-w-md p-4 m-3 bg-white rounded-lg shadow-md'>
+      <div className='w-[90%] p-6 bg-red-400p-4 m-3 bg-white  rounded-lg shadow-md'>
         <div className='flex items-center mb-4 gap-2'>
           <img
             className='w-10 h-10 rounded-full'
@@ -109,7 +109,7 @@ const Feeds = () => {
       </div>
 
       
-      <div className='w-full max-w-md'>
+      <div className=' w-[90%]'>
         {tasks.map((task, index) => (
           <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md'>
             <div className='flex items-center mb-4'>
