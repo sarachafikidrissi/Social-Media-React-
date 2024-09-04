@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useRef } from 'react'
 import { useAuth } from '../../../context'
 
@@ -42,9 +42,7 @@ setImage(event.target.files[0])
     setCover(event.target.files[0])
 
   }
-  
-        console.log(users);
-        
+
   return (
       <div className=''>
     <section class="py-10 my-auto dark:bg-gray-900 ">
@@ -77,7 +75,7 @@ setImage(event.target.files[0])
                         <div
                             key={index}
                             className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full"
-                        >
+                             >
                             <div className="w-full mb-4 mt-6">
                                 <label htmlFor="" className="mb-2 dark:text-gray-300">First Name</label>
                                 <input
