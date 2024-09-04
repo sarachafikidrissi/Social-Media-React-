@@ -14,9 +14,10 @@ const Login = () => {
   const [loginpassword, setLoginPassword] = useState('');
 const check = ()=>{
   let user = users.find((e)=>e.username==loginUsername && e.password==loginpassword)
+  let username = user.username
   if (user) {
     alert("your loged in succesfully")
-    navigate('/login-profile')
+    navigate(`/login-profile/:${username}`)
   }else{
     alert("not found")
   }
