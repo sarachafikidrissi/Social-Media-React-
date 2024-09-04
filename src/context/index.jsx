@@ -9,8 +9,8 @@ export const AuthProvider = ({ children }) => {
 
 
 
-  const addUser = (name, email, birthday, gender, password) => {
-    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password }]);
+  const addUser = (name, email, birthday, gender, password,username) => {
+    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username }]);
   };
 
   const addProduct = (title, price, productImg, category) => {
