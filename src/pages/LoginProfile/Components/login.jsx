@@ -1,9 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../../assets/images/friendwave-removebg-preview.png'
+import { useRef } from 'react'
 
 const LoginPage = () => {
   const navigate =useNavigate()
+  const inputRef =useRef(null)
+  const [image,setImage]=useState("")
+  const handleClick =()=>{
+    inputRef.current.click()
+  }
+  const handleChange =(event)=>{
+    const file =event.target.file[0]
+    console.log(file);
+    
+    setImage('')
+
+  }
   return (
     <div className=''>
     <div className='navbar flex justify-between  px-5 '>
@@ -56,9 +69,9 @@ const LoginPage = () => {
                     <div
                         class="w-full rounded-sm bg-[url('https://images.unsplash.com/photo-1449844908441-8829872d2607?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxob21lfGVufDB8MHx8fDE3MTA0MDE1NDZ8MA&ixlib=rb-4.0.3&q=80&w=1080')] bg-cover bg-center bg-no-repeat items-center">
                         {/* create  bg profil */}
-                        <div>
-                            <img src=''/>
-                            <input type='file' />
+                        <div onClick={handleChange}>
+                            <img src={logo}/>
+                            <input type='file' ref={inputRef} />
 
                         </div>
                         
