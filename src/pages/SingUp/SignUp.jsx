@@ -16,7 +16,7 @@ const SignUp = () => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (code && code === generatedCode) {
+    if (code && code === generatedCode && name&& email&&gender&&birthday&&password) {
       addUser(name, email, gender,  birthday, password);
      
       setGeneratedCode("")
