@@ -15,7 +15,9 @@ const MyFavorites = () => {
     const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
     const [commentInput, setCommentInput] = useState('');
 
+
     const {post, setPost} = useAuth()
+
     const date = new Date();
     const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     
@@ -64,16 +66,19 @@ const MyFavorites = () => {
     
   const { users } = useAuth(); 
 
+
     let username=users[0].username
     console.log(username);
     
 
+
+
   
   const filteredUser = users.findIndex((e) => e.username === username);
- const addedPost =users[filteredUser].userPost
+//  const addedPost =users[filteredUser].userPost
 
- setPost(addedPost)
- console.log(post);
+//  setPost(addedPost)
+//  console.log(post);
  
 
   return (
@@ -83,8 +88,9 @@ const MyFavorites = () => {
           <LeftSideBar />
         </div>
         <div className='w-full max-w-md'>
+          
         
-        {post.map((task, index) => (
+         {users[filteredUser].favoritePosts.map((task, index) => (
           <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md relative'>
             <FaTrash  onClick={() => removePost(index)}  className='absolute right-4 text-xl text-pink'/>
             <div className='flex items-center mb-4'>
@@ -129,7 +135,6 @@ const MyFavorites = () => {
                 
               </button>
             </div>
-            {/*  comments */}
             {task.comments.length > 0 && (
               <div className='mt-3'>
                 {task.comments.map((comment, commentIndex) => (
@@ -140,7 +145,7 @@ const MyFavorites = () => {
               </div>
             )}
           </div>
-        ))}
+        ))} 
       </div>
       </div>
     </>

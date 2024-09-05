@@ -4,21 +4,21 @@ import { assets } from '../assets';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [users, setUsers] = useState([{name: "sara", email: "sara@demo.com", birthday: "15/10/15", gender: "Female", password:"1234", username: "sara", userPost: [], profileImage: `${assets.barbie}`}]);
-  const [market, setMarket] = useState([])
+  const [users, setUsers] = useState([{name: "sara", email: "sara@demo.com", birthday: "15/10/15", gender: "Female", password:"1234", username: "sara", userPost: [], profileImage: `${assets.barbie}`, favoritePosts: []}]);
 
   const [image,setImage]=useState("")
+  const [posts,setPosts]=useState([])
 
 
 
 
   const addUser = (name, email, birthday, gender, password,username) => {
-    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: ""}]);
+    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: "", favoritePosts: []}]);
   };
 
 
   return (
-    <AuthContext.Provider value={{ users, setUsers, addUser, post, setPost, image, setImage }}>
+    <AuthContext.Provider value={{ users, setUsers, addUser, posts, setPosts, image, setImage }}>
       {children}
     </AuthContext.Provider>
   );

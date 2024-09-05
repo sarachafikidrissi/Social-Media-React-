@@ -69,6 +69,7 @@ let userIndex = users.findIndex(e => e.username = newUsername)
 console.log(users[userIndex].userPost);
 
   // Function to create a task (post)
+  let id = 0
   const createTask = () => {
 
     const newTab = [...tasks];
@@ -80,6 +81,7 @@ console.log(users[userIndex].userPost);
       likes: 0,
       favorited:false,
       comments: [],
+      postId: Date.now()
     };
     if(inputChange || selectedImage || selectedVideo){
 
@@ -89,38 +91,8 @@ console.log(users[userIndex].userPost);
       setInputChange('');
       setSelectedImage(null);
       setSelectedVideo(null);
-      
-  
-   
     }
   };
-
-  // console.log(users);
-  // let userPostArr = users[0].userPost
-  // console.log(userPostArr);
-
-
-
-  console.log(users);
-  // console.log(tasks);
-  // let index = users.findIndex(e => e.username = newUsername)
-  // users[index].userPost.push(tasks)
-  // console.log(users);
-
-
-
-  //add posts to user data
-
-
-
-
-
-
-
-
-
-
-
 
   // Function to handle liking a post
   const handleLike = (index) => {
@@ -130,11 +102,23 @@ console.log(users[userIndex].userPost);
  
   };
   //function to favoris a post
+  console.log(users);
   const handleFavoris = (index) => {
     const newTasks = [...tasks];
     newTasks[index].favoris = !newTasks[index].favoris ;
     setTasks(newTasks);
- 
+
+    let thisPostId = newTasks[newTasks.length - 1].postId
+
+    console.log(thisPostId);
+    
+
+    let indexOfFavoritePost = newTasks.findIndex(e => e.postId == thisPostId)
+    // posts.push(tasks[indexOfFavoritePost])
+    users[userIndex].favoritePosts.push(tasks[indexOfFavoritePost])
+    console.log(users);
+
+
   };
 
   //  to open the comment modal

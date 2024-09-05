@@ -7,17 +7,21 @@ import { FiMessageSquare } from "react-icons/fi";
 import { FaUsers } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { MdOndemandVideo } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
+import { Navbar } from 'flowbite-react';
 const LeftSideBar = () => {
+
+  const navigate = useNavigate()
   return (
     <div className=' pt-5 ps-10  '>
       <div className='text-slateGray text-xl gap-5 flex flex-col'>
-      <div className='flex justify-start items-center  gap-3 hover:text-pink'> <IoHomeOutline /> <h2>Feed</h2></div>
-      <div className='flex justify-start items-center gap-3  hover:text-pink'><FiShoppingBag /> <h2>MarketPlace</h2></div>
-      <div className='flex justify-start items-center  gap-3  hover:text-pink'><MdOndemandVideo /> <h2>Video</h2></div>
-      <div className='flex justify-start items-center  gap-3  hover:text-pink'><FiMessageSquare /> <h2>Messages</h2></div>
-      <div className='flex justify-start items-center  gap-3  hover:text-pink'><CiBookmark /> <h2>My Favorites</h2></div>
-      <div className='flex justify-start items-center  gap-3  hover:text-pink'><FaUsers /> <h2>Groupes</h2></div>
-      <div className='flex justify-start items-center  gap-3  hover:text-pink'><CiSettings /> <h2>Settings</h2></div>
+      <div className='flex justify-start items-center  gap-3 hover:text-pink cursor-pointer'> <IoHomeOutline /> <h2>Feed</h2></div>
+      <div className='flex justify-start items-center gap-3  hover:text-pink cursor-pointer'><FiShoppingBag /> <h2>MarketPlace</h2></div>
+      <div className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer'><MdOndemandVideo /> <h2>Video</h2></div>
+      <div className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer'><FiMessageSquare /> <h2>Messages</h2></div>
+      <div onClick={() => {navigate('/myfavorite')}} className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer '><CiBookmark  /> <h2>My Favorites</h2></div>
+      <div className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer'><FaUsers /> <h2>Groupes</h2></div>
+      <div className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer'><CiSettings /> <h2>Settings</h2></div>
       </div>
       {/* My Friends */}
       <div className='flex flex-col pt-12 gap-5'>
