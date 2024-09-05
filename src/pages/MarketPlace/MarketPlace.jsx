@@ -40,13 +40,39 @@ const MarketPlace = () => {
     ],
   });
 
+  const handleSearch = (e) => {
+    const searchValue = e.target.value.toLowerCase();
+    setSearchCategory(searchValue);
+    // Vérifie si la recherche correspond à une catégorie existante
+    if (arrayCategory[searchValue]) {
+      setSelectedCategory(searchValue); 
+    }
+  };
   const AcheterArticle = () => {
+    // Validation des champs email et message
+    if (!email.trim() || !message.trim()) {
+      setError("Please fill in both email and message fields.");
+      return;
+    }
+
+    // Validation de l'email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    // Si tout est valide, procéder à l'achat
     alert('Merci pour votre achat !');
     setShowModal(false);
+    setEmail('');
+    setMessage('');
+    setError('');
   };
 
   const activeCategory = (category) => {
     setSelectedCategory(category);
+    setSearchCategory(''); 
   };
 
   const AfficherModal = () => {
@@ -90,6 +116,8 @@ const MarketPlace = () => {
             type="text"
             className='w-[25vw] p-1.5 rounded-3xl bg-slateGray text-white flex justify-center placeholder:text-white placeholder:ps-6'
             placeholder='Search products'
+            value={searchCategory}
+            onChange={handleSearch}
           />
         </div>
         <div className="flex justify-center gap-4 py-5">
