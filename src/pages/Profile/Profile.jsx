@@ -18,7 +18,7 @@ const Profile = () => {
               <div className='flex'>
                 <div className='w-[30vw] flex justify-center items-center'>
                   <div className=' w-[60%] h-[85%] rounded-full'>{user.profileImage ? (
-                    <img src={user.profileImage} />
+                    <img src={user.profileImage} className='w-[25vw] h-[30vh] rounded-full'/>
                   ) : (
                     <div className="bg-white w-full h-full rounded-full" />
                   )}</div>
@@ -38,16 +38,16 @@ const Profile = () => {
                   </div>
                 </div>
               </div>
-
-              <h1 className='  w-14 pt-8 pb-10  m-auto'><span className='ms-[1rem] text-2xl border-b-2 border-red-600 font-serif'>Posts</span></h1>
-              <div className='flex gap-5 flex-wrap ms-[1rem]'>
+                
+              <h1 className='  w-14 pt-8 pb-10  m-auto'><span className='ms-[1rem]  text-2xl border-b-2 border-red-600 font-serif'>Posts</span></h1>
+              <div className='flex gap-5 flex-wrap ms-[1rem]  bg-[#a19a9a7a] rounded-md'>
                 {user.userPost.map((post) => (
                   <div  className='w-[24vw] rounded-md'>
                     <div className='bg-white flex gap-5 rounded-t-md border-b-4 p-2'>
                       <div className='profil bg-[#fcfc] w-[4vw] h-[8vh] rounded-full'>
                         {/* Display profile image */}
                         {user.profileImage ? (
-                          <img src={user.profileImage} />
+                          <img src={user.profileImage}  className='w-full h-full rounded-full'/>
                         ) : (
                           <div className="bg-gray-200 w-full h-full rounded-full" />
                         )}
