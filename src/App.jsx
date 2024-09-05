@@ -22,6 +22,7 @@ const App = () => {
         <Route path="/login-profile/:username" element={<LoginProfile />} />
         <Route path="/friends" element={<Friends />} />
         <Route path="/groups" element={<Groups />} />
+        
         <Route path="/market" element={<MarketPlace />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/profile" element={<Profile />} />
