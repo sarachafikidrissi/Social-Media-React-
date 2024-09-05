@@ -189,7 +189,7 @@ let userIndex = users.findIndex(e => e.username = newUsername)
           </label>
           </div>
           <div className='flex flex-col justify-between items-center '>
-            {selectedImage && <img src={selectedImage} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
+            {selectedImage && <img src={selectedImage} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded'    />}
           <label className='flex items-center text-slateGray hover:text-pink gap-2 cursor-pointer'>
             <IoIosPhotos />
             <span>Photos</span>
