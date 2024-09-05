@@ -1,9 +1,10 @@
 import React, { createContext, useState, useContext } from 'react';
+import { assets } from '../assets';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([{name: "sara", email: "sara@demo.com", birthday: "15/10/15", gender: "Female", password:"1234", username: "sara", userPost: [], profileImage: `${assets.barbie}`}]);
   const [market, setMarket] = useState([])
 
   const [image,setImage]=useState("")

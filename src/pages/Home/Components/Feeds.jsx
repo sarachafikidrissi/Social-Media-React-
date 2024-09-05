@@ -11,7 +11,7 @@ const Feeds = () => {
 
   let connectedUser = useParams()
 let newUsername = connectedUser["username"]
-newUsername = newUsername.substring(1)
+// newUsername = newUsername.substring(1)
 
 
 const {image, setImage} = useAuth()
@@ -66,6 +66,7 @@ console.log(newUsername);
 // };
 
 let userIndex = users.findIndex(e => e.username = newUsername)
+console.log(users[userIndex].userPost);
 
   // Function to create a task (post)
   const createTask = () => {
