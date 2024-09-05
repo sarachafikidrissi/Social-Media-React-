@@ -3,7 +3,7 @@ import React, { createContext, useState, useContext } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([{ name:"abdellah", email:"abde@gmail.com", birthday:"04-04-2002", gender:"male", password:"123", username:"majdoul", userPost: [], profileImage:``}]);
   const [market, setMarket] = useState([])
 
   const [image,setImage]=useState("")
