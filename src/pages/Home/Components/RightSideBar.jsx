@@ -1,10 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { assets } from "../../../assets";
 import { CiSearch  } from "react-icons/ci";
+import { useAuth } from "../../../context";
 
 const RightSideBar = () => {
 
   const [activeStories, setActiveStories] = useState({});
+
+  const { users } = useAuth()
+
+  // Log users only when it changes
+  useEffect(() => {
+    console.log(users);
+  }, [users]); 
 
   let a = 1
   let b = 2

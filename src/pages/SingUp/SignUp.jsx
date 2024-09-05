@@ -22,7 +22,7 @@ const SignUp = () => {
     e.preventDefault();
     if (code && code === generatedCode && name&& email&&gender&&birthday&&password&&userName && !a ) {
       addUser(name, email, birthday,  gender, password,userName);
-     
+     console.log(users);
       setGeneratedCode("")
       alert("your account has been created succesfully")
       navigate(`/login-profile/:${userName}`)
