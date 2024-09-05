@@ -1,23 +1,33 @@
 import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useRef } from 'react'
 import { useAuth } from '../../../context'
 
 const LoginPage = () => {
+     let connectedUser = useParams()
+     let newUsername = connectedUser["username"]
+     newUsername = newUsername.substring(1)
+     console.log(newUsername);
+
+    
     const [users1,setUsers]=useState(null)
     const [unername,setUsername]=useState(null)
     
   const {users}=useAuth()
   const navigate =useNavigate()
   const inputRef =useRef(null)
-  const [image,setImage]=useState("")
+//   const [image,setImage]=useState("")
+  const {image, setImage} = useAuth()
   const inputRefCover =useRef(null)
   const [cover,setCover]=useState("")
+
+
+  let userIndex = users.findIndex(e => e.username = newUsername)
 
   const handleNameChange = (event, index) => {
     const updatedUsers = [...users];
     updatedUsers[index].name = event.target.value;
-    setUsers(updatedUsers); // Make sure to have `setUsers` to update the state
+    setUsers(updatedUsers); 
     };
     const handleUserChange = (event, index) => {
         const updatedUsers = [...users];
@@ -30,6 +40,14 @@ const LoginPage = () => {
   const handleChange =(event)=>{
 
 setImage(event.target.files[0])
+
+console.log(image);
+
+users[userIndex].profileImage = image
+
+
+
+console.log(users);
     
 
   }
@@ -54,7 +72,7 @@ setImage(event.target.files[0])
             
             <div class="">
             {/* create btn kadik lhome page */}
-            <h1 className=' text-end text-4xl cursor-pointer'><span onClick={() => navigate('/')} className='hover:text-red-600'>x</span></h1>
+            <h1 className=' text-end text-4xl cursor-pointer'><span onClick={() => navigate(`/:${newUsername}`)} className='hover:text-red-600'>x</span></h1>
             
                 <h1
                     class="lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
@@ -95,7 +113,7 @@ setImage(event.target.files[0])
                                     type="text"
                                     className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                     placeholder="User Name"
-                                    value={e.username}
+                                    value={newUsername}
                                     onChange={(event) => handleUserChange(event, index)}
                                 />
                             </div>
@@ -123,7 +141,7 @@ setImage(event.target.files[0])
                     </div>
 
                     <div class="flex items-center justify-center  mt-4 text-white text-lg font-semibold">
-                        <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={"/:username"}>Submit</Link></button>
+                        <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={`/:${newUsername}`}>Submit</Link></button>
                     </div>
                     </div>
                 </form>

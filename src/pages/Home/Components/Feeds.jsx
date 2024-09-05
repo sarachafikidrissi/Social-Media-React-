@@ -10,8 +10,20 @@ import { useParams } from 'react-router-dom';
 const Feeds = () => {
 
   let connectedUser = useParams()
+let newUsername = connectedUser["username"]
+newUsername = newUsername.substring(1)
 
-  const { users } = useAuth();
+
+const {image, setImage} = useAuth()
+
+
+
+console.log(newUsername);
+ 
+
+  const { users, setUsers } = useAuth();
+
+
 
 
   const [tasks, setTasks] = useState([]);
@@ -40,9 +52,23 @@ const Feeds = () => {
     }
   };
 
+
+//update user data
+
+// const updateParameterForUser = (username, parameter, value) => {
+//   setUsers((prevUsers) =>
+//     prevUsers.map(user =>
+//       user.username === username
+//         ? { ...user, [parameter]: value }
+//         : user
+//     )
+//   );
+// };
+
+let userIndex = users.findIndex(e => e.username = newUsername)
+
   // Function to create a task (post)
   const createTask = () => {
-   
 
     const newTab = [...tasks];
    
@@ -55,22 +81,41 @@ const Feeds = () => {
       comments: [],
     };
     if(inputChange || selectedImage || selectedVideo){
-      
+
+      users[userIndex].userPost.push(newTask)
       newTab.push(newTask);
       setTasks(newTab);
       setInputChange('');
       setSelectedImage(null);
       setSelectedVideo(null);
+      
+  
+   
     }
   };
 
+  // console.log(users);
+  // let userPostArr = users[0].userPost
+  // console.log(userPostArr);
+
+
+
+  console.log(users);
+  // console.log(tasks);
+  // let index = users.findIndex(e => e.username = newUsername)
+  // users[index].userPost.push(tasks)
+  // console.log(users);
+
+
+
   //add posts to user data
 
-  setPosts(tasks)
-  console.log(posts);
 
-  let userIndex = users.find(e => e.username === connectedUser)
-  // users[userIndex].post = posts
+
+
+
+
+
 
 
 
@@ -111,7 +156,7 @@ const Feeds = () => {
 
   const removePost = (index) => {
     const newTasks = [...tasks]
-    console.log(newTasks.splice(index, 1));
+    newTasks.splice(index, 1)
     setTasks(newTasks)
   }
 
@@ -122,6 +167,7 @@ const Feeds = () => {
         <div className='flex items-center mb-4 gap-2'>
           <img
             className='w-10 h-10 rounded-full'
+            // src={image}
             src='https://img.freepik.com/photos-gratuite/portrait-femme-souriante-espace-copie_23-2148784759.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1725235200&semt=ais_hybrid'
             alt='User'
           />
