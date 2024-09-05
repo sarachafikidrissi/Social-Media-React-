@@ -142,7 +142,6 @@ console.log(users);
                     <div class="flex items-center justify-center  mt-4 text-white text-lg font-semibold">
                         <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={"/:username"}>Submit</Link></button>
                     </div>
-                    </div>
                 </form>
             </div>
         </div>
