@@ -8,22 +8,25 @@ import { useAuth } from '../../context';
 import { useState } from 'react';
 
 const Login = () => {
+  
   const navigate = useNavigate();
   const { users } = useAuth();
+  console.log(users);
   const [loginUsername, setLoginusername] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
 const check = ()=>{
   let user = users.find((e)=>e.username==loginUsername && e.password==loginpassword)
+  let username = user.username
   if (user) {
     alert("your loged in succesfully")
-    navigate('/login-profile')
+    navigate(`/login-profile/:${username}`)
   }else{
     alert("not found")
   }
 }
 
   return (
-    <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[80vh] overflow-hidden flex">
+    <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[93vh] overflow-hidden flex">
       <div className="absolute top-0 right-0 h-full w-1/2 flex items-center justify-center">
         <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center">
           <h1 className="text-3xl font-bold m-0">Login</h1>
@@ -61,7 +64,3 @@ const check = ()=>{
 };
 
 export default Login;
-
-
-
-

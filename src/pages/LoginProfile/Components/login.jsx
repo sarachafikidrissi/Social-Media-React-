@@ -131,7 +131,7 @@ console.log(users);
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
-                        </div>
+                           </div>
                         <div class="w-full">
                             <h3 class="dark:text-gray-300 mb-2">Date Of Birth</h3>
                             <input type="date"

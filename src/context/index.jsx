@@ -6,11 +6,13 @@ export const AuthProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [market, setMarket] = useState([])
 
+  const [image,setImage]=useState("")
+
 
 
 
   const addUser = (name, email, birthday, gender, password,username) => {
-    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username }]);
+    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: ""}]);
   };
 
   const addProduct = (title, price, productImg, category) => {
@@ -18,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   }
 
   return (
-    <AuthContext.Provider value={{ users, addUser, market, addProduct }}>
+    <AuthContext.Provider value={{ users, setUsers, addUser, market, addProduct, image, setImage }}>
       {children}
     </AuthContext.Provider>
   );
