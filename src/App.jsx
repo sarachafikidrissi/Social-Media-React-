@@ -12,7 +12,7 @@ import LoginProfile from "./pages/LoginProfile/LoginProfile";
 import Profile from "./pages/Profile/Profile";
 import { AuthProvider } from "./context";
 import EditProfil from "./EditProfil/EditProfil";
-import Myfavorites from "./pages/Myfavorites/myfavorites";
+import MyFavorites from "./pages/Myfavorites/myfavorites";
 const App = () => {
   return (
     <AuthProvider>
@@ -23,12 +23,12 @@ const App = () => {
         <Route path="/friends" element={<Friends />} />
         <Route path="/groups" element={<Groups />} />
         <Route path="/market" element={<MarketPlace />} />
-        <Route path="/myfavorites" element={<Myfavorites/>} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/edit-profile" element={<EditProfil />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
+        <Route path="/myfavorite" element={<MyFavorites/>} />
       </Routes>
     </div>
     </AuthProvider>

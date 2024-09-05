@@ -15,11 +15,13 @@ const Login = () => {
   const [loginUsername, setLoginusername] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
 const check = ()=>{
-  let user = users.find((e)=>e.username==loginUsername && e.password==loginpassword)
+  let user = users.find((e)=>e.username==loginUsername && e.password==loginpassword )
   let username = user.username
+  console.log(user);
   if (user) {
+    user.islogedin=true 
     alert("your loged in succesfully")
-    navigate(`/login-profile/:${username}`)
+    navigate(`/:${username}`)
   }else{
     alert("not found")
   }
@@ -54,7 +56,7 @@ const check = ()=>{
         <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
           <h1 className="text-3xl font-bold">Welcome Back!</h1>
           <p className="text-sm">To keep connected with us please login with your personal info</p>
-          <button className="border border-pink text-black rounded-full py-2 px-6 text-sm font-bold  hover:bg-pink hover:text-white" onClick={() => navigate('/')}>
+          <button className="border border-pink text-black rounded-full py-2 px-6 text-sm font-bold  hover:bg-pink hover:text-white" onClick={() => navigate('/sign-up')}>
             Sign Up
           </button>
         </div>

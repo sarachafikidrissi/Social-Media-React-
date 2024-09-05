@@ -8,12 +8,11 @@ const LoginPage = () => {
      let newUsername = connectedUser["username"]
      newUsername = newUsername.substring(1)
      console.log(newUsername);
+    console.log(connectedUser.username);
 
     
-    const [users1,setUsers]=useState(null)
-    const [unername,setUsername]=useState(null)
-    
   const {users}=useAuth()
+  console.log(users);
   const navigate =useNavigate()
   const inputRef =useRef(null)
 //   const [image,setImage]=useState("")
@@ -22,18 +21,9 @@ const LoginPage = () => {
   const [cover,setCover]=useState("")
 
 
-  let userIndex = users.findIndex(e => e.username = newUsername)
+  let userIndex = users.findIndex(e => e.username == newUsername)
 
-  const handleNameChange = (event, index) => {
-    const updatedUsers = [...users];
-    updatedUsers[index].name = event.target.value;
-    setUsers(updatedUsers); 
-    };
-    const handleUserChange = (event, index) => {
-        const updatedUsers = [...users];
-        updatedUsers[index].username = event.target.value;
-        setUsername(updatedUsers); 
-        };
+
   const handleClick =()=>{
     inputRef.current.click()
   }
@@ -62,6 +52,8 @@ console.log(users);
   }
   
         console.log(users);
+        let user = users.find((e)=>e.username==newUsername)
+
         
   return (
       <div className=''>
@@ -91,9 +83,7 @@ console.log(users);
                         <input type='file' ref={inputRef} onChange={handleChange} className='hidden' />
                         </div>
                     </div>
-                    {users.map((e, index) => (
                         <div
-                            key={index}
                             className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full"
                         >
                             <div className="w-full mb-4 mt-6">
@@ -102,8 +92,7 @@ console.log(users);
                                     type="text"
                                     className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                     placeholder="First Name"
-                                    value={e.name}
-                                    onChange={(event) => handleNameChange(event, index)} 
+                                    value={user.name}
                                 />
                             </div>
                             <div className="w-full mb-4 lg:mt-6">
@@ -112,12 +101,10 @@ console.log(users);
                                     type="text"
                                     className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                                     placeholder="User Name"
-                                    value={newUsername}
-                                    onChange={(event) => handleUserChange(event, index)}
+                                    value={user.username}
                                 />
                             </div>
                         </div>
-                    ))}
                     
                      
                     
@@ -131,7 +118,7 @@ console.log(users);
                                     <option value="Male">Male</option>
                                     <option value="Female">Female</option>
                                 </select>
-                        </div>
+                           </div>
                         <div class="w-full">
                             <h3 class="dark:text-gray-300 mb-2">Date Of Birth</h3>
                             <input type="date"
@@ -140,7 +127,7 @@ console.log(users);
                     </div>
 
                     <div class="flex items-center justify-center  mt-4 text-white text-lg font-semibold">
-                        <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={"/:username"}>Submit</Link></button>
+                        <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={`/login`}>Submit</Link></button>
                     </div>
                 </form>
             </div>
