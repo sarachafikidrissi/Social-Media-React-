@@ -102,7 +102,7 @@ const SignUp = () => {
             placeholder="UserName"
             className="bg-gray-200 border-none p-3 my-2 w-full"
             value={userName}
-            onChange={(e) => setUserName(e.target.value)}
+            onChange={(e) => setUserName(name + "123")}
           />
           <input
             type="email"

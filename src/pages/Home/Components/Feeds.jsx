@@ -11,14 +11,9 @@ const Feeds = () => {
 
   let connectedUser = useParams()
 let newUsername = connectedUser["username"]
-// newUsername = newUsername.substring(1)
 
+newUsername = newUsername.substring(1)
 
-const {image, setImage} = useAuth()
-
-
-
-console.log(newUsername);
  
 
   const { users, setUsers } = useAuth();
@@ -33,7 +28,6 @@ console.log(newUsername);
   const [showModal, setShowModal] = useState(false);
   const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
   const [commentInput, setCommentInput] = useState('');
- const {posts, setPosts} = useAuth()
 
   const date = new Date();
   const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -55,21 +49,12 @@ console.log(newUsername);
 
 //update user data
 
-// const updateParameterForUser = (username, parameter, value) => {
-//   setUsers((prevUsers) =>
-//     prevUsers.map(user =>
-//       user.username === username
-//         ? { ...user, [parameter]: value }
-//         : user
-//     )
-//   );
-// };
 
 let userIndex = users.findIndex(e => e.username = newUsername)
 console.log(users[userIndex].userPost);
 
   // Function to create a task (post)
-  let id = 0
+
   const createTask = () => {
 
     const newTab = [...tasks];
@@ -97,7 +82,7 @@ console.log(users[userIndex].userPost);
   // Function to handle liking a post
   const handleLike = (index) => {
     const newTasks = [...tasks];
-    newTasks[index].likes = !newTasks[index].likes  ;
+    newTasks[index].likes = !newTasks[index].likes ;
     setTasks(newTasks);
  
   };
