@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
 
   const addUser = (name, email, birthday, gender, password,username) => {
-    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: "", favoritePosts: []}]);
+    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: "", favoritePosts: [],islogedin:false}]);
   };
 
 
