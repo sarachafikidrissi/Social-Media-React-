@@ -14,15 +14,18 @@ const SignUp = () => {
   const [generatedCode, setGeneratedCode] = useState('');
   const { addUser } = useAuth();
   const navigate = useNavigate();
+  const {users}=useAuth()
+
+ let a = users.find(user=>user.username==userName)
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (code && code === generatedCode && name&& email&&gender&&birthday&&password&&userName) {
+    if (code && code === generatedCode && name&& email&&gender&&birthday&&password&&userName && !a ) {
       addUser(name, email, birthday,  gender, password,userName);
      
       setGeneratedCode("")
       alert("your account has been created succesfully")
-      navigate('/login')
+      navigate(`/login-profile/:${userName}`)
      
     } else {
       alert('Incorrect code. Please try again.');

@@ -1,26 +1,24 @@
 import React, { createContext, useState, useContext } from 'react';
+import { assets } from '../assets';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [users, setUsers] = useState([{ name:"abdellah", email:"abde@gmail.com", birthday:"04-04-2002", gender:"male", password:"123", username:"majdoul", userPost: [], profileImage:``}]);
-  const [market, setMarket] = useState([])
+  const [users, setUsers] = useState([{name: "sara", email: "sara@demo.com", birthday: "15/10/15", gender: "Female", password:"1234", username: "sara", userPost: [], profileImage: `${assets.barbie}`, favoritePosts: []}]);
 
   const [image,setImage]=useState("")
+  const [posts,setPosts]=useState([])
 
 
 
 
   const addUser = (name, email, birthday, gender, password,username) => {
-    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: ""}]);
+    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: "", favoritePosts: [],islogedin:false}]);
   };
 
-  const addProduct = (title, price, productImg, category) => {
-    setMarket((prevMarket) => [...prevMarket, {title, price, productImg, category}])
-  }
 
   return (
-    <AuthContext.Provider value={{ users, setUsers, addUser, market, addProduct, image, setImage }}>
+    <AuthContext.Provider value={{ users, setUsers, addUser, posts, setPosts, image, setImage }}>
       {children}
     </AuthContext.Provider>
   );
