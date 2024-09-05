@@ -12,7 +12,6 @@ const LoginPage = () => {
 
     
   const {users}=useAuth()
-  console.log(users);
   const navigate =useNavigate()
   const inputRef =useRef(null)
 //   const [image,setImage]=useState("")
