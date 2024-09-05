@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
 
 
   const addUser = (name, email, birthday, gender, password,username) => {
-    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: ""}]);
+    setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: "",islogedin:false}]);
   };
 
   const addProduct = (title, price, productImg, category) => {
