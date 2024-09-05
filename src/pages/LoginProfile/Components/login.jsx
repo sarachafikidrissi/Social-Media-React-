@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useRef } from 'react'
 import { useAuth } from '../../../context'
 
@@ -97,11 +97,7 @@ setImage(event.target.files[0])
                                 />
                             </div>
                         </div>
-                    ))}
-                    
-                     
-                    
-                     
+                    ))}         
                     <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
                         <div class="w-full">
                             <h3 class="dark:text-gray-300 mb-2">Sex</h3>
@@ -114,13 +110,13 @@ setImage(event.target.files[0])
                         </div>
                         <div class="w-full">
                             <h3 class="dark:text-gray-300 mb-2">Date Of Birth</h3>
-                            <input type="date"
+                            <input type="text"
                                     class="text-grey p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"/>
                         </div>
                     </div>
 
                     <div class="w-full rounded-lg bg-[#ea4c89] mt-4 text-white text-lg font-semibold">
-                        <button class="w-full p-4"><Link to={"/"}>Submit</Link></button>
+                    <button class="w-full p-4"><Link to={"/"}>Submit</Link></button>
                     </div>
                 </form>
             </div>
