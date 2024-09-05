@@ -16,12 +16,9 @@ export const AuthProvider = ({ children }) => {
     setUsers((prevUsers) => [...prevUsers, { name, email, birthday, gender, password, username, userPost: [], profileImage: ""}]);
   };
 
-  const addProduct = (title, price, productImg, category) => {
-    setMarket((prevMarket) => [...prevMarket, {title, price, productImg, category}])
-  }
 
   return (
-    <AuthContext.Provider value={{ users, setUsers, addUser, market, addProduct, image, setImage }}>
+    <AuthContext.Provider value={{ users, setUsers, addUser, post, setPost, image, setImage }}>
       {children}
     </AuthContext.Provider>
   );
