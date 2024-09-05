@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../../src/assets/images/friendwave-removebg-preview.png"
+import logo from "../../src/assets/images/logo_fw-removebg-preview.png"
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context';
 
@@ -9,7 +9,7 @@ const Navbar = () => {
     return (
         <div className='navbar flex justify-between  px-5 '>
       <div className='leftNav flex gap-52'>
-        <img width={50} src={logo} />
+        <img width={70} src={logo} />
         <div class="relative  items-center hidden md:inline-flex">
         <input type="text" placeholder="Search" class="border border-gray-200 rounded-md py-1 px-2 w-[35vw]"/>
         <svg class="absolute right-2 h-6 w-6 text-gray-400 hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
