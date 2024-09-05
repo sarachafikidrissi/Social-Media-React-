@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from "../../src/assets/images/friendwave-removebg-preview.png"
+import logo from "../../src/assets/images/logo_fw-removebg-preview.png"
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context';
 
