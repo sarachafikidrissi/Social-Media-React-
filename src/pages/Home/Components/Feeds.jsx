@@ -11,7 +11,7 @@ const Feeds = () => {
 
   let connectedUser = useParams()
 let newUsername = connectedUser["username"]
-// newUsername = newUsername.substring(1)
+newUsername = newUsername.substring(1)
 
 
 const {image, setImage} = useAuth()
@@ -66,10 +66,8 @@ console.log(newUsername);
 // };
 
 let userIndex = users.findIndex(e => e.username = newUsername)
-console.log(users[userIndex].userPost);
 
   // Function to create a task (post)
-  let id = 0
   const createTask = () => {
 
     const newTab = [...tasks];
@@ -81,7 +79,6 @@ console.log(users[userIndex].userPost);
       likes: 0,
       favorited:false,
       comments: [],
-      postId: Date.now()
     };
     if(inputChange || selectedImage || selectedVideo){
 
@@ -91,8 +88,38 @@ console.log(users[userIndex].userPost);
       setInputChange('');
       setSelectedImage(null);
       setSelectedVideo(null);
+      
+  
+   
     }
   };
+
+  // console.log(users);
+  // let userPostArr = users[0].userPost
+  // console.log(userPostArr);
+
+
+
+  console.log(users);
+  // console.log(tasks);
+  // let index = users.findIndex(e => e.username = newUsername)
+  // users[index].userPost.push(tasks)
+  // console.log(users);
+
+
+
+  //add posts to user data
+
+
+
+
+
+
+
+
+
+
+
 
   // Function to handle liking a post
   const handleLike = (index) => {
@@ -102,23 +129,11 @@ console.log(users[userIndex].userPost);
  
   };
   //function to favoris a post
-  console.log(users);
   const handleFavoris = (index) => {
     const newTasks = [...tasks];
     newTasks[index].favoris = !newTasks[index].favoris ;
     setTasks(newTasks);
-
-    let thisPostId = newTasks[newTasks.length - 1].postId
-
-    console.log(thisPostId);
-    
-
-    let indexOfFavoritePost = newTasks.findIndex(e => e.postId == thisPostId)
-    // posts.push(tasks[indexOfFavoritePost])
-    users[userIndex].favoritePosts.push(tasks[indexOfFavoritePost])
-    console.log(users);
-
-
+ 
   };
 
   //  to open the comment modal
@@ -174,12 +189,12 @@ console.log(users[userIndex].userPost);
           </label>
           </div>
           <div className='flex flex-col justify-between items-center '>
-            {selectedImage && <img src={selectedImage} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded'    />}
+            {selectedImage && <img src={selectedImage} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
           <label className='flex items-center text-slateGray hover:text-pink gap-2 cursor-pointer'>
             <IoIosPhotos />
             <span>Photos</span>
             
-            <input type='file' accept='image/*' onChange={handleImageChange} className='hidden' />
+            <input type='file' multiple accept='image/*' onChange={handleImageChange} className='hidden' />
           </label>
           </div>
           
