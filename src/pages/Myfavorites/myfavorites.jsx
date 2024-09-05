@@ -5,6 +5,8 @@ import { FaRegCommentAlt } from 'react-icons/fa';
 import { IoIosPhotos } from 'react-icons/io';
 import { IoBookmark, IoHeart, IoVideocam } from 'react-icons/io5';
 import { FaTrash } from "react-icons/fa6";
+import RightSideBar from '../Home/Components/RightSideBar';
+import Navbar from '../../layout/navbar';
 
 const MyFavorites = () => {
     const [tasks, setTasks] = useState([]);
@@ -15,7 +17,9 @@ const MyFavorites = () => {
     const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
     const [commentInput, setCommentInput] = useState('');
 
+
     const {post, setPost} = useAuth()
+
     const date = new Date();
     const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     
@@ -64,28 +68,33 @@ const MyFavorites = () => {
     
   const { users } = useAuth(); 
 
+
     let username=users[0].username
     console.log(username);
     
 
+
+
   
   const filteredUser = users.findIndex((e) => e.username === username);
- const addedPost =users[filteredUser].userPost
+//  const addedPost =users[filteredUser].userPost
 
- setPost(addedPost)
- console.log(post);
+//  setPost(addedPost)
+//  console.log(post);
  
 
   return (
     <>
-      <div className="flex w-full">
+    <Navbar />
+      <div className="flex w-full  justify-between">
         <div className="w-1/4">
-          <LeftSideBar />
+          <LeftSideBar  />
         </div>
-        <div className='w-full max-w-md'>
+        <div className='w-[50%] me-10'>
+          
         
-        {post.map((task, index) => (
-          <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md relative'>
+         {users[filteredUser].favoritePosts.map((task, index) => (
+          <div key={index} className='p-4  mt-4 rounded-lg shadow-md relative '>
             <FaTrash  onClick={() => removePost(index)}  className='absolute right-4 text-xl text-pink'/>
             <div className='flex items-center mb-4'>
               <img
@@ -129,7 +138,6 @@ const MyFavorites = () => {
                 
               </button>
             </div>
-            {/*  comments */}
             {task.comments.length > 0 && (
               <div className='mt-3'>
                 {task.comments.map((comment, commentIndex) => (
@@ -140,8 +148,9 @@ const MyFavorites = () => {
               </div>
             )}
           </div>
-        ))}
+        ))} 
       </div>
+      <RightSideBar />
       </div>
     </>
   );
