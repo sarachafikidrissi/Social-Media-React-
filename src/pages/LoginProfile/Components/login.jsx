@@ -7,9 +7,9 @@ const LoginPage = () => {
      let connectedUser = useParams()
      let newUsername = connectedUser["username"]
      newUsername = newUsername.substring(1)
-     console.log(newUsername);
-    console.log(connectedUser.username);
-
+     console.log(newUsername);    
+    const [users1,setUsers]=useState(null)
+    const [unername,setUsername]=useState(null)
     
   const {users}=useAuth()
   const navigate =useNavigate()
