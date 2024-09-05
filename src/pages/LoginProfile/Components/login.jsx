@@ -54,15 +54,14 @@ setImage(event.target.files[0])
             
             <div class="">
             {/* create btn kadik lhome page */}
-            <h1 className=' text-end text-4xl cursor-pointer'><span onClick={() => navigate('/')} className='hover:text-red-600'>x</span></h1>
+            <h1 className=' text-end text-4xl cursor-pointer'><span onClick={() => navigate('/:username')} className='hover:text-red-600'>x</span></h1>
             
                 <h1
                     class="lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
                     Profile
                 </h1>
                 <h2 class="text-grey text-sm mb-4 dark:text-gray-400">Create Profile</h2>
-                <form className=''>
-                    <div className=' w-full'>
+                <form>
                 {/* create bg cover */}
                     <div className='pb-10 relative'>
                         <div className='bg-black w-full h-[40vh] ' onClick={handlCOverClick} >
@@ -122,12 +121,10 @@ setImage(event.target.files[0])
                         </div>
                     </div>
 
-                    <div class="flex items-center justify-center  mt-4 text-white text-lg font-semibold">
-                        <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={"/:username"}>Submit</Link></button>
-                    </div>
+                    <div class="w-full rounded-lg bg-[#ea4c89] mt-4 text-white text-lg font-semibold">
+                        <button class="w-full p-4"><Link to={"/"}>Submit</Link></button>
                     </div>
                 </form>
-                
             </div>
         </div>
     </div>
