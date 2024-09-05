@@ -8,8 +8,6 @@ export default {
     home2: require("../assets/images/home2.jpg"),
     home3: require("../assets/images/home3.jpg"),
     home4: require("../assets/images/home4.jpg"),
-    car1: require("../assets/images/car1.jpg"),
-    car2: require("../assets/images/car2.jpg"),
-    car3: require("../assets/images/car3.jpg"),
+
    
 }
