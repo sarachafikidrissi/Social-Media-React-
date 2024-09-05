@@ -8,6 +8,7 @@ import { useAuth } from '../../context';
 import { useState } from 'react';
 
 const Login = () => {
+  
   const navigate = useNavigate();
   const { users } = useAuth();
   console.log(users);
@@ -63,7 +64,3 @@ const check = ()=>{
 };
 
 export default Login;
-
-
-
-
