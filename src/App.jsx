@@ -14,6 +14,8 @@ import { AuthProvider } from "./context";
 import EditProfil from "./EditProfil/EditProfil";
 import MyFavorites from "./pages/Myfavorites/myfavorites";
 import Accueil from "./pages/accueil/accueil";
+import GroupPage from "./pages/GroupPage/GroupPage";
+import CreateGroup from "./pages/CreateGroup/CreateGroup";
 const App = () => {
   return (
     <AuthProvider>
@@ -24,7 +26,8 @@ const App = () => {
         <Route path="/friends" element={<Friends />} />
         <Route path="/" element={<Accueil />} />
         <Route path="/groups" element={<Groups />} />
-        
+        <Route path="/group-page" element={<GroupPage />} />
+        <Route path="/create-group" element={<CreateGroup />} />
         <Route path="/market" element={<MarketPlace />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/profile" element={<Profile />} />
