@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { assets } from '../../assets';
 import LeftSideBar from '../Home/Components/LeftSideBar';
+import { CiSearch } from "react-icons/ci";
 
 const MarketPlace = () => {
   const [selectedCategory, setSelectedCategory] = useState('vehicle');
@@ -15,12 +16,12 @@ const MarketPlace = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [searchCategory, setSearchCategory] = useState('');
- 
+
 
   const [arrayCategory, setArrayCategory] = useState({
     vehicle: [
       { imgSrc: assets.car1, title: 'Toyota CHR hybride', description: 'Toyota CHR hybride en excellent état, faible consommation, idéale pour les trajets urbains. Année 2020, 30,000 km au compteur.', price: '22,500' },
-      { imgSrc: assets.car2, title: 'Mini Cooper Automatique Essence', description: 'Mini Cooper 3 portes avec transmission automatique. Compacte, stylée, et très bien entretenue. Année 2018, 40,000 km.', price: '18,000' },
+      { imgSrc: assets.car2, title: 'Mini Cooper  Essence', description: 'Mini Cooper 3 portes avec transmission automatique. Compacte, stylée, et très bien entretenue. Année 2018, 40,000 km.', price: '18,000' },
       { imgSrc: assets.car3, title: 'Skoda Octavia Diesel', description: 'Skoda Octavia Diesel avec moteur économique, idéale pour les longs trajets. Année 2019, 50,000 km.', price: '16,500' },
     ],
     electronics: [
@@ -45,9 +46,9 @@ const MarketPlace = () => {
     setSearchCategory(searchValue);
     // Vérifie si la recherche correspond à une catégorie existante
     if (arrayCategory[searchValue]) {
-      setSelectedCategory(searchValue); 
+      setSelectedCategory(searchValue);
     }
-    
+
   };
   const AcheterArticle = () => {
     // Validation des champs email et message
@@ -73,7 +74,7 @@ const MarketPlace = () => {
 
   const activeCategory = (category) => {
     setSelectedCategory(category);
-    setSearchCategory(''); 
+    setSearchCategory('');
   };
 
   const AfficherModal = () => {
@@ -112,91 +113,92 @@ const MarketPlace = () => {
         <LeftSideBar />
       </div>
       <div className='flex flex-col pb-8 w-[85%] justify-center items-center gap-10'>
-        <div className=''>
-          <input
+        <div className='shadow-lg bg-[#FBA1B7] mt-5 rounded-3xl relative'>
+          <CiSearch className="text-2xl font-bold text-[#FF597B] absolute top-[50%] left-4 translate-y-[-50%] " />
+          < input
             type="text"
-            className='w-[25vw] p-1.5 rounded-3xl bg-slateGray text-white flex justify-center placeholder:text-white placeholder:ps-6'
+            className='w-[25vw] p-1.5 rounded-3xl ps-11 bg-[#FFD1DA] py-2 border-none text-black flex justify-center placeholder:text-black '
             placeholder='Search products'
-            value={searchCategory}
-            onChange={handleSearch}
+            value={searchCategory} onChange={handleSearch}
           />
         </div>
-        <div className="flex justify-center gap-4 py-5">
+        <div className="flex justify-center gap-5 py-3">
           <button
-            className={`text-lg py-2 px-7 rounded-3xl ${selectedCategory === 'vehicle' ? 'bg-charcoal text-white' : 'bg-coolGray text-black hover:bg-coolGray hover:text-white'}`}
+            className={`text-xl py-2 px-10 rounded-3xl  ${selectedCategory === 'vehicle' ? 'bg-gradient-to-b from-[#af7878]  to-[#ae385e] text-white font-semibold' : 'bg-gradient-to-b from-[#c17d7d] to-[#d76a83]  font-semibold text-white  hover:text-white'}`}
             onClick={() => activeCategory('vehicle')}
           >Vehicle</button>
           <button
-            className={`text-lg py-2 px-7 rounded-3xl ${selectedCategory === 'electronics' ? 'bg-charcoal text-white' : 'bg-coolGray text-black hover:bg-coolGray hover:text-white'}`}
+            className={`text-xl py-2 px-10 rounded-3xl ${selectedCategory === 'electronics' ? 'bg-gradient-to-b from-[#af7878]  to-[#ae385e] text-white font-semibold' : 'bg-gradient-to-b from-[#c17d7d] to-[#d76a83]  font-semibold text-white hover:text-white'}`}
             onClick={() => activeCategory('electronics')}
           >Electronics</button>
           <button
-            className={`text-lg py-2 px-7 rounded-3xl ${selectedCategory === 'appliance' ? 'bg-charcoal text-white' : 'bg-coolGray text-black hover:bg-coolGray hover:text-white'}`}
+            className={`text-xl py-2 px-10 rounded-3xl ${selectedCategory === 'appliance' ? 'bg-gradient-to-b from-[#af7878]  to-[#ae385e] text-white font-semibold' : 'bg-gradient-to-b from-[#c17d7d] to-[#d76a83]  font-semibold text-white hover:text-white'}`}
             onClick={() => activeCategory('appliance')}
           >Appliance</button>
           <button
-            className={`text-lg py-2 px-7 rounded-3xl ${selectedCategory === 'beauty' ? 'bg-charcoal text-white' : 'bg-coolGray text-black hover:bg-coolGray hover:text-white'}`}
+            className={`text-xl py-2 px-10 rounded-3xl ${selectedCategory === 'beauty' ? 'bg-gradient-to-b from-[#af7878]  to-[#ae385e] text-white font-semibold' : 'bg-gradient-to-b from-[#c17d7d] to-[#d76a83]  font-semibold text-white hover:text-white'}`}
             onClick={() => activeCategory('beauty')}
           >Beauty</button>
         </div>
-        <div className="grid grid-cols-3 gap-8 py-8 w-[70vw]">
+        <div className="grid grid-cols-3  gap-5 py-8 w-[100%] h-[50%] ">
           {arrayCategory[selectedCategory].map((item, index) => (
-            <div key={index} className="bg-white p-4 rounded-lg shadow-lg w-[95%]">
-              <img src={item.imgSrc} alt={item.title} />
-              <h3 className="text-xl font-bold py-3">{item.title}</h3>
-              <div className="text-midnightBlue font-bold pb-3">{item.price} DH</div>
-              <div className='flex justify-end'>
-                <button className='bg-coolGray px-4 py-2 rounded-xl text-white text-lg hover:bg-charcoal' onClick={() => AfficherModalInfo(item)}>
+            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3 bg-[#ffebd4a6]">
+             <div className='h-[30vh] w-[90%] mb-2 border-b-2 border-b-[#ff8db1a6] '><img src={item.imgSrc} alt={item.title} className='w-[90%] h-[100%]' /></div> 
+              <div className='w-[100%] h-[15%] '><h3 className="text-xl font-bold py-3   text-[#402B3A]">{item.title}</h3></div>
+              <div className=" font-bold pb-3 w-[100%] h-[10%] text-[#921A40] text-lg">{item.price} DH</div>
+              <div className='flex justify-center'>
+                <button className='bg-gradient-to-b from-[#c75b79e7]  to-[#fc819e75] px-4 py-2 rounded-xl text-black text-xl font-semibold hover:text-[#571f39]' onClick={() => AfficherModalInfo(item)}>
                   More information
                 </button>
-                
+
               </div>
             </div>
           ))}
         </div>
         <div className='flex justify-end'>
-          <button className='bg-pink px-8 py-2 text-xl text-white rounded-2xl' onClick={AfficherModal}>
+          <button className='bg-gradient-to-b from-[#c17d7d] to-[#d76a83] hover:from-[#af7878] hover:to-[#ae385e] px-12 py-2 text-2xl text-white rounded-2xl font-semibold' 
+          onClick={AfficherModal}>
             Add Article
           </button>
         </div>
       </div>
-{/* Afficher Modal */}
+      {/* Afficher Modal */}
       {showModal && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
           <div className='bg-white p-8 rounded-2xl w-[40vw] min-h-[50vh]'>
-            <h2 className='text-2xl font-bold mb-4'>Add New Article</h2>
+            <h2 className='text-2xl font-bold mb-4 text-[#921A40]'>Add New Article</h2>
             <div className='flex flex-col gap-4'>
-              <input type="text"className='p-2 border rounded-lg'placeholder='Enter title'value={title}
-                onChange={(e) => setTitle(e.target.value)}/>
-              <input type="number" className='p-2 border rounded-lg' placeholder='Enter price' value={price} onChange={(e) => setPrice(e.target.value)}/>
-              <input type="text" className='p-2 border rounded-lg' placeholder='Enter description' value={description} onChange={(e) => setDescription(e.target.value)} />
-              <select className='p-2 border rounded' value={category} onChange={(e) => setCategory(e.target.value)}> 
-                <option value="vehicle">Vehicle</option> 
+              <input type="text" className='p-2 border rounded-xl' placeholder='Enter title' value={title}
+                onChange={(e) => setTitle(e.target.value)} />
+              <input type="number" className='p-2 border rounded-xl' placeholder='Enter price' value={price} onChange={(e) => setPrice(e.target.value)} />
+              <input type="text" className='p-2 border rounded-xl' placeholder='Enter description' value={description} onChange={(e) => setDescription(e.target.value)} />
+              <select className='p-2 border rounded' value={category} onChange={(e) => setCategory(e.target.value)}>
+                <option value="vehicle">Vehicle</option>
                 <option value="electronics">Electronics</option>
-                 <option value="appliance">Appliance</option>
-                  <option value="beauty">Beauty</option>
+                <option value="appliance">Appliance</option>
+                <option value="beauty">Beauty</option>
               </select>
               <input type="file" className='p-2 border rounded' onChange={ChangerImages} />
               {image && <img src={image} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
             </div>
             <div className='flex justify-end gap-4 mt-4'>
-              <button className='bg-gray-500 text-white px-4 py-2 rounded' onClick={() => setShowModal(false)}>Cancel</button>
-              <button className='bg-pink text-white px-4 py-2 rounded' onClick={AjouterArticles}>Add Article</button>
+              <button className='bg-gray-500 text-white font-semibold px-4 py-2 rounded' onClick={() => setShowModal(false)}>Cancel</button>
+              <button className=' text-white font-semibold px-4 py-2 rounded bg-gradient-to-b from-[#c17d7d] to-[#d76a83]' onClick={AjouterArticles}>Add Article</button>
             </div>
           </div>
         </div>
       )}
-   {selectedItem && (
+      {selectedItem && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
           <div className='bg-white p-8 rounded-lg shadow-lg w-[90%] flex gap-4'>
             <div className='w-[50%]'>
               <img src={selectedItem.imgSrc} alt={selectedItem.title} className='w-50 h-50' />
             </div>
             <div className='w-[50%] p-4'>
-              <h2 className='text-3xl font-bold pb-4 text-royalBlue'>{selectedItem.title}</h2>
+              <h2 className='text-3xl font-bold pb-4 text-[#921A40]'>{selectedItem.title}</h2>
               <p className='pb-4 text-xl'>{selectedItem.description}</p>
-              <p className=' text-lg font-bold pb-4'><span className='text-royalBlue pe-3 text-xl'>Price:</span> {selectedItem.price} DH</p>
-              <p className='text-lg font-bold pb-4'> <span className='text-royalBlue pe-3 text-xl'>Contact me :</span> {selectedItem.contact}</p>
+              <p className=' text-lg font-bold pb-4'><span className='text-[#C75B7A] pe-3 text-xl'>Price:</span> {selectedItem.price} DH</p>
+              <p className='text-lg font-bold pb-4'> <span className='text-[#C75B7A] pe-3 text-xl'>Contact me :</span> {selectedItem.contact}</p>
               <div action="" className='flex flex-col gap-5'>
                 <input type="email" className='w-full p-2 pb-4 border border-gray-300 rounded' placeholder='entrer email'
                   value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -204,8 +206,8 @@ const MarketPlace = () => {
                   value={message} onChange={(e) => setMessage(e.target.value)} />
                 {error && <p className="text-red-500">{error}</p>}
                 <div className='flex flex-row gap-5 justify-center'>
-                  <button className='bg-pink px-6 py-2 text-lg text-white rounded-lg' onClick={() => AcheterArticle()}> Buy Article</button>
-                  <button className=' bg-gray-500 px-6 py-2 text-lg text-white rounded-lg' onClick={() => setSelectedItem(false)}> Close</button>
+                  <button className='bg-[#c17d7d] px-6 py-2 text-xl font-semibold text-white rounded-lg' onClick={() => AcheterArticle()}> Buy Article</button>
+                  <button className=' bg-gray-500 px-6 py-2 text-xl font-semibold text-white rounded-lg' onClick={() => setSelectedItem(false)}> Close</button>
                 </div>
               </div>
 
@@ -214,8 +216,8 @@ const MarketPlace = () => {
           </div>
         </div>
       )}
-</div>
-   
+    </div>
+
   );
 };
 
