@@ -15,7 +15,7 @@ const MarketPlace = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [searchCategory, setSearchCategory] = useState('');
-  const [filteredCategory, setFilteredCategory] = useState([]);
+ 
 
   const [arrayCategory, setArrayCategory] = useState({
     vehicle: [
@@ -47,6 +47,7 @@ const MarketPlace = () => {
     if (arrayCategory[searchValue]) {
       setSelectedCategory(searchValue); 
     }
+    
   };
   const AcheterArticle = () => {
     // Validation des champs email et message

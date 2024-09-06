@@ -7,12 +7,15 @@ import { FiMessageSquare } from "react-icons/fi";
 import { FaUsers } from "react-icons/fa";
 import { FiShoppingBag } from "react-icons/fi";
 import { MdOndemandVideo } from "react-icons/md";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Navbar } from 'flowbite-react';
 const LeftSideBar = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
+  // kan3tiw chemin fin mabghinash tab9a tla3 my friends
+  let isGroupsPage = location.pathname === '/groups';
   return (
+    
     <div className=' pt-5 ps-10  '>
       <div className='text-slateGray text-xl gap-5 flex flex-col'>
       <div className='flex justify-start items-center  gap-3 hover:text-pink cursor-pointer'> <IoHomeOutline /> <h2>Feed</h2></div>
@@ -24,6 +27,7 @@ const LeftSideBar = () => {
       <div className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer'><CiSettings /> <h2>Settings</h2></div>
       </div>
       {/* My Friends */}
+      {!isGroupsPage &&(
       <div className='flex flex-col pt-12 gap-5'>
         <h1 className='text-xl font-bold text-charcoal'>My Friends</h1>
         <div className='flex flex-row gap-4'>
@@ -57,7 +61,7 @@ const LeftSideBar = () => {
       
       
       
-      
+    )}
     </div>
   )
 }
