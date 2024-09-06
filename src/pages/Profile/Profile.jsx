@@ -18,7 +18,7 @@ const Profile = () => {
               <div className='flex'>
                 <div className='w-[30vw] flex justify-center items-center'>
                   <div className=' w-[60%] h-[85%] rounded-full'>{user.profileImage ? (
-                    <img src={user.profileImage} className='w-[25vw] h-[30vh] rounded-full'/>
+                    <img src={user.profileImage} className='w-[15vw] h-[30vh] rounded-full'/>
                   ) : (
                     <div className="bg-white w-full h-full rounded-full" />
                   )}</div>
