@@ -164,7 +164,7 @@ const SignUp = () => {
           </button>
         </form>
       </div>
-      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-r from-[#5e2d41d1]  to-[#45031dcf]">
+      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center  bg-gradient-to-t from-[#A87676]  to-[#ae385e]">
         <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
           <h1 className="text-3xl font-bold">Welcome</h1>
           <p className="text-sm">Please insert your information to join our platform</p>

@@ -62,17 +62,17 @@ const Groups = () => {
       <div className="groups-container grid grid-cols-3 w-[65%] gap-5 ">
       {groups.map((group) => (
         <div key={group.id}
-        className="max-w-sm bg-white border border-gray-200 rounded-lg shadow  ">
+        className="max-w-sm  border border-gray-200 rounded-lg shadow  ">
           <div>
             <img className="rounded-t-lg"src={group.imgGrp}alt={group.nameGrp}/>
           </div>
           <div className="p-5">
             
-              <div><h1 className="pb-2 text-2xl font-bold tracking-tight text-royalBlue ">{group.nameGrp}</h1></div>
+              <div><h1 className="pb-2 text-2xl font-bold tracking-tight text-[#921A40] ">{group.nameGrp}</h1></div>
             
-            <div><p className="pb-3  text-black text-xl"><span className='font-bold'> members:</span>  {group.membres}</p></div>
+            <div><p className="pb-3   text-xl"><span className='font-bold text-[#C75B7A]'> members:</span>  {group.membres}</p></div>
            <div className='flex justify-end pt-4'> <button
-              className="inline-flex items-center px-12 py-2 text-lg text-center text-white bg-slateGray rounded-lg hover:bg-coolGray hover:text-black ">
+              className="inline-flex items-center px-12 py-2 text-xl font-semibold text-center bg-gradient-to-b from-[#c75b79e7]  to-[#fc819ea1] rounded-lg  text-back  ">
               Join
             </button></div>
           </div>
