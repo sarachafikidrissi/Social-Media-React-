@@ -3,6 +3,7 @@ import { assets } from '../../assets';
 import LeftSideBar from '../Home/Components/LeftSideBar';
 import { CiSearch } from "react-icons/ci";
 import Modal from 'react-modal';
+import { IoMdAdd } from "react-icons/io";
 
 const MarketPlace = () => {
   const [selectedCategory, setSelectedCategory] = useState('vehicle');
@@ -117,17 +118,27 @@ const MarketPlace = () => {
     <div className="flex gap-x-5  w-[100%]">
       <div className='w-[25%] pt-8'>
         <LeftSideBar />
+        <div className='flex justify-start items-center text-2xl gap-3  cursor-pointer ps-10 pt-5'><div className='bg-gradient-to-t from-[#c17d7d] to-[#ad3e58] text-white p-2 rounded-full'><IoMdAdd className='' onClick={AfficherModal} /></div>  <button className='text-slateGray text-2xl hover:text-[#ae385e] hover:font-bold'onClick={AfficherModal} >Add Article</button></div >
+      
       </div>
       <div className='flex flex-col pb-8 w-[85%] justify-center items-center gap-10'>
-        <div className='shadow-lg bg-[#FBA1B7] mt-5 rounded-3xl relative'>
+
+          <div className='flex flex-row items-end gap-10  w-[100%] justify-around'>
+        <div className='shadow-lg bg-[#FBA1B7] mt-5 rounded-3xl relative '>
           <CiSearch className="text-2xl font-bold text-[#FF597B] absolute top-[50%] left-4 translate-y-[-50%] " />
-          < input
-            type="text"
+          < input type="text"
             className='w-[25vw] p-1.5 rounded-3xl ps-11 bg-[#FFD1DA] py-2 border-none text-black flex justify-center placeholder:text-black '
-            placeholder='Search products'
-            value={searchCategory} onChange={handleSearch}
-          />
-        </div>
+            placeholder='Search products'value={searchCategory} onChange={handleSearch}/>
+        </div>    
+        <div className='rounded-3xl '>
+          <button className='bg-gradient-to-t from-[#D9ABAB] to-[#F7B5CA] hover:from-[#af7878] hover:to-[#ae385e] hover:text-white px-9 py-2 text-xl text-[#701a36] rounded-2xl font-semibold  ' 
+          onClick={AfficherModal}>Add Article</button>
+        </div>  
+          </div>
+        
+        
+        
+        
         <div className="flex justify-center gap-5 py-3">
           <button
             className={`text-xl py-2 px-10 rounded-3xl  ${selectedCategory === 'vehicle' ? 'bg-gradient-to-b from-[#af7878]  to-[#ae385e] text-white font-semibold' : 'bg-gradient-to-b from-[#c17d7d] to-[#d76a83]  font-semibold text-white  hover:text-white'}`}
@@ -148,7 +159,7 @@ const MarketPlace = () => {
         </div>
         <div className="grid grid-cols-3  gap-5 py-8 w-[100%] h-[50%]  ">
           {arrayCategory[selectedCategory].map((item, index) => (
-            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3 bg-[#FAF2EA] pb-10">
+            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3  pb-10">
              <div className='h-[30vh] w-[90%] mb-2 border-b-2 border-b-[#ff8db1a6] '><img src={item.imgSrc} alt={item.title} className='w-[90%] h-[100%]' /></div> 
               <div className='w-[100%] h-[15%] '><h3 className="text-xl font-bold    text-[#402B3A]">{item.title}</h3></div>
               <div className=" font-bold pb-3 w-[100%] h-[10%] text-[#921A40] text-lg">{item.price} DH</div>
@@ -161,12 +172,12 @@ const MarketPlace = () => {
             </div>
           ))}
         </div>
-        <div className='flex justify-center'>
+        {/* <div className='flex justify-center'>
           <button className='bg-gradient-to-b from-[#c17d7d] to-[#d76a83] hover:from-[#af7878] hover:to-[#ae385e] px-12 py-2 text-2xl text-white rounded-2xl font-semibold mt-10 text-center' 
           onClick={AfficherModal}>
             Add Article
           </button>
-        </div>
+        </div> */}
         {showModal && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
           <div className='bg-white p-8 rounded-2xl w-[40vw] min-h-[50vh]'>
@@ -194,7 +205,7 @@ const MarketPlace = () => {
       )}
       {selectedItem && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
-          <div className='bg-white p-8 rounded-lg shadow-lg w-[90%] flex gap-4'>
+          <div className='bg-white p-8 rounded-lg shadow-lg w-[90%] h-[95%] flex gap-4'>
             <div className='w-[50%]'>
               <img src={selectedItem.imgSrc} alt={selectedItem.title} className='w-50 h-50' />
             </div>
@@ -209,7 +220,7 @@ const MarketPlace = () => {
                 <textarea className='w-full p-2 pb-4 border border-gray-300 rounded' placeholder='Leave a message'
                   value={message} onChange={(e) => setMessage(e.target.value)} />
                 {error && <p className="text-red-500">{error}</p>}
-                <div className='flex flex-row gap-5 justify-center'>
+                <div className='flex flex-row gap-5 justify-center mt-4'>
                   <button className='bg-[#c17d7d] px-6 py-2 text-xl font-semibold text-white rounded-lg' onClick={() => AcheterArticle()}> Buy Article</button>
                   <button className=' bg-gray-500 px-6 py-2 text-xl font-semibold text-white rounded-lg' onClick={() => setSelectedItem(false)}> Close</button>
                 </div>
