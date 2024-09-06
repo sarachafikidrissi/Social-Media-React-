@@ -21,7 +21,7 @@ const Accueil = () => {
             </div>
             <div className="h-32 md:h-14"></div>
 
-            <div className='flex ps-5 gap-[7rem] '>
+            <div className='flex  gap-[1rem] '>
                 <div className='pt-8'>
                     <p className="font-sans text-4xl font-bold text-gray-200 max-w-3xl lg:text-7xl lg:pr-24 md:text-6xl ms-[4rem]">
                         Social Media Influencer

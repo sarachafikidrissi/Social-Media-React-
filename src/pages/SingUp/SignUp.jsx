@@ -152,12 +152,12 @@ const SignUp = () => {
           </button>
         </form>
       </div>
-      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-r from-pink to-[#ff00d06c]">
+      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-r from-[#672e45]  to-[#210611]">
         <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
-          <h1 className="text-3xl font-bold">Welcome</h1>
-          <p className="text-sm">Please insert your information to join our platform</p>
+          <h1 className="text-3xl font-bold text-white">Welcome</h1>
+          <p className="text-sm text-white">Please insert your information to join our platform</p>
           <button
-            className="border border-pink text-black rounded-full py-2 px-6 text-sm font-bold hover:bg-pink hover:text-white"
+            className="border-none font-serif border-pink text-black rounded-full py-2 px-6 text-sm font-bold hover:bg-pink bg-[#9c1f51] hover:text-white"
             onClick={() => navigate('/login')}
           >
             Login
