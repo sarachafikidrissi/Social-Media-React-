@@ -4,7 +4,7 @@ import { assets } from "../assets";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [users, setUsers] = useState([{name: "sara", email: "sara@demo.com", birthday: "15/10/15", gender: "Female", password:"1234", username: "sara", userPost: [], profileImage: `${assets.car1}`, favoritePosts: []}]);
+  const [users, setUsers] = useState([{name: "sara", email: "sara@demo.com", birthday: "15/10/15", gender: "Female", password:"1234", username: "sara", userPost: [], profileImage: `${assets.car1}`, favoritePosts: [], isLoggedIn: false}]);
 
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
