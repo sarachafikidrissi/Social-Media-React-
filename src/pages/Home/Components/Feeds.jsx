@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
-import { FaRegCommentAlt } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { FaArrowLeft, FaArrowRight, FaRegCommentAlt } from 'react-icons/fa';
 import { IoIosPhotos } from 'react-icons/io';
 import { IoBookmark, IoHeart, IoVideocam } from 'react-icons/io5';
 import { FaTrash } from "react-icons/fa6";
 import { useAuth } from '../../../context';
 
 import { useParams } from 'react-router-dom';
+import images from '../../../constants/images';
 
 const Feeds = () => {
 
-  const { profileImage, coverImage, logedUser } = useAuth();
-  let connectedUser = useParams()
+const { profileImage, coverImage, logedUser } = useAuth();
+let connectedUser = useParams()
 let newUsername = connectedUser["username"]
 // newUsername = newUsername.substring(1)
 
@@ -24,7 +25,7 @@ let newUsername = connectedUser["username"]
 
   const [tasks, setTasks] = useState([]);
   const [inputChange, setInputChange] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null); 
+  const [selectedImages, setSelectedImages] = useState([]); 
   const [selectedVideo, setSelectedVideo] = useState(null); 
   const [showModal, setShowModal] = useState(false);
   const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
@@ -35,9 +36,9 @@ let newUsername = connectedUser["username"]
   
   // Function  image selection
   const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedImage(URL.createObjectURL(e.target.files[0]));
-    }
+    const files = Array.from(e.target.files);
+    const imageUrls = files.map(file => URL.createObjectURL(file));
+    setSelectedImages([...selectedImages, ...imageUrls]);
   };
 
   // Function  video selection
@@ -61,19 +62,20 @@ let userIndex = users.findIndex(e => e.username = newUsername)
    
     let newTask = {
       name: inputChange,
-      image: selectedImage,
+      images: selectedImages,
       video: selectedVideo,
       likes: 0,
       favorited:false,
       comments: [],
     };
-    if(inputChange || selectedImage || selectedVideo){
+    if(inputChange || selectedImages || selectedVideo){
 
       users[userIndex].userPost.push(newTask)
       newTab.push(newTask);
+     
       setTasks(newTab);
       setInputChange('');
-      setSelectedImage(null);
+      setSelectedImages([]);
       setSelectedVideo(null);
       
   
@@ -146,6 +148,30 @@ let userIndex = users.findIndex(e => e.username = newUsername)
     newTasks.splice(index, 1)
     setTasks(newTasks)
   }
+  const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        if (!autoSlide) return;
+
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, slideInterval);
+
+        return () => clearInterval(interval); // Clean up the interval on component unmount
+    }, [currentIndex, images.length, autoSlide, slideInterval]);
+
+    return (
+        <div className="relative w-100 h-100">
+            <img
+                src={images[currentIndex]}
+                alt={`Post Image ${currentIndex}`}
+                className="w-full h-full object-contain rounded-lg"
+            />
+        </div>
+    );
+};
+
 
   return (
     <div className=' w-[50%] flex flex-col  items-center my-4 bg-[#f5f5f5cc]'>
@@ -187,7 +213,11 @@ let userIndex = users.findIndex(e => e.username = newUsername)
           </label>
           </div>
           <div className='flex flex-col justify-between items-center '>
-            {selectedImage && <img src={selectedImage} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
+          {selectedImages.length > 0 && (
+                        <div className="mt-4 relative flex items-center justify-center">
+                            <Carousel images={selectedImages} />
+                        </div>
+                    )}
           <label className='flex items-center text-slateGray hover:text-pink gap-2 cursor-pointer'>
             <IoIosPhotos />
             <span>Photos</span>
@@ -221,7 +251,11 @@ let userIndex = users.findIndex(e => e.username = newUsername)
             </div>
             <div className='mb-2'>
               <p>{task.name}</p>
-              {task.image && <img src={task.image} alt='Uploaded' className='mt-2 rounded-lg' />}
+              {task.images.length > 0 && (
+                            <div className="mt-4 relative flex items-center justify-center">
+                                <Carousel images={task.images} />
+                            </div>
+                        )}
               {task.video && (
                 <video controls className='mt-2 rounded-lg'>
                   <source src={task.video} type='video/mp4' />
