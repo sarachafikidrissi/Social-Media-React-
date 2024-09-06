@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { assets } from '../../assets';
 import LeftSideBar from '../Home/Components/LeftSideBar';
 import { CiSearch } from "react-icons/ci";
+import Modal from 'react-modal';
 
 const MarketPlace = () => {
   const [selectedCategory, setSelectedCategory] = useState('vehicle');
@@ -17,6 +18,10 @@ const MarketPlace = () => {
   const [error, setError] = useState('');
   const [searchCategory, setSearchCategory] = useState('');
 
+  const [filteredCategory, setFilteredCategory] = useState([]);
+  const [emptyFieldsModalIsOpen, setEmptyFieldsModalIsOpen] = useState(false);
+  const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
+ 
 
   const [arrayCategory, setArrayCategory] = useState({
     vehicle: [
@@ -65,7 +70,7 @@ const MarketPlace = () => {
     }
 
     // Si tout est valide, procéder à l'achat
-    alert('Merci pour votre achat !');
+    setSuccessModalIsOpen(true)
     setShowModal(false);
     setEmail('');
     setMessage('');
@@ -87,7 +92,8 @@ const MarketPlace = () => {
 
   const AjouterArticles = () => {
     if (!image || !title || !price || !description || !category) {
-      alert("Please complete all fields in the form before adding the article.");
+      setEmptyFieldsModalIsOpen(true);
+
       return;
     }
 
@@ -216,8 +222,48 @@ const MarketPlace = () => {
           </div>
         </div>
       )}
+          <Modal
+        isOpen={emptyFieldsModalIsOpen}
+        onRequestClose={() => setEmptyFieldsModalIsOpen(false)}
+        contentLabel="Empty Fields"
+        className="fixed inset-0 flex items-center justify-center p-4"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+      >
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-4">Incomplete Information</h2>
+          <p className="text-lg">Please fill in all required fields before proceeding.</p>
+          <button
+            onClick={() => setEmptyFieldsModalIsOpen(false)}
+            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+          >
+            Close
+          </button>
+        </div>
+      </Modal>
+      <Modal
+        isOpen={successModalIsOpen}
+        onRequestClose={() => setSuccessModalIsOpen(false)}
+        contentLabel="Success"
+        className="fixed inset-0 flex items-center justify-center p-4"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+      >
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-4">Achat Successful</h2>
+          <p className="text-lg">You Achat has been made  successfully.</p>
+          <button
+            onClick={() => {
+              setSuccessModalIsOpen(false);
+              setSelectedItem(false)
+            }}
+            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+          >
+            Continue
+          </button>
+        </div>
+      </Modal>
     </div>
 
+   
   );
 };
 
