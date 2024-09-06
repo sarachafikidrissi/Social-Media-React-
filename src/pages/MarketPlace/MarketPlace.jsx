@@ -147,7 +147,7 @@ const MarketPlace = () => {
               <div className='w-[100%] h-[15%] '><h3 className="text-xl font-bold py-3   text-[#402B3A]">{item.title}</h3></div>
               <div className=" font-bold pb-3 w-[100%] h-[10%] text-[#921A40] text-lg">{item.price} DH</div>
               <div className='flex justify-center'>
-                <button className='bg-gradient-to-b from-[#A87676]  to-[#FC819E] px-4 py-2 rounded-xl text-white text-xl font-semibold hover:text-[#571f39]' onClick={() => AfficherModalInfo(item)}>
+                <button className='bg-gradient-to-b from-[#c75b79e7]  to-[#fc819e75] px-4 py-2 rounded-xl text-black text-xl font-semibold hover:text-[#571f39]' onClick={() => AfficherModalInfo(item)}>
                   More information
                 </button>
 
@@ -182,8 +182,8 @@ const MarketPlace = () => {
               {image && <img src={image} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
             </div>
             <div className='flex justify-end gap-4 mt-4'>
-              <button className='bg-gray-500 text-white px-4 py-2 rounded' onClick={() => setShowModal(false)}>Cancel</button>
-              <button className='bg-pink text-white px-4 py-2 rounded' onClick={AjouterArticles}>Add Article</button>
+              <button className='bg-gray-500 text-white font-semibold px-4 py-2 rounded' onClick={() => setShowModal(false)}>Cancel</button>
+              <button className=' text-white font-semibold px-4 py-2 rounded bg-gradient-to-b from-[#c17d7d] to-[#d76a83]' onClick={AjouterArticles}>Add Article</button>
             </div>
           </div>
         </div>
@@ -195,10 +195,10 @@ const MarketPlace = () => {
               <img src={selectedItem.imgSrc} alt={selectedItem.title} className='w-50 h-50' />
             </div>
             <div className='w-[50%] p-4'>
-              <h2 className='text-3xl font-bold pb-4 text-royalBlue'>{selectedItem.title}</h2>
+              <h2 className='text-3xl font-bold pb-4 text-[#921A40]'>{selectedItem.title}</h2>
               <p className='pb-4 text-xl'>{selectedItem.description}</p>
-              <p className=' text-lg font-bold pb-4'><span className='text-royalBlue pe-3 text-xl'>Price:</span> {selectedItem.price} DH</p>
-              <p className='text-lg font-bold pb-4'> <span className='text-royalBlue pe-3 text-xl'>Contact me :</span> {selectedItem.contact}</p>
+              <p className=' text-lg font-bold pb-4'><span className='text-[#C75B7A] pe-3 text-xl'>Price:</span> {selectedItem.price} DH</p>
+              <p className='text-lg font-bold pb-4'> <span className='text-[#C75B7A] pe-3 text-xl'>Contact me :</span> {selectedItem.contact}</p>
               <div action="" className='flex flex-col gap-5'>
                 <input type="email" className='w-full p-2 pb-4 border border-gray-300 rounded' placeholder='entrer email'
                   value={email} onChange={(e) => setEmail(e.target.value)} />
@@ -206,8 +206,8 @@ const MarketPlace = () => {
                   value={message} onChange={(e) => setMessage(e.target.value)} />
                 {error && <p className="text-red-500">{error}</p>}
                 <div className='flex flex-row gap-5 justify-center'>
-                  <button className='bg-pink px-6 py-2 text-lg text-white rounded-lg' onClick={() => AcheterArticle()}> Buy Article</button>
-                  <button className=' bg-gray-500 px-6 py-2 text-lg text-white rounded-lg' onClick={() => setSelectedItem(false)}> Close</button>
+                  <button className='bg-[#c17d7d] px-6 py-2 text-xl font-semibold text-white rounded-lg' onClick={() => AcheterArticle()}> Buy Article</button>
+                  <button className=' bg-gray-500 px-6 py-2 text-xl font-semibold text-white rounded-lg' onClick={() => setSelectedItem(false)}> Close</button>
                 </div>
               </div>
 
