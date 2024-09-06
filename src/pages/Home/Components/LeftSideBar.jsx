@@ -9,8 +9,10 @@ import { FiShoppingBag } from "react-icons/fi";
 import { MdOndemandVideo } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from 'flowbite-react';
+import { useAuth } from '../../../context';
 const LeftSideBar = () => {
-
+  const { logedUser } = useAuth();
+  console.log(logedUser[0]);
   const navigate = useNavigate()
   return (
     <div className=' pt-5 ps-10  '>

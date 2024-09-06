@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
       userPost: [],
       profileImage: `${assets.barbie}`,
       favoritePosts: [],
+      isLoggedIn: false,
+      friends: []
     },
     {
       name: "hajar",
@@ -26,8 +28,21 @@ export const AuthProvider = ({ children }) => {
       userPost: [],
       profileImage: `${assets.mecro}`,
       favoritePosts: [],
+      isLoggedIn: false,
+      friends: []
     },
   ]);
+
+  const [profileImage, setProfileImage] = useState(null);
+  const [coverImage, setCoverImage] = useState(null);
+
+  console.log(users);
+
+
+  let filterConnectedUser = users.filter(e => e.isLoggedIn == true)
+
+  const logedUser = filterConnectedUser
+  console.log(logedUser);
 
   const [image, setImage] = useState("");
   const [posts, setPosts] = useState([]);
@@ -45,14 +60,15 @@ export const AuthProvider = ({ children }) => {
         userPost: [],
         profileImage: "",
         favoritePosts: [],
-        islogedin: false,
+        isLoggedIn: false,
+        friends: []
       },
     ]);
   };
 
   return (
     <AuthContext.Provider
-      value={{ users, setUsers, addUser, posts, setPosts, image, setImage }}
+      value={{ users, setUsers, addUser, posts, setPosts, image, setImage, logedUser, profileImage, setProfileImage, coverImage, setCoverImage }}
     >
       {children}
     </AuthContext.Provider>

@@ -10,20 +10,28 @@ import { useState } from 'react';
 const Login = () => {
   
   const navigate = useNavigate();
-  const { users } = useAuth();
-  console.log(users);
+  const { users, setUsers } = useAuth();
   const [loginUsername, setLoginusername] = useState('');
   const [loginpassword, setLoginPassword] = useState('');
 
-  const check = ()=>{
-  let user = users.find((e)=>e.username==loginUsername && e.password==loginpassword)
-  if (user) {
-    alert("your loged in succesfully")
-    navigate(`/:${user.username}`)
-  }else{
-    alert("not found")
-  }
-}
+
+  const check = () => {
+    let userIndex = users.findIndex((e) => e.username === loginUsername && e.password === loginpassword);
+  
+    if (userIndex !== -1) {
+      users[userIndex].isLoggedIn = true;  
+  
+      setUsers([...users]); 
+  
+      alert("You're logged in successfully");
+      navigate(`/:${users[userIndex].username}`);
+    } else {
+      alert("User not found");
+    }
+  };
+
+
+
 
   return (
     <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[93vh] overflow-hidden flex">

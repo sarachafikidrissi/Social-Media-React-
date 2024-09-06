@@ -9,14 +9,20 @@ import { useParams } from 'react-router-dom';
 
 const Feeds = () => {
 
+  const { profileImage, coverImage, logedUser } = useAuth();
   let connectedUser = useParams()
 let newUsername = connectedUser["username"]
 
-newUsername = newUsername.substring(1)
+
+console.log(logedUser);
+
+
+// newUsername = newUsername.substring(1)
 
  
 
   const { users, setUsers } = useAuth();
+  console.log(users);
 
 
 
@@ -135,12 +141,23 @@ console.log(users[userIndex].userPost);
       {/* Input creating posts */}
       <div className='w-full max-w-md p-4 m-3 bg-white rounded-lg shadow-md'>
         <div className='flex items-center mb-4 gap-2'>
+          {
+            profileImage ? (
+              <img
+            className='w-10 h-10 rounded-full'
+            src={profileImage}
+            // src='https://img.freepik.com/photos-gratuite/portrait-femme-souriante-espace-copie_23-2148784759.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1725235200&semt=ais_hybrid'
+            alt='User'
+          />
+            ): 
+         
           <img
             className='w-10 h-10 rounded-full'
-            // src={image}
+            // src={profileImage}
             src='https://img.freepik.com/photos-gratuite/portrait-femme-souriante-espace-copie_23-2148784759.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1725235200&semt=ais_hybrid'
             alt='User'
           />
+}
           <input
             value={inputChange}
             onChange={(e) => setInputChange(e.target.value)}
