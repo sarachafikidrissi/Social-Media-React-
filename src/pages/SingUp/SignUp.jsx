@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaFacebookF, FaGoogle, FaLinkedinIn } from 'react-icons/fa';
 import { useAuth } from '../../context';
+import Modal from 'react-modal';
+
+Modal.setAppElement('#root');
 
 const SignUp = () => {
   const [name, setName] = useState('');
@@ -10,26 +13,29 @@ const SignUp = () => {
   const [gender, setGender] = useState('');
   const [password, setPassword] = useState('');
   const [userName, setUserName] = useState('');
-  const [code, setCode] = useState(''); 
+  const [code, setCode] = useState('');
   const [generatedCode, setGeneratedCode] = useState('');
-  const { addUser } = useAuth();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [emptyFieldsModalIsOpen, setEmptyFieldsModalIsOpen] = useState(false);
+  const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
+  const [errorModalIsOpen, setErrorModalIsOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const { addUser, users } = useAuth();
   const navigate = useNavigate();
-  const {users}=useAuth()
 
- let a = users.find(user=>user.username==userName)
+  const userExists = users.find(user => user.username === userName);
 
   const handleLogin = (e) => {
     e.preventDefault();
-    
-    if (code && code === generatedCode && name&& email&&gender&&birthday&&password&&userName && !a ) {
-      addUser(name, email, birthday,  gender, password,userName);
-     
-      setGeneratedCode("")
-      alert("your account has been created succesfully")
-      navigate(`/login-profile/:${userName}`)
-     
+
+    if (code && code === generatedCode && name && email && gender && birthday && password && userName && !userExists) {
+      addUser(name, email, birthday, gender, password, userName);
+
+      setGeneratedCode('');
+      setSuccessModalIsOpen(true);
     } else {
-      alert('Incorrect code. Please try again.');
+      setErrorMessage('Incorrect code. Please try again.');
+      setErrorModalIsOpen(true);
     }
   };
 
@@ -47,7 +53,7 @@ const SignUp = () => {
   function notify() {
     const code = generateString(5);
     setGeneratedCode(code);
-  
+
     const notification = new Notification('Your code is:', {
       body: code,
       icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png',
@@ -74,10 +80,23 @@ const SignUp = () => {
     }
   };
 
+  const handleSignUpClick = () => {
+    if (name && email && birthday && gender && password && userName) {
+      notification();
+      setModalIsOpen(true);
+    } else {
+      setEmptyFieldsModalIsOpen(true);
+    }
+  };
+
+  const resend = () => {
+    notification();
+  };
+
   return (
     <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[93vh] overflow-hidden flex">
       <div className="absolute top-0 right-0 h-full w-1/2 flex items-center justify-center">
-        <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center" onSubmit={handleLogin}>
+        <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center">
           <h1 className="text-3xl font-bold m-0">Sign Up</h1>
           <div className="my-5 flex space-x-2">
             <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 hover:bg-pink">
@@ -136,24 +155,16 @@ const SignUp = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <a href="#" className="text-blue-500 text-sm">Forgot your password?</a>
-          <button type="button" onClick={notification}   className="">Get Code</button>
-          <input
-            type="text"
-            placeholder="Enter code"
-            className="bg-gray-200 border-none p-3 my-2 w-full"
-            value={code}
-            onChange={(e) => setCode(e.target.value)}
-            
-          />
           <button
-            type="submit"
-            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6" 
+            type="button"
+            onClick={handleSignUpClick}
+            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6"
           >
             Sign Up
           </button>
         </form>
       </div>
-      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-r from-pink to-[#ff00d06c]">
+      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-r from-[#5e2d41d1]  to-[#45031dcf]">
         <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
           <h1 className="text-3xl font-bold">Welcome</h1>
           <p className="text-sm">Please insert your information to join our platform</p>
@@ -165,6 +176,103 @@ const SignUp = () => {
           </button>
         </div>
       </div>
+
+      {/* Modal dyal verefication */}
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Code Verification"
+        className="fixed inset-0 flex items-center justify-center p-4"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+      >
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-4">Enter Verification Code</h2>
+          <input
+            type="text"
+            placeholder="Enter code"
+            className="bg-gray-200 border-none p-3 my-2 w-full"
+            value={code}
+            onChange={(e) => setCode(e.target.value)}
+          />
+          <div className='flex justify-between mx-6'>
+            <button
+              onClick={handleLogin}
+              className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+            >
+              Verify and Sign Up
+            </button>
+            <button
+              onClick={resend}
+              className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+            > 
+              Resend the Code  
+            </button>
+          </div>
+        </div>
+      </Modal>
+
+      {/* Modal dyal ila khaliti input khawin */}
+      <Modal
+        isOpen={emptyFieldsModalIsOpen}
+        onRequestClose={() => setEmptyFieldsModalIsOpen(false)}
+        contentLabel="Empty Fields"
+        className="fixed inset-0 flex items-center justify-center p-4"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+      >
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-4">Incomplete Information</h2>
+          <p className="text-lg">Please fill in all required fields before proceeding.</p>
+          <button
+            onClick={() => setEmptyFieldsModalIsOpen(false)}
+            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+          >
+            Close
+          </button>
+        </div>
+      </Modal>
+
+      {/* Modal fach kolshi nade */}
+      <Modal
+        isOpen={successModalIsOpen}
+        onRequestClose={() => setSuccessModalIsOpen(false)}
+        contentLabel="Success"
+        className="fixed inset-0 flex items-center justify-center p-4"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+      >
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md py-12">
+          <h2 className="text-2xl font-bold mb-4">Account Created</h2>
+          <p className="text-lg">Your account has been created successfully.</p>
+          <button
+            onClick={() => {
+              setSuccessModalIsOpen(false);
+              navigate(`/login-profile/${userName}`);
+            }}
+            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+          >
+            Continue
+          </button>
+        </div>
+      </Modal>
+
+      {/* Modal dyal les Error */}
+      <Modal
+        isOpen={errorModalIsOpen}
+        onRequestClose={() => setErrorModalIsOpen(false)}
+        contentLabel="Error"
+        className="fixed inset-0 flex items-center justify-center p-4 "
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+      >
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md py-12">
+          <h2 className="text-2xl font-bold mb-4">Error</h2>
+          <p className="text-lg">{errorMessage}</p>
+          <button
+            onClick={() => setErrorModalIsOpen(false) && setModalIsOpen(false)}
+            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+          >
+            Close
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };
