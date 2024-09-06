@@ -148,7 +148,7 @@ const MarketPlace = () => {
         </div>
         <div className="grid grid-cols-3  gap-5 py-8 w-[100%] h-[50%]  ">
           {arrayCategory[selectedCategory].map((item, index) => (
-            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3 bg-[#ffebd4a6] pb-10">
+            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3 bg-[#FAF2EA] pb-10">
              <div className='h-[30vh] w-[90%] mb-2 border-b-2 border-b-[#ff8db1a6] '><img src={item.imgSrc} alt={item.title} className='w-[90%] h-[100%]' /></div> 
               <div className='w-[100%] h-[15%] '><h3 className="text-xl font-bold    text-[#402B3A]">{item.title}</h3></div>
               <div className=" font-bold pb-3 w-[100%] h-[10%] text-[#921A40] text-lg">{item.price} DH</div>
