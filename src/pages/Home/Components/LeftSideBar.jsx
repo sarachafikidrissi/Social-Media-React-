@@ -1,3 +1,8 @@
+
+
+
+
+
 import React from 'react'
 import { Images } from '../../../constants';
 import { IoHomeOutline } from "react-icons/io5";
@@ -29,14 +34,14 @@ const LeftSideBar = () => {
   return (
     
     <div className=' pt-5 ps-10  '>
-      <div className='text-slateGray text-xl gap-5 flex flex-col'>
-      <div className='flex justify-start items-center  gap-3 hover:text-pink cursor-pointer'> <IoHomeOutline /> <h2>Feed</h2></div>
-      <div className='flex justify-start items-center gap-3  hover:text-pink cursor-pointer'><FiShoppingBag /> <h2>MarketPlace</h2></div>
-      <div className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer'><MdOndemandVideo /> <h2>Video</h2></div>
-      <div className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer'><FiMessageSquare /> <h2>Messages</h2></div>
-      <div onClick={() => {navigate('/myfavorite')}} className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer '><CiBookmark  /> <h2>My Favorites</h2></div>
-      <div className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer'><FaUsers /> <h2>Groupes</h2></div>
-      <div className='flex justify-start items-center  gap-3  hover:text-pink cursor-pointer'><CiSettings /> <h2>Settings</h2></div>
+      <div className='text-slateGray text-2xl gap-5 flex flex-col'>
+      <div className='flex justify-start items-center  gap-3  cursor-pointer'><div className='bg-[#CA8787] text-white p-2 rounded-full'><IoHomeOutline className='' /></div>  <h2>Feed</h2></div>
+      <div className='flex justify-start items-center gap-3   cursor-pointer'><div className='bg-[#A87676] text-white p-2 rounded-full'><FiShoppingBag /></div> <h2>MarketPlace</h2></div>
+      <div className='flex justify-start items-center  gap-3   cursor-pointer'> <div className='bg-[#83375b] text-white p-2 rounded-full'><MdOndemandVideo /></div> <h2>Video</h2></div>
+      <div className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#eca7a7] text-white p-2 rounded-full'><FiMessageSquare /></div> <h2>Messages</h2></div>
+      <div onClick={() => {navigate('/myfavorite')}} className='flex justify-start items-center  gap-3   cursor-pointer '><div className='bg-[#99627A] text-white p-2 rounded-full'><CiBookmark  /> </div><h2>My Favorites</h2></div>
+      <div className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#FC819E] text-white p-2 rounded-full'><FaUsers /> </div><h2>Groupes</h2></div>
+      <div className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#697565] text-white p-2 rounded-full'><CiSettings /> </div> <h2>Settings</h2></div>
       </div>
       
       {!isGroupsPage && !isMarketPlace &&(
