@@ -1,16 +1,34 @@
 import React from 'react';
 import logo from "../../src/assets/images/logo_fw-removebg-preview.png"
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useAuth } from '../context';
 
 const Navbar = () => {
-    const {users}=useAuth()
+
+
+    const { users, setUsers } = useAuth();  
+
     let user = users.find((user)=>user.islogedin=true  )
+
+
+
+    let loggedInUserIndex = users.findIndex((user) => user.isLoggedIn);
+    // let user = users[loggedInUserIndex].username
+const handleLogout = () => {
+
+  if (loggedInUserIndex !== -1) {
+    users[loggedInUserIndex].isLoggedIn = false;
+
+    setUsers([...users]);  
+  }
+};
+
+
 
     return (
         <div className='navbar flex justify-between  px-5 '>
       <div className='leftNav flex gap-52'>
-        <img width={50} src={logo}/>
+        <img width={70} src={logo} />
         <div class="relative  items-center hidden md:inline-flex">
         <input type="text" placeholder="Search" class="border border-gray-200 rounded-md py-1 px-2 w-[35vw]"/>
         <svg class="absolute right-2 h-6 w-6 text-gray-400 hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -35,7 +53,7 @@ const Navbar = () => {
             
             <a  className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/profile"}>Profile</Link></a>
             <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/edit-profile"}>Edit</Link></a>
-            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/login"} onClick={user.islogedin=false} >logout</Link></a>
+            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/login"} onClick={handleLogout}>Logout</Link></a>
       </div>
   </div>
  

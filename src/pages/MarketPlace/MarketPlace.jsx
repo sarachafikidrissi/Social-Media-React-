@@ -20,6 +20,8 @@ const MarketPlace = () => {
   const [filteredCategory, setFilteredCategory] = useState([]);
   const [emptyFieldsModalIsOpen, setEmptyFieldsModalIsOpen] = useState(false);
   const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
+ 
+
   const [arrayCategory, setArrayCategory] = useState({
     vehicle: [
       { imgSrc: assets.car1, title: 'Toyota CHR hybride', description: 'Toyota CHR hybride en excellent état, faible consommation, idéale pour les trajets urbains. Année 2020, 30,000 km au compteur.', price: '22,500' },
@@ -50,6 +52,7 @@ const MarketPlace = () => {
     if (arrayCategory[searchValue]) {
       setSelectedCategory(searchValue); 
     }
+    
   };
   const AcheterArticle = () => {
     // Validation des champs email et message
