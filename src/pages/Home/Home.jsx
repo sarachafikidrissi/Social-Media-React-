@@ -3,8 +3,12 @@ import Feeds from './Components/Feeds'
 import LeftSideBar from './Components/LeftSideBar'
 import RightSideBar from './Components/RightSideBar'
 import Navbar from '../../layout/navbar'
+import { useAuth } from '../../context'
 
 const Home = () => {
+  const logedUser = useAuth()
+
+  
   return (
     <>
     <Navbar/>

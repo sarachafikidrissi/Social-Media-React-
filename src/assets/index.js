@@ -12,6 +12,9 @@ import four from './four.webp'
 import gel from './gel.jpg'
 import sol from './sol.webp'
 import vernis from './vernis.jpg'
+import grp1 from './grp1.jpg'
+import grp2 from './grp2.jpg'
+import grp3 from './grp3.jpg'
 
 
 export const assets = {
@@ -28,5 +31,8 @@ export const assets = {
     four,
     gel,
     vernis,
-    sol
+    sol,
+    grp1,
+    grp2,
+    grp3
 }
