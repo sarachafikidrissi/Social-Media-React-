@@ -41,11 +41,22 @@ const Groups = () => {
       membres: "200K",
     },
   ]);
+  
 
   return (
     <div className='w-[100%] flex flex-row gap-8'>
-     <div className='w-[25%]'>
+     <div className='w-[25%] flex flex-col'>
         <LeftSideBar  />
+        <div className='border-t-2 p-3 flex flex-col'>
+           <h1 className='pt-1 text-lg font-bold ps-5'>Groups you are a member of</h1>
+           <div className='flex flex-row gap-4'>
+          <img src="" alt="" srcset="" className='rounded-full w-[45px] h-[45px]' />
+          <div className=''>
+            <h1 className='text-l font-bold text-charcoal'></h1>
+            <p className=' text-slateGray font-light'> </p>
+          </div>
+        </div>
+       
       </div>
       <div className="groups-container grid grid-cols-3 w-[65%] gap-5 justify-end">
       {groups.map((group) => (
@@ -68,8 +79,9 @@ const Groups = () => {
       ))}
       </div>
      
-    </div>
+    </div></div>
   );
+  
 }
 
 export default Groups
