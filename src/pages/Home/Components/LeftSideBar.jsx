@@ -9,11 +9,14 @@ import { FiShoppingBag } from "react-icons/fi";
 import { MdOndemandVideo } from "react-icons/md";
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Navbar } from 'flowbite-react';
+import { useAuth } from '../../../context';
 const LeftSideBar = () => {
   const navigate = useNavigate();
   const location = useLocation();
   // kan3tiw chemin fin mabghinash tab9a tla3 my friends
   let isGroupsPage = location.pathname === '/groups';
+  const { logedUser } = useAuth();
+  console.log(logedUser[0]);
   return (
     
     <div className=' pt-5 ps-10  '>
