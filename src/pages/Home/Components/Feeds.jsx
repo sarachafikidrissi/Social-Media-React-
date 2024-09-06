@@ -1,22 +1,18 @@
-import React, { useState } from 'react';
-import { FaRegCommentAlt } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { FaArrowLeft, FaArrowRight, FaRegCommentAlt } from 'react-icons/fa';
 import { IoIosPhotos } from 'react-icons/io';
 import { IoBookmark, IoHeart, IoVideocam } from 'react-icons/io5';
 import { FaTrash } from "react-icons/fa6";
 import { useAuth } from '../../../context';
 
 import { useParams } from 'react-router-dom';
+import images from '../../../constants/images';
 
 const Feeds = () => {
 
-  const { profileImage, coverImage, logedUser } = useAuth();
-  let connectedUser = useParams()
+const { profileImage, coverImage, logedUser } = useAuth();
+let connectedUser = useParams()
 let newUsername = connectedUser["username"]
-
-
-console.log(logedUser);
-
-
 // newUsername = newUsername.substring(1)
 
  
@@ -29,7 +25,7 @@ console.log(logedUser);
 
   const [tasks, setTasks] = useState([]);
   const [inputChange, setInputChange] = useState('');
-  const [selectedImage, setSelectedImage] = useState(null); 
+  const [selectedImages, setSelectedImages] = useState([]); 
   const [selectedVideo, setSelectedVideo] = useState(null); 
   const [showModal, setShowModal] = useState(false);
   const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
@@ -40,9 +36,9 @@ console.log(logedUser);
   
   // Function  image selection
   const handleImageChange = (e) => {
-    if (e.target.files && e.target.files[0]) {
-      setSelectedImage(URL.createObjectURL(e.target.files[0]));
-    }
+    const files = Array.from(e.target.files);
+    const imageUrls = files.map(file => URL.createObjectURL(file));
+    setSelectedImages([...selectedImages, ...imageUrls]);
   };
 
   // Function  video selection
@@ -57,33 +53,62 @@ console.log(logedUser);
 
 
 let userIndex = users.findIndex(e => e.username = newUsername)
-console.log(users[userIndex].userPost);
 
   // Function to create a task (post)
-
+  let id = 0
   const createTask = () => {
 
     const newTab = [...tasks];
    
     let newTask = {
       name: inputChange,
-      image: selectedImage,
+      images: selectedImages,
       video: selectedVideo,
       likes: 0,
       favorited:false,
       comments: [],
-      postId: Date.now()
     };
-    if(inputChange || selectedImage || selectedVideo){
+    if(inputChange || selectedImages || selectedVideo){
 
       users[userIndex].userPost.push(newTask)
       newTab.push(newTask);
+     
       setTasks(newTab);
       setInputChange('');
-      setSelectedImage(null);
+      setSelectedImages([]);
       setSelectedVideo(null);
+      
+  
+   
     }
   };
+
+  // console.log(users);
+  // let userPostArr = users[0].userPost
+  // console.log(userPostArr);
+
+
+
+  console.log(users);
+  // console.log(tasks);
+  // let index = users.findIndex(e => e.username = newUsername)
+  // users[index].userPost.push(tasks)
+  // console.log(users);
+
+
+
+  //add posts to user data
+
+
+
+
+
+
+
+
+
+
+
 
   // Function to handle liking a post
   const handleLike = (index) => {
@@ -93,23 +118,11 @@ console.log(users[userIndex].userPost);
  
   };
   //function to favoris a post
-  console.log(users);
   const handleFavoris = (index) => {
     const newTasks = [...tasks];
     newTasks[index].favoris = !newTasks[index].favoris ;
     setTasks(newTasks);
-
-    let thisPostId = newTasks[newTasks.length - 1].postId
-
-    console.log(thisPostId);
-    
-
-    let indexOfFavoritePost = newTasks.findIndex(e => e.postId == thisPostId)
-    // posts.push(tasks[indexOfFavoritePost])
-    users[userIndex].favoritePosts.push(tasks[indexOfFavoritePost])
-    console.log(users);
-
-
+ 
   };
 
   //  to open the comment modal
@@ -135,6 +148,30 @@ console.log(users[userIndex].userPost);
     newTasks.splice(index, 1)
     setTasks(newTasks)
   }
+  const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        if (!autoSlide) return;
+
+        const interval = setInterval(() => {
+            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+        }, slideInterval);
+
+        return () => clearInterval(interval); // Clean up the interval on component unmount
+    }, [currentIndex, images.length, autoSlide, slideInterval]);
+
+    return (
+        <div className="relative w-100 h-100">
+            <img
+                src={images[currentIndex]}
+                alt={`Post Image ${currentIndex}`}
+                className="w-full h-full object-contain rounded-lg"
+            />
+        </div>
+    );
+};
+
 
   return (
     <div className=' w-[50%] flex flex-col  items-center my-4 bg-[#f5f5f5cc]'>
@@ -176,12 +213,16 @@ console.log(users[userIndex].userPost);
           </label>
           </div>
           <div className='flex flex-col justify-between items-center '>
-            {selectedImage && <img src={selectedImage} alt="Preview" className='w-[100px] h-[100px] object-cover mt-2 rounded' />}
+          {selectedImages.length > 0 && (
+                        <div className="mt-4 relative flex items-center justify-center">
+                            <Carousel images={selectedImages} />
+                        </div>
+                    )}
           <label className='flex items-center text-slateGray hover:text-pink gap-2 cursor-pointer'>
             <IoIosPhotos />
             <span>Photos</span>
             
-            <input type='file' accept='image/*' onChange={handleImageChange} className='hidden' />
+            <input type='file' multiple accept='image/*' onChange={handleImageChange} className='hidden' />
           </label>
           </div>
           
@@ -210,7 +251,11 @@ console.log(users[userIndex].userPost);
             </div>
             <div className='mb-2'>
               <p>{task.name}</p>
-              {task.image && <img src={task.image} alt='Uploaded' className='mt-2 rounded-lg' />}
+              {task.images.length > 0 && (
+                            <div className="mt-4 relative flex items-center justify-center">
+                                <Carousel images={task.images} />
+                            </div>
+                        )}
               {task.video && (
                 <video controls className='mt-2 rounded-lg'>
                   <source src={task.video} type='video/mp4' />
