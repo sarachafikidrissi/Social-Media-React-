@@ -21,7 +21,10 @@ const Login = () => {
       let user = users.find((e) => e.username === loginUsername && e.password === loginpassword);
       if (user) {
         user.isLoggedIn = true;
+<<<<<<< HEAD
         console.log(user);
+=======
+>>>>>>> Abdellah
         setSuccessModalIsOpen(true);
       } else {
         setErrorMessage('Username or password is incorrect.');
@@ -73,12 +76,12 @@ const Login = () => {
           </button>
         </form>
       </div>
-      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-r from-pink to-[#ff00d06c]">
+      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-r from-[#672e45]  to-[#210611]">
         <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
-          <h1 className="text-3xl font-bold">Welcome Back!</h1>
-          <p className="text-sm">To keep connected with us please login with your personal info</p>
+          <h1 className="text-3xl font-bold text-white">Welcome Back!</h1>
+          <p className="text-sm text-white">To keep connected with us please login with your personal info</p>
           <button
-            className="border border-pink text-black rounded-full py-2 px-6 text-sm font-bold hover:bg-pink hover:text-white"
+            className="border-none text-white font-serif border-pink text-black rounded-full py-2 px-6 text-sm font-bold bg-[#9c1f51] hover:bg-pink hover:text-white"
             onClick={() => navigate('/sign-up')}
           >
             Sign Up
