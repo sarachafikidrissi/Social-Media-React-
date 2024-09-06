@@ -14,7 +14,8 @@ const Feeds = () => {
 let newUsername = connectedUser["username"]
 
 
-console.log(logedUser);
+
+
 
 
 // newUsername = newUsername.substring(1)
@@ -22,11 +23,6 @@ console.log(logedUser);
  
 
   const { users, setUsers } = useAuth();
-  console.log(users);
-
-
-
-
   const [tasks, setTasks] = useState([]);
   const [inputChange, setInputChange] = useState('');
   const [selectedImage, setSelectedImage] = useState(null); 
@@ -37,6 +33,11 @@ console.log(logedUser);
 
   const date = new Date();
   const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+
+  let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
+console.log(filterConnectedUser.name);
+
   
   // Function  image selection
   const handleImageChange = (e) => {
@@ -57,8 +58,6 @@ console.log(logedUser);
 
 
 let userIndex = users.findIndex(e => e.username = newUsername)
-console.log(users[userIndex].userPost);
-
   // Function to create a task (post)
 
   const createTask = () => {
@@ -93,23 +92,17 @@ console.log(users[userIndex].userPost);
  
   };
   //function to favoris a post
-  console.log(users);
+  // console.log(users.filter(e => e.isLoggedIn === true));
   const handleFavoris = (index) => {
     const newTasks = [...tasks];
     newTasks[index].favoris = !newTasks[index].favoris ;
     setTasks(newTasks);
 
-    let thisPostId = newTasks[newTasks.length - 1].postId
-
-    console.log(thisPostId);
-    
+    let thisPostId = newTasks[newTasks.length - 1].postId    
 
     let indexOfFavoritePost = newTasks.findIndex(e => e.postId == thisPostId)
     // posts.push(tasks[indexOfFavoritePost])
     users[userIndex].favoritePosts.push(tasks[indexOfFavoritePost])
-    console.log(users);
-
-
   };
 
   //  to open the comment modal
@@ -137,9 +130,9 @@ console.log(users[userIndex].userPost);
   }
 
   return (
-    <div className=' w-[50%] flex flex-col  items-center my-4 bg-[#f5f5f5cc]'>
+    <div className=' w-[50%] flex flex-col  items-center my-4'>
       {/* Input creating posts */}
-      <div className='w-full max-w-md p-4 m-3 bg-white rounded-lg shadow-md'>
+      <div className='w-[90%] p-4 m-3 bg-white rounded-lg shadow-md'>
         <div className='flex items-center mb-4 gap-2'>
           {
             profileImage ? (
@@ -192,10 +185,10 @@ console.log(users[userIndex].userPost);
       </div>
 
       
-      <div className='w-full max-w-md'>
+      <div className='w-[90%]'>
         
         {tasks.map((task, index) => (
-          <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md relative'>
+          <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md relative '>
             <FaTrash  onClick={() => removePost(index)}  className='absolute right-4 text-xl text-pink'/>
             <div className='flex items-center mb-4'>
               <img
@@ -204,7 +197,7 @@ console.log(users[userIndex].userPost);
                 alt='User'
               />
               <div className='ml-3'>
-                <h3 className='font-semibold'>Rajae Bensafy</h3>
+                <h3 className='font-semibold capitilize'>name</h3>
                 <p className='text-slateGray text-sm'>Casablanca, Morocco {timeString}</p>
               </div>
             </div>

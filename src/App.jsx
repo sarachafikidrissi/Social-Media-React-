@@ -28,8 +28,6 @@ const App = () => {
         <Route path="/groups" element={<Groups />} />
         <Route path="/group-page" element={<GroupPage />} />
         <Route path="/create-group" element={<CreateGroup />} />
-
-        {/* group home, create group */}
         <Route path="/market" element={<MarketPlace />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/profile" element={<Profile />} />

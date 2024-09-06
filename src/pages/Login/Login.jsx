@@ -20,7 +20,8 @@ const Login = () => {
     if (loginUsername && loginpassword) {
       let user = users.find((e) => e.username === loginUsername && e.password === loginpassword);
       if (user) {
-        user.islogedin = true;
+        user.isLoggedIn = true;
+        console.log(user);
         setSuccessModalIsOpen(true);
       } else {
         setErrorMessage('Username or password is incorrect.');

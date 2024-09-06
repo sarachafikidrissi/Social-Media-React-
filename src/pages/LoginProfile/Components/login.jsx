@@ -11,7 +11,7 @@ const LoginPage = () => {
 
     
     const [users1,setUsers]=useState(null)
-    const [unername,setUsername]=useState(null)
+    const [username,setUsername]=useState(null)
     
   const {users}=useAuth()
   const navigate =useNavigate()
@@ -70,28 +70,30 @@ console.log(users);
         <div
             class="lg:w-[88%]  xs:w-full mx-auto shadow-2xl p-4 rounded-xl h-fit self-center dark:bg-gray-800/40" >
             
-            <div class="">
+            <div class="flex flex-col gap-y-4">
             {/* create btn kadik lhome page */}
-            <h1 className=' text-end text-4xl cursor-pointer'><span onClick={() => navigate(`/:${newUsername}`)} className='hover:text-red-600'>x</span></h1>
+            <h1 className=' text-end text-4xl cursor-pointer'><span onClick={() => navigate(`/login`)} className='hover:text-red-600'>x</span></h1>
             
                 <h1
-                    class="lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
-                    Profile
+                    class="text-center lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
+                    Update Profile
                 </h1>
-                <h2 class="text-grey text-sm mb-4 dark:text-gray-400">Create Profile</h2>
                 <form>
                 {/* create bg cover */}
                     <div className='pb-10 relative'>
                         <div className='bg-black w-full h-[40vh] ' onClick={handlCOverClick} >
                         {  cover ? <img src={URL.createObjectURL(cover)} className='w-full h-[40vh] bg-cover ' /> : <div  className='w-full h-[40vh]'></div>   }
-                        <input type='file' ref={inputRefCover} onChange={handlChangeCover} className='hidden' />
+                        <input type='file' accept='image/*' ref={inputRefCover} onChange={handlChangeCover} className='hidden' />
                         </div>
                         <div className='w-[15vw] h-[30vh] rounded-full absolute bottom-0 translate-y-[-50%] left-[50%] translate-x-[-50%] ' onClick={handleClick}>
                         {  image ? <img src={URL.createObjectURL(image)} className='h-[200px] w-[200px] rounded-full' /> : <div  className='h-[200px] w-[200px] rounded-full bg-slate-300'></div>   }
-                        <input type='file' ref={inputRef} onChange={handleChange} className='hidden' />
+                        <input type='file' accept='image/*' ref={inputRef} onChange={handleChange} className='hidden' />
                         </div>
                     </div>
-                    {users.map((e, index) => (
+                    <div>
+
+                    </div>
+                    {/* {users.map((e, index) => (
                         <div
                             key={index}
                             className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full"
@@ -117,12 +119,12 @@ console.log(users);
                                 />
                             </div>
                         </div>
-                    ))}
+                    ))} */}
                     
                      
                     
                      
-                    <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                    {/* <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
                         <div class="w-full">
                             <h3 class="dark:text-gray-300 mb-2">Sex</h3>
                             <select
@@ -137,10 +139,10 @@ console.log(users);
                             <input type="date"
                                     class="text-grey p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"/>
                         </div>
-                    </div>
+                    </div> */}
 
                     <div class="flex items-center justify-center  mt-4 text-white text-lg font-semibold">
-                        <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={`/:${newUsername}`}>Submit</Link></button>
+                        <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={`/login`}>Submit</Link></button>
                     </div>
                 </form>
             </div>
