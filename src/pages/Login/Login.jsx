@@ -63,24 +63,23 @@ const Login = () => {
             onChange={(e) => setLoginPassword(e.target.value)}
             className="bg-gray-200 border-none p-3 my-2 w-full"
           />
-          <a href="#" className="text-blue-500 text-sm">Forgot your password?</a>
+          <a href="#" className="text-blue-500 text-lg py-2">Forgot your password?</a>
           <button
             type="button"
             onClick={check}
-            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6"
+            className="rounded-full border bg-gradient-to-b from-[#c17d7db4] to-[#ae385e] hover:bg-gradient-to-b hover:from-[#c17d7d] hover:to-[#d76a83] hover:text-black text-white text-lg font-bold py-3 px-10"
           >
             Login
           </button>
         </form>
       </div>
-      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-r from-[#672e45]  to-[#210611]">
+      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-l from-[#af7878]  to-[#ae385e]">
         <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
           <h1 className="text-3xl font-bold text-white">Welcome Back!</h1>
-          <p className="text-sm text-white">To keep connected with us please login with your personal info</p>
+          <p className="text-xl  text-[#FFEBD4]">To keep connected with us please login with your personal info</p>
           <button
-            className="border-none text-white font-serif border-pink text-black rounded-full py-2 px-6 text-sm font-bold bg-[#9c1f51] hover:bg-pink hover:text-white"
-            onClick={() => navigate('/sign-up')}
-          >
+            className="border-none font-serif  text-black rounded-full py-2 px-8 text-2xl font-semi-bold bg-gradient-to-t from-[#F4D9D0]  to-[#ae385e] hover:bg-gradient-to-l hover:from-[#921A40] hover:to-[#D9ABAB] hover:text-white"
+            onClick={() => navigate('/sign-up')}>
             Sign Up
           </button>
         </div>
