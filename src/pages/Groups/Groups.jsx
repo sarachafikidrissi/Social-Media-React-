@@ -42,10 +42,11 @@ const Groups = () => {
     },
   ]);
   
+  
 
   return (
     <div className='w-[100%] flex flex-row gap-8'>
-     <div className='w-[25%] flex flex-col'>
+     <div className='w-[25%] flex flex-col '>
         <LeftSideBar  />
         <div className='border-t-2 p-3 flex flex-col'>
            <h1 className='pt-1 text-lg font-bold ps-5'>Groups you are a member of</h1>
@@ -57,8 +58,8 @@ const Groups = () => {
           </div>
         </div>
        
-      </div>
-      <div className="groups-container grid grid-cols-3 w-[65%] gap-5 justify-end">
+      </div></div>
+      <div className="groups-container grid grid-cols-3 w-[65%] gap-5 ">
       {groups.map((group) => (
         <div key={group.id}
         className="max-w-sm bg-white border border-gray-200 rounded-lg shadow  ">
@@ -79,7 +80,7 @@ const Groups = () => {
       ))}
       </div>
      
-    </div></div>
+    </div>
   );
   
 }
