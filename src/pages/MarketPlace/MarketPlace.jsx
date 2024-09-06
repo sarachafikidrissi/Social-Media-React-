@@ -114,8 +114,8 @@ const MarketPlace = () => {
   };
 
   return (
-    <div className="flex gap-x-5 items-center w-[100%]">
-      <div className='w-[25%]'>
+    <div className="flex gap-x-5  w-[100%]">
+      <div className='w-[25%] pt-8'>
         <LeftSideBar />
       </div>
       <div className='flex flex-col pb-8 w-[85%] justify-center items-center gap-10'>
@@ -146,14 +146,14 @@ const MarketPlace = () => {
             onClick={() => activeCategory('beauty')}
           >Beauty</button>
         </div>
-        <div className="grid grid-cols-3  gap-5 py-8 w-[100%] h-[50%] ">
+        <div className="grid grid-cols-3  gap-5 py-8 w-[100%] h-[50%]  ">
           {arrayCategory[selectedCategory].map((item, index) => (
-            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3 bg-[#ffebd4a6]">
+            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3 bg-[#ffebd4a6] pb-10">
              <div className='h-[30vh] w-[90%] mb-2 border-b-2 border-b-[#ff8db1a6] '><img src={item.imgSrc} alt={item.title} className='w-[90%] h-[100%]' /></div> 
-              <div className='w-[100%] h-[15%] '><h3 className="text-xl font-bold py-3   text-[#402B3A]">{item.title}</h3></div>
+              <div className='w-[100%] h-[15%] '><h3 className="text-xl font-bold    text-[#402B3A]">{item.title}</h3></div>
               <div className=" font-bold pb-3 w-[100%] h-[10%] text-[#921A40] text-lg">{item.price} DH</div>
               <div className='flex justify-center'>
-                <button className='bg-gradient-to-b from-[#c75b79e7]  to-[#fc819e75] px-4 py-2 rounded-xl text-black text-xl font-semibold hover:text-[#571f39]' onClick={() => AfficherModalInfo(item)}>
+                <button className='bg-gradient-to-b from-[#c75b79e7]  to-[#fc819e75] px-4 py-2 rounded-xl text-black text-xl font-semibold hover:text-[#571f39] mt-2' onClick={() => AfficherModalInfo(item)}>
                   More information
                 </button>
 
@@ -161,15 +161,13 @@ const MarketPlace = () => {
             </div>
           ))}
         </div>
-        <div className='flex justify-end'>
-          <button className='bg-gradient-to-b from-[#c17d7d] to-[#d76a83] hover:from-[#af7878] hover:to-[#ae385e] px-12 py-2 text-2xl text-white rounded-2xl font-semibold' 
+        <div className='flex justify-center'>
+          <button className='bg-gradient-to-b from-[#c17d7d] to-[#d76a83] hover:from-[#af7878] hover:to-[#ae385e] px-12 py-2 text-2xl text-white rounded-2xl font-semibold mt-10 text-center' 
           onClick={AfficherModal}>
             Add Article
           </button>
         </div>
-      </div>
-      {/* Afficher Modal */}
-      {showModal && (
+        {showModal && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
           <div className='bg-white p-8 rounded-2xl w-[40vw] min-h-[50vh]'>
             <h2 className='text-2xl font-bold mb-4 text-[#921A40]'>Add New Article</h2>
@@ -261,6 +259,9 @@ const MarketPlace = () => {
           </button>
         </div>
       </Modal>
+    </div>
+      
+      
     </div>
 
    
