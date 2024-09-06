@@ -7,7 +7,10 @@ const RightSideBar = () => {
   const [activeStories, setActiveStories] = useState({});
 
   const { users, setUsers } = useAuth();
-  const { logedUser } = useAuth();
+
+
+
+  let logedUser = users.find((e) => e.isLoggedIn == true);
 
   useEffect(() => {
     console.log(logedUser);
@@ -65,12 +68,15 @@ const RightSideBar = () => {
     const currentUsers = [...users];
   
     const loggedInUserIndex = currentUsers.findIndex((user) => user.isLoggedIn);
-    console.log("clicked");
-    console.log(suggestedfriends);
+    console.log(loggedInUserIndex);
+    // console.log("clicked");
+    // console.log(suggestedfriends);
   
     if (loggedInUserIndex !== -1 && suggestedfriends[index]) {
       const loggedInUser = currentUsers[loggedInUserIndex];
       const suggestedFriend = suggestedfriends[index];
+
+      
   
       loggedInUser.friends = [...loggedInUser.friends, suggestedFriend];
   

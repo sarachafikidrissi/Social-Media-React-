@@ -18,11 +18,6 @@ let newUsername = connectedUser["username"]
  
 
   const { users, setUsers } = useAuth();
-  console.log(users);
-
-
-
-
   const [tasks, setTasks] = useState([]);
   const [inputChange, setInputChange] = useState('');
   const [selectedImages, setSelectedImages] = useState([]); 
@@ -33,6 +28,11 @@ let newUsername = connectedUser["username"]
 
   const date = new Date();
   const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+
+
+  let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
+console.log(filterConnectedUser.name);
+
   
   // Function  image selection
   const handleImageChange = (e) => {
@@ -174,9 +174,9 @@ let userIndex = users.findIndex(e => e.username = newUsername)
 
 
   return (
-    <div className=' w-[50%] flex flex-col  items-center my-4 bg-[#f5f5f5cc]'>
+    <div className=' w-[50%] flex flex-col  items-center my-4'>
       {/* Input creating posts */}
-      <div className='w-full max-w-md p-4 m-3 bg-white rounded-lg shadow-md'>
+      <div className='w-[90%] p-4 m-3 bg-white rounded-lg shadow-md'>
         <div className='flex items-center mb-4 gap-2'>
           {
             profileImage ? (
@@ -233,10 +233,10 @@ let userIndex = users.findIndex(e => e.username = newUsername)
       </div>
 
       
-      <div className='w-full max-w-md'>
+      <div className='w-[90%]'>
         
         {tasks.map((task, index) => (
-          <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md relative'>
+          <div key={index} className='p-4 bg-white mt-4 rounded-lg shadow-md relative '>
             <FaTrash  onClick={() => removePost(index)}  className='absolute right-4 text-xl text-pink'/>
             <div className='flex items-center mb-4'>
               <img
@@ -245,7 +245,7 @@ let userIndex = users.findIndex(e => e.username = newUsername)
                 alt='User'
               />
               <div className='ml-3'>
-                <h3 className='font-semibold'>Rajae Bensafy</h3>
+                <h3 className='font-semibold capitilize'>name</h3>
                 <p className='text-slateGray text-sm'>Casablanca, Morocco {timeString}</p>
               </div>
             </div>

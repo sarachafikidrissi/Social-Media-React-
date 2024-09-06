@@ -15,6 +15,7 @@ import vernis from './vernis.png'
 import grp1 from './grp1.jpg'
 import grp2 from './grp2.jpg'
 import grp3 from './grp3.jpg'
+import profile from "./social.jpg"
 
 
 export const assets = {
@@ -34,5 +35,6 @@ export const assets = {
     sol,
     grp1,
     grp2,
-    grp3
+    grp3,
+    profile
 }
