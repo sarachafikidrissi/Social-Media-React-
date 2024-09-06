@@ -220,40 +220,31 @@ const MarketPlace = () => {
           </div>
         </div>
       )}
-          <Modal
-        isOpen={emptyFieldsModalIsOpen}
-        onRequestClose={() => setEmptyFieldsModalIsOpen(false)}
-        contentLabel="Empty Fields"
-        className="fixed inset-0 flex items-center justify-center p-4"
-        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
-      >
+          <Modal isOpen={emptyFieldsModalIsOpen}
+        onRequestClose={() => setEmptyFieldsModalIsOpen(false)} contentLabel="Empty Fields"
+        className="fixed inset-0 flex items-center justify-center p-4"  overlayClassName="fixed inset-0 bg-black bg-opacity-60">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-4">Incomplete Information</h2>
-          <p className="text-lg">Please fill in all required fields before proceeding.</p>
+          <h2 className="text-2xl font-bold mb-4 text-[#89375F]">Incomplete Information</h2>
+          <p className="text-lg ">Please fill in all required fields before proceeding.</p>
           <button
             onClick={() => setEmptyFieldsModalIsOpen(false)}
-            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
-          >
-            Close
-          </button>
+            className="rounded-full border border-none bg-[#C75B7A] text-white text-lg font-semi-bold py-3 px-6 mt-4 text-center" >
+            Close</button>
         </div>
       </Modal>
-      <Modal
-        isOpen={successModalIsOpen}
-        onRequestClose={() => setSuccessModalIsOpen(false)}
-        contentLabel="Success"
+      <Modal isOpen={successModalIsOpen}
+        onRequestClose={() => setSuccessModalIsOpen(false)} contentLabel="Success"
         className="fixed inset-0 flex items-center justify-center p-4"
-        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
-      >
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-4">Achat Successful</h2>
+          <h2 className="text-2xl font-bold mb-4 text-[#89375F]">Achat Successful</h2>
           <p className="text-lg">You Achat has been made  successfully.</p>
           <button
             onClick={() => {
               setSuccessModalIsOpen(false);
               setSelectedItem(false)
             }}
-            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+            className="rounded-full border-none bg-[#C75B7A] text-white text-sm font-bold py-3 px-6 mt-4"
           >
             Continue
           </button>
