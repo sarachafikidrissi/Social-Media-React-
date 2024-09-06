@@ -1,0 +1,20 @@
+[
+    {
+      "id": "1",
+      "nameGrp": "Tech Enthusiasts",
+      "imgGrp": "/assets/grp1.jpg",
+      "membres": "150"
+    },
+    {
+      "id": "2",
+      "nameGrp": "AI Researchers",
+      "imgGrp": "/assets/grp2.jpg" ,
+      "membres": "85"
+    },
+    {
+      "id": "3",
+      "nameGrp": "Web Developers",
+      "imgGrp": "/assets/grp3.jpg" ,
+      "membres": "200"
+    }
+  ]

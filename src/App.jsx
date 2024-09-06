@@ -13,15 +13,23 @@ import Profile from "./pages/Profile/Profile";
 import { AuthProvider } from "./context";
 import EditProfil from "./EditProfil/EditProfil";
 import MyFavorites from "./pages/Myfavorites/myfavorites";
+import Accueil from "./pages/accueil/accueil";
+import GroupPage from "./pages/GroupPage/GroupPage";
+import CreateGroup from "./pages/CreateGroup/CreateGroup";
 const App = () => {
   return (
     <AuthProvider>
-      <div className="py-6 px-4 sm-px-[5vw] md-px-[7vw] lg-px-[9vw]">
+      <div className=" sm-px-[5vw] md-px-[7vw] lg-px-[9vw]">
       <Routes>
         <Route path="/:username" element={<Home />} />
         <Route path="/login-profile/:username" element={<LoginProfile />} />
         <Route path="/friends" element={<Friends />} />
+        <Route path="/" element={<Accueil />} />
         <Route path="/groups" element={<Groups />} />
+        <Route path="/group-page" element={<GroupPage />} />
+        <Route path="/create-group" element={<CreateGroup />} />
+
+        {/* group home, create group */}
         <Route path="/market" element={<MarketPlace />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/profile" element={<Profile />} />

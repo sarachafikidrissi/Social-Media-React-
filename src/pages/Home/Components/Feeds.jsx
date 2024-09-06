@@ -9,19 +9,15 @@ import { useParams } from 'react-router-dom';
 
 const Feeds = () => {
 
+  const { profileImage, coverImage, logedUser } = useAuth();
   let connectedUser = useParams()
 let newUsername = connectedUser["username"]
-newUsername = newUsername.substring(1)
+// newUsername = newUsername.substring(1)
 
-
-const {image, setImage} = useAuth()
-
-
-
-console.log(newUsername);
  
 
   const { users, setUsers } = useAuth();
+  console.log(users);
 
 
 
@@ -33,7 +29,6 @@ console.log(newUsername);
   const [showModal, setShowModal] = useState(false);
   const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
   const [commentInput, setCommentInput] = useState('');
- const {posts, setPosts} = useAuth()
 
   const date = new Date();
   const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
@@ -55,19 +50,11 @@ console.log(newUsername);
 
 //update user data
 
-// const updateParameterForUser = (username, parameter, value) => {
-//   setUsers((prevUsers) =>
-//     prevUsers.map(user =>
-//       user.username === username
-//         ? { ...user, [parameter]: value }
-//         : user
-//     )
-//   );
-// };
 
 let userIndex = users.findIndex(e => e.username = newUsername)
 
   // Function to create a task (post)
+  let id = 0
   const createTask = () => {
 
     const newTab = [...tasks];
@@ -124,7 +111,7 @@ let userIndex = users.findIndex(e => e.username = newUsername)
   // Function to handle liking a post
   const handleLike = (index) => {
     const newTasks = [...tasks];
-    newTasks[index].likes = !newTasks[index].likes  ;
+    newTasks[index].likes = !newTasks[index].likes ;
     setTasks(newTasks);
  
   };
@@ -165,12 +152,23 @@ let userIndex = users.findIndex(e => e.username = newUsername)
       {/* Input creating posts */}
       <div className='w-full max-w-md p-4 m-3 bg-white rounded-lg shadow-md'>
         <div className='flex items-center mb-4 gap-2'>
+          {
+            profileImage ? (
+              <img
+            className='w-10 h-10 rounded-full'
+            src={profileImage}
+            // src='https://img.freepik.com/photos-gratuite/portrait-femme-souriante-espace-copie_23-2148784759.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1725235200&semt=ais_hybrid'
+            alt='User'
+          />
+            ): 
+         
           <img
             className='w-10 h-10 rounded-full'
-            // src={image}
+            // src={profileImage}
             src='https://img.freepik.com/photos-gratuite/portrait-femme-souriante-espace-copie_23-2148784759.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1725235200&semt=ais_hybrid'
             alt='User'
           />
+}
           <input
             value={inputChange}
             onChange={(e) => setInputChange(e.target.value)}
