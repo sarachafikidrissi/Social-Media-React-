@@ -19,7 +19,7 @@ import { useParams } from 'react-router-dom';
 const LeftSideBar = () => {
   let connectedUser = useParams()
   let newUsername = connectedUser["username"]
-  console.log(newUsername);
+
   const navigate = useNavigate();
   const location = useLocation();
   // kan3tiw chemin fin mabghinash tab9a tla3 my friends
@@ -29,7 +29,6 @@ const LeftSideBar = () => {
   const { users, image, coverImage}  = useAuth()
 
   let filterConnectedUser = users.find((e) => e.isLoggedIn === true);
-  console.log(filterConnectedUser);
   // const { logedUser } = useAuth();
   return (
     
