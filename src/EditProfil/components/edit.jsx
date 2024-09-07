@@ -2,10 +2,12 @@ import React, { useRef, useState } from 'react';
 import { useAuth } from '../../context';
 import LeftSideBar from '../../pages/Home/Components/LeftSideBar';
 import Navbar from '../../layout/navbar';
+import Modal from 'react-modal';
 
 const Edit = () => {
   const { users, setUsers } = useAuth(); 
   const currentUser = users.find(e => e.isLoggedIn === true); 
+  const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
 
   const [formData, setFormData] = useState({
     name: currentUser.name,
@@ -38,6 +40,7 @@ const Edit = () => {
     const updatedUsers = users.map(user =>
       user.isLoggedIn ? updatedUser : user
     );
+    setSuccessModalIsOpen(true)
 
     setUsers(updatedUsers); 
     console.log( updatedUser);
@@ -151,6 +154,27 @@ const Edit = () => {
           </form>
         </div>
       </div>
+       {/* Modal fach kolshi nade */}
+       <Modal
+        isOpen={successModalIsOpen}
+        onRequestClose={() => setSuccessModalIsOpen(false)}
+        contentLabel="Success"
+        className="fixed inset-0 flex items-center justify-center p-4"
+        overlayClassName="fixed inset-0 bg-black bg-opacity-50"
+      >
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md py-12">
+          <h2 className="text-2xl font-bold mb-4">Changes mades</h2>
+          <p className="text-lg">Your Changes has been made successfully.</p>
+          <button
+            onClick={() => {
+              setSuccessModalIsOpen(false);
+            }}
+            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+          >
+            ok
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };
