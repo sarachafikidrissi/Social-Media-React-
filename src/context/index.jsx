@@ -4,6 +4,8 @@ import { assets } from "../assets";
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
+
+  //! User Data
   const [users, setUsers] = useState([
     {
       name: "sara",
@@ -16,7 +18,8 @@ export const AuthProvider = ({ children }) => {
       profileImage: `${assets.car1}`,
       favoritePosts: [],
       isLoggedIn: false,
-      friends: []
+      friends: [],
+      groupsCreated: []
     },
     {
       name: "user2",
@@ -29,7 +32,8 @@ export const AuthProvider = ({ children }) => {
       profileImage: `${assets.car1}`,
       favoritePosts: [],
       isLoggedIn: false,
-      friends: []
+      friends: [],
+      groupsCreated: []
     },
     {
       name: "user3",
@@ -42,7 +46,55 @@ export const AuthProvider = ({ children }) => {
       profileImage: `${assets.car1}`,
       favoritePosts: [],
       isLoggedIn: false,
-      friends: []
+      friends: [],
+      groupsCreated: []
+    },
+  ]);
+
+
+  //! Group Data
+  const [groups, setGroups] = useState([
+    {
+      id: 1,
+      nameGrp: "Tech Enthusiasts",
+      imgGrp: assets.grp1,
+      membres: "150K",
+      joined: []
+    },
+    {
+      id: 2,
+      nameGrp: "AI Researchers",
+      imgGrp: assets.grp2,
+      membres: "85K",
+      joined: []
+    },
+    {
+      id: 3,
+      nameGrp: "Web Developers",
+      imgGrp: assets.grp3,
+      membres: "200K",
+      joined: []
+    },
+    {
+      id: 4,
+      nameGrp: "Tech Enthusiasts",
+      imgGrp: assets.grp1,
+      membres: "150K",
+      joined: []
+    },
+    {
+      id: 5,
+      nameGrp: "AI Researchers",
+      imgGrp: assets.grp2,
+      membres: "85K",
+      joined: []
+    },
+    {
+      id: 6,
+      nameGrp: "Web Developers",
+      imgGrp: assets.grp3,
+      membres: "200K",
+      joined: []
     },
   ]);
 
@@ -73,9 +125,27 @@ export const AuthProvider = ({ children }) => {
         favoritePosts: [],
         isLoggedIn: false,
         friends: [],
+        groups: []
       },
     ]);
   };
+
+
+
+  const addGroup = (admin, nameGrp, imgGrp, members) => {
+    setGroups((prevGroups) => [
+      ...prevGroups,
+      {
+        admin,
+        nameGrp,
+        imgGrp,
+        members,
+        joined: [],
+        id: Date.now(),
+      },
+    ]);
+  };
+
 
   return (
     <AuthContext.Provider
@@ -91,6 +161,8 @@ export const AuthProvider = ({ children }) => {
         setProfileImage,
         coverImage,
         setCoverImage,
+        groups,
+        setGroups
       }}
     >
       {children}

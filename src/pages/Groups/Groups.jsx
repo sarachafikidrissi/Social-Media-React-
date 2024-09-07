@@ -2,66 +2,30 @@ import React, { useState } from "react";
 import { assets } from "../../assets";
 import LeftSideBar from "../Home/Components/LeftSideBar";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context";
 
 const Groups = () => {
+  const {users, setUsers, groups, setGroups} = useAuth()
+  let filterConnectedUser = users.filter((e) => e.isLoggedIn == true);
+  console.log(filterConnectedUser);
   const navigate = useNavigate()
   const [joined, setJoined] = useState([]);
-  const [groups, setGroups] = useState([
-    {
-      id: 1,
-      nameGrp: "Tech Enthusiasts",
-      imgGrp: assets.grp1,
-      membres: "150K",
-      joined: []
-    },
-    {
-      id: 2,
-      nameGrp: "AI Researchers",
-      imgGrp: assets.grp2,
-      membres: "85K",
-      joined: []
-    },
-    {
-      id: 3,
-      nameGrp: "Web Developers",
-      imgGrp: assets.grp3,
-      membres: "200K",
-      joined: []
-    },
-    {
-      id: 4,
-      nameGrp: "Tech Enthusiasts",
-      imgGrp: assets.grp1,
-      membres: "150K",
-      joined: []
-    },
-    {
-      id: 5,
-      nameGrp: "AI Researchers",
-      imgGrp: assets.grp2,
-      membres: "85K",
-      joined: []
-    },
-    {
-      id: 6,
-      nameGrp: "Web Developers",
-      imgGrp: assets.grp3,
-      membres: "200K",
-      joined: []
-    },
-  ]);
+  
   const handleJoin = (id) => {
     let newTab = [...groups];
     let newJoined = [...joined];
     let group = groups.findIndex((e) => e.id == id);
+    console.log(newTab[group]);
+  newTab[group].joined.push(filterConnectedUser)
     newJoined.push(newTab[group]);
     setJoined(newJoined);
     newTab.splice(group, 1);
     setGroups(newTab);
-    console.log(joined);
+
+
   };
 
-  console.log(joined);
+  console.log(groups);
 
   return (
     <div className="w-[100%] flex flex-row gap-8">
