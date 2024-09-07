@@ -6,10 +6,12 @@ import { useAuth } from '../../context';
 const Profile = () => {
   const { users } = useAuth();
   console.log(users);
-  let filterConnectedUser = users.find(e => e.isLoggedIn === true);
-  console.log(filterConnectedUser);
-
   
+  const filterConnectedUser = users.find(e => e.isLoggedIn === true);
+  
+  if (!filterConnectedUser) return <div>No user logged in</div>;
+
+  const { profileImage, name, email, birthday, userPost, followers, following } = filterConnectedUser;
 
   return (
     <div>
@@ -21,29 +23,29 @@ const Profile = () => {
             <div className='flex'>
               <div className='w-[30vw] flex justify-center items-center'>
                 <div className='w-[60%] h-[85%] rounded-full'>
-                  {filterConnectedUser.profileImage ? 
+                  {profileImage ? (
                     <img
-                      src={filterConnectedUser.profileImage}
+                      src={profileImage}
                       className='w-[15vw] h-[30vh] rounded-full'
                       alt='Profile'
                     />
-                  : 
+                  ) : (
                     <div className="bg-white w-full h-full rounded-full" />
-                  }
+                  )}
                 </div>
               </div>
               <div className='w-[50vw] h-[45vh] flex items-center'>
                 <div className='flex flex-col gap-5'>
                   <h1 className='text-2xl capitalize font-serif'>
-                    {filterConnectedUser.name}
+                    {name}
                   </h1>
                   <div className='flex gap-10 text-1xl font-serif'>
-                    <h1>{filterConnectedUser.userPost} Posts</h1>
-                    <h1>{filterConnectedUser.userPost} Followers</h1>
-                    <h1>{filterConnectedUser.userPost} Following</h1>
+                    <h1>{userPost ? userPost.length : 0} Posts</h1>
+                    <h1>{followers ? followers.length : 0} Followers</h1>
+                    <h1>{following ? following.length : 0} Following</h1>
                   </div>
-                  <h1 className='font-serif'>{filterConnectedUser.email}</h1>
-                  <h1 className='font-serif'>{filterConnectedUser.birthday}</h1>
+                  <h1 className='font-serif'>{email}</h1>
+                  <h1 className='font-serif'>{birthday}</h1>
                 </div>
               </div>
             </div>
@@ -54,38 +56,38 @@ const Profile = () => {
               </span>
             </h1>
             <div className='flex gap-5 flex-wrap ms-[1rem] bg-[#a19a9a7a] rounded-md'>
-              
-                <div className='w-[24vw] rounded-md'>
+              {userPost && userPost.map((post, index) => (
+                <div key={index} className='w-[24vw] rounded-md'>
                   <div className='bg-white flex gap-5 rounded-t-md border-b-4 p-2'>
                     <div className='profil bg-[#fcfc] w-[4vw] h-[8vh] rounded-full'>
-                      {filterConnectedUser.profileImage ? 
+                      {profileImage ? (
                         <img
-                          src={filterConnectedUser.profileImage}
+                          src={profileImage}
                           className='w-full h-full rounded-full'
                           alt='Profile'
                         />
-                       : 
+                      ) : (
                         <div className="bg-gray-200 w-full h-full rounded-full" />
-                      }
+                      )}
                     </div>
                     <div className='nameProfil capitalize font-serif'>
-                      {filterConnectedUser.name}
+                      {name}
                     </div>
                   </div>
                   <div className='w-[100%]'>
                     <img
                       className='h-[50vh] w-full bg-cover'
-                      src={filterConnectedUser.userPost.image}
-                      
+                      src={post.images}
+                      alt='Post'
                     />
                   </div>
                   <div className='bg-white w-[24vw] h-[10vh] rounded-b-md text-black flex justify-between items-center p-2'>
-                    <h1>{filterConnectedUser.userPost.likes} Likes</h1>
-                    <h1>{filterConnectedUser.userPost.comments} Comments</h1>
-                    <h1>{filterConnectedUser.userPost.favorited} Favorites</h1>
+                    <h1>{post.likes} Likes</h1>
+                    <h1>{post.comments.length} Comments</h1>
+                    <h1>{post.favorited} Favorites</h1>
                   </div>
                 </div>
-              
+              ))}
             </div>
           </div>
         </div>
