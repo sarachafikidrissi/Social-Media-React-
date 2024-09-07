@@ -39,8 +39,8 @@ const Profile = () => {
                   </h1>
                   <div className='flex gap-10 text-1xl font-serif'>
                     <h1>{filterConnectedUser.userPost} Posts</h1>
-                    <h1>{filterConnectedUser.followers} Followers</h1>
-                    <h1>{filterConnectedUser.following} Following</h1>
+                    <h1>{filterConnectedUser.userPost} Followers</h1>
+                    <h1>{filterConnectedUser.userPost} Following</h1>
                   </div>
                   <h1 className='font-serif'>{filterConnectedUser.email}</h1>
                   <h1 className='font-serif'>{filterConnectedUser.birthday}</h1>
@@ -81,7 +81,7 @@ const Profile = () => {
                   </div>
                   <div className='bg-white w-[24vw] h-[10vh] rounded-b-md text-black flex justify-between items-center p-2'>
                     <h1>{filterConnectedUser.userPost.likes} Likes</h1>
-                    <h1>{filterConnectedUser.userPost.comments.length} Comments</h1>
+                    <h1>{filterConnectedUser.userPost.comments} Comments</h1>
                     <h1>{filterConnectedUser.userPost.favorited} Favorites</h1>
                   </div>
                 </div>

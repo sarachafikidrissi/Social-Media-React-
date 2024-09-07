@@ -28,7 +28,7 @@ const LeftSideBar = () => {
   let isMarketPlace = location.pathname === '/market';
   const { users, image, coverImage}  = useAuth()
 
-  let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
+  let filterConnectedUser = users.find((e) => e.isLoggedIn === true);
   console.log(filterConnectedUser);
   // const { logedUser } = useAuth();
   return (
