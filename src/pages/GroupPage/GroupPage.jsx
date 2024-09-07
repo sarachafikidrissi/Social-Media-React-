@@ -73,6 +73,9 @@ const GroupPage = () => {
   const toggleSettings = () => {
       setShowSettings(!showSettings);
   };
+
+  const [suivre, setSuivre] = useState(true)
+  const [join, setJoin] = useState(false)
   return (
     <div className="flex gap-5 items-center w-[100%]  justify-center">
      <div className='w-[25%]'>
@@ -96,7 +99,7 @@ const GroupPage = () => {
         <button className="mt-4 px-6 py-2 
     bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
     hover:from-[#af7878] hover:to-[#ae385e]  
-    text-white rounded-lg">+Inviter</button>
+    text-white rounded-lg">{suivre == true ? `+Inviter` : `Join`}</button>
         <button className="mt-4 px-6 py-2 
     bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
     hover:from-[#af7878] hover:to-[#ae385e] 
@@ -113,7 +116,7 @@ const GroupPage = () => {
             </button>
             {showSettings && (
                 <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg">
-                    <button className="mt-4 px-6 py-2  bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
+                    <button onClick={() => setSuivre(false)} className="mt-4 px-6 py-2  bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
     hover:from-[#af7878] hover:to-[#ae385e]
             text-white block w-full text-center  rounded-lg shadow-lg"> Ne plus suivre </button>
               <button className="mt-4 px-6 py-2  bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 

@@ -18,15 +18,16 @@ const MyFavorites = () => {
     const [commentInput, setCommentInput] = useState('');
 
 
-    const {post, setPost} = useAuth()
+    const {post, setPost, users} = useAuth()
+
+
+    let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
+    console.log(filterConnectedUser);
+
 
     const date = new Date();
     const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     
-
-
-
-
   // Function to handle liking a post
   const handleLike = (index) => {
     const newTasks = [...tasks];
@@ -66,7 +67,7 @@ const MyFavorites = () => {
     setTasks(newTasks)
   }
     
-  const { users } = useAuth(); 
+
 
 
     let username=users[0].username
@@ -93,7 +94,7 @@ const MyFavorites = () => {
         <div className='w-[50%] me-10'>
           
         
-         {users[filteredUser].favoritePosts.map((task, index) => (
+         {filterConnectedUser.favoritePosts.map((task, index) => (
           <div key={index} className='p-4  mt-4 rounded-lg shadow-md relative '>
             <FaTrash  onClick={() => removePost(index)}  className='absolute right-4 text-xl text-pink'/>
             <div className='flex items-center mb-4'>
@@ -103,7 +104,7 @@ const MyFavorites = () => {
                 alt='User'
               />
               <div className='ml-3'>
-                <h3 className='font-semibold'>Rajae Bensafy</h3>
+                <h3 className='font-semibold capitalize'>{filterConnectedUser.name}</h3>
                 <p className='text-slateGray text-sm'>Casablanca, Morocco {timeString}</p>
               </div>
             </div>

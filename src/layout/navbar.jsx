@@ -12,14 +12,26 @@ const Navbar = () => {
 
 
 
-    let loggedInUserIndex = users.findIndex((user) => user.isLoggedIn);
+    // let loggedInUserIndex = users.findIndex((user) => user.isLoggedIn);
     // let user = users[loggedInUserIndex].username
+// const handleLogout = () => {
+
+//   if (loggedInUserIndex !== -1) {
+//     users[loggedInUserIndex].isLoggedIn = false;
+
+//     setUsers([...users]);  
+//   }
+// };
+
 const handleLogout = () => {
 
-  if (loggedInUserIndex !== -1) {
-    users[loggedInUserIndex].isLoggedIn = false;
+  if (user) {
+    let newTab = [...users]
+    let userIn = newTab.find(e => e.isLoggedIn == true)
+    userIn.isLoggedIn = false
+    setUsers(newTab)
 
-    setUsers([...users]);  
+    // setUsers([...users]);  
   }
 };
 

@@ -31,9 +31,8 @@ let newUsername = connectedUser["username"]
 
 
   let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
-console.log(filterConnectedUser.name);
+  console.log(users);
 
-  
   // Function  image selection
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
@@ -52,10 +51,11 @@ console.log(filterConnectedUser.name);
 //update user data
 
 
-let userIndex = users.findIndex(e => e.username = newUsername)
+let userIndex = users.findIndex(e => e.isLoggedIn = true)
+console.log(userIndex);
 
   // Function to create a task (post)
-  let id = 0
+  let id = Date.now()
   const createTask = () => {
 
     const newTab = [...tasks];
@@ -67,6 +67,7 @@ let userIndex = users.findIndex(e => e.username = newUsername)
       likes: 0,
       favorited:false,
       comments: [],
+      postId: id
     };
     if(inputChange || selectedImages || selectedVideo){
 
@@ -83,33 +84,6 @@ let userIndex = users.findIndex(e => e.username = newUsername)
     }
   };
 
-  // console.log(users);
-  // let userPostArr = users[0].userPost
-  // console.log(userPostArr);
-
-
-
-  console.log(users);
-  // console.log(tasks);
-  // let index = users.findIndex(e => e.username = newUsername)
-  // users[index].userPost.push(tasks)
-  // console.log(users);
-
-
-
-  //add posts to user data
-
-
-
-
-
-
-
-
-
-
-
-
   // Function to handle liking a post
   const handleLike = (index) => {
     const newTasks = [...tasks];
@@ -120,7 +94,11 @@ let userIndex = users.findIndex(e => e.username = newUsername)
   //function to favoris a post
   const handleFavoris = (index) => {
     const newTasks = [...tasks];
+    let postId = newTasks[index].postId
+    console.log(postId);
+    console.log(newTasks[index].favoris);
     newTasks[index].favoris = !newTasks[index].favoris ;
+    filterConnectedUser.favoritePosts.push(newTasks[index])
     setTasks(newTasks);
  
   };
@@ -245,7 +223,7 @@ let userIndex = users.findIndex(e => e.username = newUsername)
                 alt='User'
               />
               <div className='ml-3'>
-                <h3 className='font-semibold capitilize'>name</h3>
+                <h3 className='font-semibold capitalize'>{filterConnectedUser.name}</h3>
                 <p className='text-slateGray text-sm'>Casablanca, Morocco {timeString}</p>
               </div>
             </div>

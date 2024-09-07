@@ -50,7 +50,7 @@ const LeftSideBar = () => {
         {
           filterConnectedUser ?(filterConnectedUser.friends.map((e, index) => (
             <div className='flex flex-row gap-4'>
-          <img src={image} alt="" srcset="" className='rounded-full w-[45px] h-[45px]' />
+          <img src={e.profileImage} alt="" srcset="" className='rounded-full w-[45px] h-[45px]' />
           <div className=''>
             <h1 className='text-l font-bold text-charcoal capitalize'>{e.name}</h1>
             <p className=' text-slateGray font-light'> Casablanca,Anfa</p>
