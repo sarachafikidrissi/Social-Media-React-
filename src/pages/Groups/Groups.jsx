@@ -12,36 +12,42 @@ const Groups = () => {
       nameGrp: "Tech Enthusiasts",
       imgGrp: assets.grp1,
       membres: "150K",
+      joined: []
     },
     {
       id: 2,
       nameGrp: "AI Researchers",
       imgGrp: assets.grp2,
       membres: "85K",
+      joined: []
     },
     {
       id: 3,
       nameGrp: "Web Developers",
       imgGrp: assets.grp3,
       membres: "200K",
+      joined: []
     },
     {
       id: 4,
       nameGrp: "Tech Enthusiasts",
       imgGrp: assets.grp1,
       membres: "150K",
+      joined: []
     },
     {
       id: 5,
       nameGrp: "AI Researchers",
       imgGrp: assets.grp2,
       membres: "85K",
+      joined: []
     },
     {
       id: 6,
       nameGrp: "Web Developers",
       imgGrp: assets.grp3,
       membres: "200K",
+      joined: []
     },
   ]);
   const handleJoin = (id) => {
@@ -52,6 +58,7 @@ const Groups = () => {
     setJoined(newJoined);
     newTab.splice(group, 1);
     setGroups(newTab);
+    console.log(joined);
   };
 
   console.log(joined);

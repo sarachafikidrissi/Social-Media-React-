@@ -20,7 +20,7 @@ const LeftSideBar = () => {
   const { users, image, coverImage}  = useAuth()
   let connectedUser = useParams()
   let newUsername = connectedUser["username"]
-  console.log(newUsername);
+
   let loggedInUser = users.find((e) => e.isLoggedIn === true);
 
   const navigate = useNavigate();
@@ -32,7 +32,6 @@ const LeftSideBar = () => {
  
 
   let filterConnectedUser = users.find((e) => e.isLoggedIn === true);
-  console.log(filterConnectedUser);
   // const { logedUser } = useAuth();
   return (
     
