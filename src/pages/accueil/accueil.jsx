@@ -9,7 +9,7 @@ const Accueil = () => {
     const [darkmode, setDarkmode] = useState(false)
     return (
         
-        <div className={`bg-gradient-to-b from-[#550b28] to-[#210611] h-[100vh] ${darkmode && "bg-gradient-to-b from-[#242424] to-[#242424]"}` }  >
+        <div className={`bg-gradient-to-b from-[#550b28] to-[#210611] h-[100vh] ${darkmode && "bg-[#242424]" }` }  >
             <div className="flex justify-between">
                 <h1 className="font-serif text-3xl font-medium text-white p-10">
                     Friend<span className='text-[#ea4c89]'>Wave</span>

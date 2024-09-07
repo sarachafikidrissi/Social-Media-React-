@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from "../../src/assets/images/logo_fw-removebg-preview.png"
 import { Link, useParams } from 'react-router-dom';
+import { FaMoon,  FaSun} from "react-icons/fa";
 import { useAuth } from '../context';
+import { CiUser } from "react-icons/ci";
+import { MdOutlineEdit } from "react-icons/md";
+import { CiLogout } from "react-icons/ci";
 
 const Navbar = () => {
-
+  const [darkmode, setDarkmode] = useState(false)
 
     const { users, setUsers } = useAuth();  
     let connectedUser = useParams();
@@ -40,7 +44,7 @@ const handleLogout = () => {
 
 
     return (
-        <div className='navbar flex justify-between  px-5 '>
+        <div className='navbar flex justify-between flex-row  px-5 '>
       <div className='leftNav flex gap-52'>
         <img width={70} src={logo} />
         <div class="relative  items-center hidden md:inline-flex">
@@ -60,14 +64,15 @@ const handleLogout = () => {
 
       <h3 className='text-black'>{userr.username}</h3>   
           <img  src={userr.profileImage} className='menu-hover rounded-full  w-[50px] h-[50px] '/>
-         
+          <button onClick={() => { setDarkmode(!darkmode) }} className="bg-[#ac2659] px-[1.3vw] py-[12px] text-white text-lg font-semi-bold rounded-full border-none">{darkmode ? <FaSun /> : <FaMoon />}</button>
       </div>
+     
 
-      <div class="invisible absolute z-50 flex w-full flex-col bg-[#fcfc] py-3 px-4 text-gray-800 shadow-xl group-hover:visible">
+      <div class="invisible absolute z-50 flex w-full flex-col bg-[#fcfc] py-5 px-4 text-gray-800 shadow-xl group-hover:visible">
             
-            <a  className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/profile"}>Profile</Link></a>
-            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/edit-profile"}>Edit</Link></a>
-            <a className=' hover:bg-[#a40ea46d] border-b-2 border-red-700 text-center text-1xl'><Link to={"/login"} onClick={handleLogout}>Logout</Link></a>
+            <div  className=' hover:bg-[#D9ABAB] border-b-2 border-[#921A40] ps-5 text-xl pb-2 flex flex-row gap-4 items-center'><div><CiUser /></div><Link to={"/profile"}> Profile</Link></div>
+            <div className=' hover:bg-[#D9ABAB] border-b-2 border-[#921A40]  ps-5 text-xl pb-2 pt-1 flex flex-row gap-4 items-center'> <div><MdOutlineEdit /></div><Link to={"/edit-profile"}>Edit</Link></div>
+            <div className=' hover:bg-[#D9ABAB] border-b-2 border-[#921A40]  ps-5 text-xl pb-2 pt-1 flex flex-row gap-4 items-center'><div><CiLogout /></div><Link to={"/login"} onClick={handleLogout}>Logout</Link></div>
       </div>
   </div>
  
