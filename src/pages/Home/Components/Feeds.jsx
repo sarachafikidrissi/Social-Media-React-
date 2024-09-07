@@ -4,24 +4,18 @@ import { IoIosPhotos } from 'react-icons/io';
 import { IoBookmark, IoHeart, IoVideocam } from 'react-icons/io5';
 import { FaTrash } from "react-icons/fa6";
 import { useAuth } from '../../../context';
-
 import { useParams } from 'react-router-dom';
-import images from '../../../constants/images';
 
 const Feeds = () => {
-
-const { profileImage, coverImage, logedUser } = useAuth();
-let connectedUser = useParams()
-let newUsername = connectedUser["username"]
-// newUsername = newUsername.substring(1)
-
- 
+  const { profileImage, logedUser } = useAuth();
+  let connectedUser = useParams();
+  let newUsername = connectedUser["username"];
 
   const { users, setUsers } = useAuth();
   const [tasks, setTasks] = useState([]);
   const [inputChange, setInputChange] = useState('');
-  const [selectedImages, setSelectedImages] = useState([]); 
-  const [selectedVideo, setSelectedVideo] = useState(null); 
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedVideo, setSelectedVideo] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [currentTaskIndex, setCurrentTaskIndex] = useState(null);
   const [commentInput, setCommentInput] = useState('');
@@ -29,89 +23,70 @@ let newUsername = connectedUser["username"]
   const date = new Date();
   const timeString = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+  // Find the logged-in user
+  let loggedInUser = users.find((e) => e.isLoggedIn === true);
 
-  let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
-  console.log(users);
-
-  // Function  image selection
+  // Image selection function
   const handleImageChange = (e) => {
     const files = Array.from(e.target.files);
     const imageUrls = files.map(file => URL.createObjectURL(file));
     setSelectedImages([...selectedImages, ...imageUrls]);
   };
 
-  // Function  video selection
+  // Video selection function
   const handleVideoChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setSelectedVideo(URL.createObjectURL(e.target.files[0]));
     }
   };
 
-
-//update user data
-
-
-let userIndex = users.findIndex(e => e.isLoggedIn = true)
-console.log(userIndex);
-
   // Function to create a task (post)
-  let id = Date.now()
+  let id = Date.now();
   const createTask = () => {
-
-    const newTab = [...tasks];
-   
-    let newTask = {
+    const newTask = {
       name: inputChange,
       images: selectedImages,
       video: selectedVideo,
       likes: 0,
-      favorited:false,
+      favorited: false,
       comments: [],
       postId: id
     };
-    if(inputChange || selectedImages || selectedVideo){
 
-      users[userIndex].userPost.push(newTask)
-      newTab.push(newTask);
-     
-      setTasks(newTab);
+    if (inputChange || selectedImages.length || selectedVideo) {
+      loggedInUser.userPost.push(newTask);
+      setTasks([...tasks, newTask]);
       setInputChange('');
       setSelectedImages([]);
       setSelectedVideo(null);
-      
-  
-   
     }
   };
 
   // Function to handle liking a post
   const handleLike = (index) => {
     const newTasks = [...tasks];
-    newTasks[index].likes = !newTasks[index].likes ;
+    newTasks[index].likes = !newTasks[index].likes;
     setTasks(newTasks);
- 
-  };
-  //function to favoris a post
-  const handleFavoris = (index) => {
-    const newTasks = [...tasks];
-    let postId = newTasks[index].postId
-    console.log(postId);
-    console.log(newTasks[index].favoris);
-    newTasks[index].favoris = !newTasks[index].favoris ;
-    filterConnectedUser.favoritePosts.push(newTasks[index])
-    setTasks(newTasks);
- 
   };
 
-  //  to open the comment modal
+  // Function to favorite a post
+  const handleFavoris = (index) => {
+    const newTasks = [...tasks];
+    newTasks[index].favoris = !newTasks[index].favoris;
+    if (newTasks[index].favoris) {
+      loggedInUser.favoritePosts.push(newTasks[index]);
+    }
+    setTasks(newTasks);
+  };
+
+  // Function to open the comment modal
   const openCommentModal = (index) => {
     setCurrentTaskIndex(index);
     setShowModal(true);
   };
 
-  // Function  adding a comment
+  // Function to add a comment
   const handleAddComment = () => {
-  
     const newTasks = [...tasks];
     newTasks[currentTaskIndex].comments.push(commentInput);
     setTasks(newTasks);
@@ -120,36 +95,36 @@ console.log(userIndex);
   };
 
   // Remove Post
-
   const removePost = (index) => {
-    const newTasks = [...tasks]
-    newTasks.splice(index, 1)
-    setTasks(newTasks)
-  }
+    const newTasks = [...tasks];
+    newTasks.splice(index, 1);
+    setTasks(newTasks);
+  };
+
+  // Carousel component for displaying multiple images
   const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
-        if (!autoSlide) return;
+      if (!autoSlide) return;
 
-        const interval = setInterval(() => {
-            setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, slideInterval);
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, slideInterval);
 
-        return () => clearInterval(interval); // Clean up the interval on component unmount
+      return () => clearInterval(interval);
     }, [currentIndex, images.length, autoSlide, slideInterval]);
 
     return (
-        <div className="relative w-100 h-100">
-            <img
-                src={images[currentIndex]}
-                alt={`Post Image ${currentIndex}`}
-                className="w-full h-full object-contain rounded-lg"
-            />
-        </div>
+      <div className="relative w-100 h-100">
+        <img
+          src={images[currentIndex]}
+          alt={`Post Image ${currentIndex}`}
+          className="w-full h-full object-contain rounded-lg"
+        />
+      </div>
     );
-};
-
+  };
 
   return (
     <div className=' w-[50%] flex flex-col  items-center my-4'>
@@ -169,7 +144,7 @@ console.log(userIndex);
           <img
             className='w-10 h-10 rounded-full'
             // src={profileImage}
-            src='https://img.freepik.com/photos-gratuite/portrait-femme-souriante-espace-copie_23-2148784759.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1725235200&semt=ais_hybrid'
+            src={loggedInUser.profileImage}
             alt='User'
           />
 }
@@ -219,11 +194,11 @@ console.log(userIndex);
             <div className='flex items-center mb-4'>
               <img
                 className='w-10 h-10 rounded-full'
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-NV9q05F16g50huet5CWXj-AtbmH30NTR4A&s'
+                src={loggedInUser.profileImage}
                 alt='User'
               />
               <div className='ml-3'>
-                <h3 className='font-semibold capitalize'>{filterConnectedUser.name}</h3>
+                <h3 className='font-semibold capitalize'>{loggedInUser.name}</h3>
                 <p className='text-slateGray text-sm'>Casablanca, Morocco {timeString}</p>
               </div>
             </div>
@@ -296,7 +271,7 @@ console.log(userIndex);
                 Cancel
               </button>
               <button
-                className='px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600'
+                className='px-4 py-2 bg-pink text-white rounded-lg'
                 onClick={handleAddComment}
               >
                 Submit

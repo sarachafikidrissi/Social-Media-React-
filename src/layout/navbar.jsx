@@ -7,8 +7,10 @@ const Navbar = () => {
 
 
     const { users, setUsers } = useAuth();  
-
-    let user = users.find((user)=>user.islogedin=true  )
+    let connectedUser = useParams();
+    let newUsername = connectedUser["username"];
+    let user = users.find((user)=>user.username== newUsername )
+    let userr = users.find((user)=>user.isLoggedIn== true )
 
 
 
@@ -56,8 +58,8 @@ const handleLogout = () => {
 
       <div class="flex items-center justify-between space-x-5 bg-white px-4">
 
-      <h3 className='text-black'>{user.username}</h3>
-          <img width={50} src={logo} className='menu-hover rounded-full  bg-white '/>
+      <h3 className='text-black'>{userr.username}</h3>   
+          <img  src={userr.profileImage} className='menu-hover rounded-full  w-[50px] h-[50px] '/>
          
       </div>
 

@@ -17,16 +17,19 @@ import { Navbar } from 'flowbite-react';
 import { useAuth } from '../../../context';
 import { useParams } from 'react-router-dom';
 const LeftSideBar = () => {
+  const { users, image, coverImage}  = useAuth()
   let connectedUser = useParams()
   let newUsername = connectedUser["username"]
   console.log(newUsername);
+  let loggedInUser = users.find((e) => e.isLoggedIn === true);
+
   const navigate = useNavigate();
   const location = useLocation();
   // kan3tiw chemin fin mabghinash tab9a tla3 my friends
   let isGroupsPage = location.pathname === '/groups';
 
   let isMarketPlace = location.pathname === '/market';
-  const { users, image, coverImage}  = useAuth()
+ 
 
   let filterConnectedUser = users.find((e) => e.isLoggedIn === true);
   console.log(filterConnectedUser);
@@ -35,13 +38,13 @@ const LeftSideBar = () => {
     
     <div className=' pt-5 ps-10  '>
       <div className='text-slateGray text-2xl gap-5 flex flex-col'>
-      <div className='flex justify-start items-center  gap-3  cursor-pointer'><div className='bg-[#CA8787] text-white p-2 rounded-full'><IoHomeOutline className='' /></div>  <h2>Feed</h2></div>
-      <div className='flex justify-start items-center gap-3   cursor-pointer'><div className='bg-[#A87676] text-white p-2 rounded-full'><FiShoppingBag /></div> <h2>MarketPlace</h2></div>
+      <div  onClick={() => {navigate(`/${loggedInUser.name}`)}} className='flex justify-start items-center  gap-3  cursor-pointer'><div className='bg-[#CA8787] text-white p-2 rounded-full'><IoHomeOutline className='' /></div>  <h2>Feed</h2></div>
+      <div onClick={() => {navigate(`/market`)}} className='flex justify-start items-center gap-3   cursor-pointer'><div className='bg-[#A87676] text-white p-2 rounded-full'><FiShoppingBag /></div> <h2>MarketPlace</h2></div>
       <div className='flex justify-start items-center  gap-3   cursor-pointer'> <div className='bg-[#83375b] text-white p-2 rounded-full'><MdOndemandVideo /></div> <h2>Video</h2></div>
       <div className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#eca7a7] text-white p-2 rounded-full'><FiMessageSquare /></div> <h2>Messages</h2></div>
       <div onClick={() => {navigate('/myfavorite')}} className='flex justify-start items-center  gap-3   cursor-pointer '><div className='bg-[#99627A] text-white p-2 rounded-full'><CiBookmark  /> </div><h2>My Favorites</h2></div>
-      <div className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#FC819E] text-white p-2 rounded-full'><FaUsers /> </div><h2>Groupes</h2></div>
-      <div className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#697565] text-white p-2 rounded-full'><CiSettings /> </div> <h2>Settings</h2></div>
+      <div onClick={() => {navigate('/groups')}}  className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#FC819E] text-white p-2 rounded-full'><FaUsers /> </div><h2>Groupes</h2></div>
+      <div onClick={() => {navigate('/setting')}} className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#697565] text-white p-2 rounded-full'><CiSettings /> </div> <h2>Settings</h2></div>
       </div>
       
       {!isGroupsPage && !isMarketPlace &&(

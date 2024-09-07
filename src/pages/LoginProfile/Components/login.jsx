@@ -1,156 +1,86 @@
-import React, { useState } from 'react'
-import { Link, useNavigate, useParams } from 'react-router-dom'
-import { useRef } from 'react'
-import { useAuth } from '../../../context'
+import React, { useState, useRef } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import { useAuth } from '../../../context';
 
 const LoginPage = () => {
-     let connectedUser = useParams()
-     let newUsername = connectedUser["username"]
-     newUsername = newUsername.substring(1)
-     console.log(newUsername);
+    const { username } = useParams(); 
+    const navigate = useNavigate();
+    const inputRef = useRef(null);
+    const inputRefCover = useRef(null);
 
-    
-    const [users1,setUsers]=useState(null)
-    const [username,setUsername]=useState(null)
-    
-  const {users}=useAuth()
-  const navigate =useNavigate()
-  const inputRef =useRef(null)
-//   const [image,setImage]=useState("")
-  const {image, setImage} = useAuth()
-  const inputRefCover =useRef(null)
-  const [cover,setCover]=useState("")
+    const { users, setUsers } = useAuth();
+    const [cover, setCover] = useState(null);
+    const [image, setImage] = useState(null);
 
+    // Find the user index by username
+    const userIndex = users.findIndex(user => user.username === username);
 
-  let userIndex = users.findIndex(e => e.username = newUsername)
-
-  const handleNameChange = (event, index) => {
-    const updatedUsers = [...users];
-    updatedUsers[index].name = event.target.value;
-    setUsers(updatedUsers); 
+    // Handle image selection
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const imageUrl = URL.createObjectURL(file);
+            setImage(imageUrl); 
+        }
     };
-    const handleUserChange = (event, index) => {
+
+    // Handle cover image selection
+    const handleCoverChange = (event) => {
+        const file = event.target.files[0];
+        if (file) {
+            const coverUrl = URL.createObjectURL(file);
+            setCover(coverUrl); 
+        }
+    };
+
+    const handleSave = () => {
         const updatedUsers = [...users];
-        updatedUsers[index].username = event.target.value;
-        setUsername(updatedUsers); 
-        };
-  const handleClick =()=>{
-    inputRef.current.click()
-  }
-  const handleChange =(event)=>{
+        if (image) {
+            updatedUsers[userIndex].profileImage = image; 
+        }
+        if (cover) {
+            updatedUsers[userIndex].coverImage = cover; 
+        }
+        setUsers(updatedUsers); 
+        navigate(`/login`); 
+    };
 
-setImage(event.target.files[0])
-
-console.log(image);
-
-users[userIndex].profileImage = image
-
-
-
-console.log(users);
-    
-
-  }
-  const handlCOverClick =()=>{
-    inputRefCover.current.click()
-  }
-  const handlChangeCover =(event)=>{
-    const filesss =event.target.files[0]
-    console.log(filesss);
-    setCover(event.target.files[0])
-
-  }
-  
-        console.log(users);
-        
-  return (
-      <div className=''>
-    <section class="py-10 my-auto dark:bg-gray-900 ">
-    <div class="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
-        <div
-            class="lg:w-[88%]  xs:w-full mx-auto shadow-2xl p-4 rounded-xl h-fit self-center dark:bg-gray-800/40" >
-            
-            <div class="flex flex-col gap-y-4">
-            {/* create btn kadik lhome page */}
-            <h1 className=' text-end text-4xl cursor-pointer'><span onClick={() => navigate(`/login`)} className='hover:text-red-600'>x</span></h1>
-            
-                <h1
-                    class="text-center lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
-                    Update Profile
-                </h1>
-                <form>
-                {/* create bg cover */}
-                    <div className='pb-10 relative'>
-                        <div className='bg-black w-full h-[40vh] ' onClick={handlCOverClick} >
-                        {  cover ? <img src={URL.createObjectURL(cover)} className='w-full h-[40vh] bg-cover ' /> : <div  className='w-full h-[40vh]'></div>   }
-                        <input type='file' accept='image/*' ref={inputRefCover} onChange={handlChangeCover} className='hidden' />
-                        </div>
-                        <div className='w-[15vw] h-[30vh] rounded-full absolute bottom-0 translate-y-[-50%] left-[50%] translate-x-[-50%] ' onClick={handleClick}>
-                        {  image ? <img src={URL.createObjectURL(image)} className='h-[200px] w-[200px] rounded-full' /> : <div  className='h-[200px] w-[200px] rounded-full bg-slate-300'></div>   }
-                        <input type='file' accept='image/*' ref={inputRef} onChange={handleChange} className='hidden' />
+    return (
+        <div>
+            <section className="py-10 my-auto dark:bg-gray-900">
+                <div className="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
+                    <div className="lg:w-[88%] xs:w-full mx-auto shadow-2xl p-4 rounded-xl h-fit self-center dark:bg-gray-800/40">
+                        <div className="flex flex-col gap-y-4">
+                            <h1 className='text-end text-4xl cursor-pointer'>
+                                <span onClick={() => navigate(`/login`)} className='hover:text-red-600'>x</span>
+                            </h1>
+                            <h1 className="text-center lg:text-3xl md:text-2xl sm:text-xl xs:text-xl font-serif font-extrabold mb-2 dark:text-white">
+                                Update Profile
+                            </h1>
+                            <form>
+                                {/* Background cover */}
+                                <div className='pb-10 relative'>
+                                    <div className='bg-black w-full h-[40vh]' onClick={() => inputRefCover.current.click()}>
+                                        {cover ? <img src={cover} alt="Cover" className='w-full h-[40vh] bg-cover' /> : <div className='w-full h-[40vh]'></div>}
+                                        <input type='file' accept='image/*' ref={inputRefCover} onChange={handleCoverChange} className='hidden' />
+                                    </div>
+                                    <div className='w-[15vw] h-[30vh] rounded-full absolute bottom-0 translate-y-[-50%] left-[50%] translate-x-[-50%]' onClick={() => inputRef.current.click()}>
+                                        {image ? <img src={image} alt="Profile" className='h-[200px] w-[200px] rounded-full' /> : <div className='h-[200px] w-[200px] rounded-full bg-slate-300'></div>}
+                                        <input type='file' accept='image/*' ref={inputRef} onChange={handleImageChange} className='hidden' />
+                                    </div>
+                                </div>
+                                <div className="flex items-center justify-center mt-4 text-white text-lg font-semibold">
+                                    <button type="button" className="w-[20%] bg-[#ea4c89] rounded-lg p-4" onClick={handleSave}>
+                                        Save
+                                    </button>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div>
-
-                    </div>
-                    {/* {users.map((e, index) => (
-                        <div
-                            key={index}
-                            className="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full"
-                        >
-                            <div className="w-full mb-4 mt-6">
-                                <label htmlFor="" className="mb-2 dark:text-gray-300">First Name</label>
-                                <input
-                                    type="text"
-                                    className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                    placeholder="First Name"
-                                    value={e.name}
-                                    onChange={(event) => handleNameChange(event, index)} 
-                                />
-                            </div>
-                            <div className="w-full mb-4 lg:mt-6">
-                                <label htmlFor="" className="dark:text-gray-300">User Name</label>
-                                <input
-                                    type="text"
-                                    className="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
-                                    placeholder="User Name"
-                                    value={newUsername}
-                                    onChange={(event) => handleUserChange(event, index)}
-                                />
-                            </div>
-                        </div>
-                    ))} */}
-                    
-                     
-                    
-                     
-                    {/* <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
-                        <div class="w-full">
-                            <h3 class="dark:text-gray-300 mb-2">Sex</h3>
-                            <select
-                                    class="w-full text-grey border-2 rounded-lg p-4 pl-2 pr-2 dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800">
-                                    <option disabled value="">Select Sex</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </select>
-                           </div>
-                        <div class="w-full">
-                            <h3 class="dark:text-gray-300 mb-2">Date Of Birth</h3>
-                            <input type="date"
-                                    class="text-grey p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"/>
-                        </div>
-                    </div> */}
-
-                    <div class="flex items-center justify-center  mt-4 text-white text-lg font-semibold">
-                        <button class="w-[20%] bg-[#ea4c89] rounded-lg   p-4"><Link to={`/login`}>Submit</Link></button>
-                    </div>
-                </form>
-            </div>
+                </div>
+            </section>
         </div>
-    </div>
-</section>
-  </div>
-  )
-}
+    );
+};
 
-export default LoginPage
+export default LoginPage;

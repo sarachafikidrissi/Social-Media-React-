@@ -179,7 +179,7 @@ const RightSideBar = () => {
             {suggestedfriends ? suggestedfriends.map((e, index) => (
               <div key={index}>
                 <div className=" rounded-full flex gap-x-4 items-center  ">
-                  <img src={assets.test} alt="" className="w-[50px] h-[50px] " />
+                  <img src={e.profileImage} alt="" className="w-[50px] h-[50px]  rounded-full " />
                   <span className="text-gray-300 font-bold">
                     {e.name.charAt(0).toUpperCase() + e.name.slice(1)}
                   </span>
