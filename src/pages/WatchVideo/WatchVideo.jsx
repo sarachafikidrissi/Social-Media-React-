@@ -4,6 +4,7 @@ import { CiBookmark, CiFaceSmile, CiHeart, CiSearch } from "react-icons/ci";
 import { assets } from '../../assets';
 import { AiOutlineLike } from "react-icons/ai";
 import { LiaComments } from "react-icons/lia";
+import { MdClose } from 'react-icons/md';
 
 const WatchVideo = () => {
   const [searchcat, setSearchcat] = useState('');
@@ -62,12 +63,9 @@ const WatchVideo = () => {
       <div className='flex flex-col w-[80%] '>
         <div className='relative'>
           <CiSearch className="text-2xl font-bold text-black absolute top-[50%] left-4 translate-y-[-50%]" />
-          <input
-            type="text"
-            className='w-[25vw] px-10 rounded-lg'
-            placeholder="Search by category..."
-            value={searchcat}
-            onChange={(e) => setSearchcat(e.target.value)}
+          <input type="text"className='w-[25vw] px-10 rounded-lg'
+            placeholder="Search by category (music, nature,web, ...)"
+            value={searchcat}onChange={(e) => setSearchcat(e.target.value)}
           />
         </div>
 
@@ -155,9 +153,9 @@ const WatchVideo = () => {
                   <h1 className='text-xl font-semi-bold text-[#8E3E63]'>{selectedVideo.titre}</h1>
                 </div>
              
-              <button className='absolute top-2 right-2 text-2xl font-bold'
+              <button className='absolute top-2 right-2 text-3xl font-bold'
                 onClick={closeModal}>
-                &times;
+               <MdClose />
               </button>
             </div>
           </div>
