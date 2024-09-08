@@ -55,9 +55,9 @@ const Profile = () => {
                 Posts
               </span>
             </h1>
-            <div className='flex gap-5 flex-wrap ms-[1rem] bg-[#a19a9a7a] rounded-md'>
+            <div className='flex gap-5 flex-wrap  bg-[#a19a9a7a] pt-5 pb-5 rounded-md '>
               {userPost && userPost.map((post, index) => (
-                <div key={index} className='w-[24vw] rounded-md'>
+                <div key={index} className='w-[24vw] rounded-md ms-[1rem]'>
                   <div className='bg-white flex gap-5 rounded-t-md border-b-4 p-2'>
                     <div className='profil bg-[#fcfc] w-[4vw] h-[8vh] rounded-full'>
                       {profileImage ? (
