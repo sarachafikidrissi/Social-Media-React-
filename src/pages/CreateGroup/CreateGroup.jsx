@@ -5,6 +5,9 @@ import LeftSideBar from '../Home/Components/LeftSideBar';
 const CreateGroup = () => {
   const inputRef = useRef(null);
   const [image, setImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [privacy, setPrivacy] = useState("Public");
 
   const handleClickImg = () => {
     inputRef.current.click();
@@ -15,50 +18,95 @@ const CreateGroup = () => {
     setImage(file);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    formData.append("privacy", privacy);
+    formData.append("image", image);
+
+    console.log({
+      title,
+      description,
+      privacy,
+      image
+    });
+
+    alert('Group created successfully!');
+  };
+
   return (
-    <div>
-      <Navbar />
+    <div className="bg-gray-100 min-h-screen p-10">
       <div className="flex gap-5">
         <LeftSideBar />
-        <div className="w-full">
-          <div onClick={handleClickImg} className="ms-[25rem] w-fit cursor-pointer pb-5 pt-5">
-            {image ? (
-              <img className="w-[15vw] h-[30vh] rounded-full" src={URL.createObjectURL(image)} alt="Group" />
-            ) : (
-              <div className="bg-black w-[15vw] h-[30vh] rounded-full"></div>
-            )}
-            <input type="file" className="hidden" ref={inputRef} onChange={handleChangeImg} />
-          </div>
-          <div className="flex flex-col gap-5">
-            <div className="flex justify-around">
-              <div>
-                <label className="font-serif">Titre: </label>
-                <input className="w-[30vw] rounded-xl" type="text" placeholder="Insert Titre De Group" />
+        <div className="w-full max-w-3xl mx-auto">
+          <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg">
+            <h2 className="text-xl font-bold mb-4">Create a New Group</h2>
+
+            <div onClick={handleClickImg} className="relative w-fit mx-auto mb-6 cursor-pointer">
+              {image ? (
+                <img
+                  className="w-40 h-40 rounded-full object-cover"
+                  src={URL.createObjectURL(image)}
+                  alt="Group"
+                />
+              ) : (
+                <div className="bg-gray-200 w-40 h-40 rounded-full flex items-center justify-center">
+                  <span className="text-gray-500">Upload Image</span>
+                </div>
+              )}
+              <input type="file" className="hidden" ref={inputRef} onChange={handleChangeImg} accept="image/*" />
+            </div>
+
+            <div className="flex justify-between mb-6">
+              <div className="w-1/2">
+                <label className="font-medium mb-2 block">Group Name</label>
+                <input
+                  className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-400"
+                  type="text"
+                  placeholder="Enter group name"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                />
               </div>
-              <div>
-                <select className="border-none">
-                  <option>Public</option>
-                  <option>Privé</option>
+              <div className="w-1/3">
+                <label className="font-medium mb-2 block">Privacy</label>
+                <select
+                  className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-400"
+                  value={privacy}
+                  onChange={(e) => setPrivacy(e.target.value)}
+                  required
+                >
+                  <option value="Public">Public</option>
+                  <option value="Private">Private</option>
                 </select>
               </div>
             </div>
-            <div className="ms-[8rem]">
-              <p className="font-serif pb-3">
-                <label htmlFor="w3review">Description: </label>
-              </p>
+
+            <div className="mb-6">
+              <label className="font-medium mb-2 block">Description</label>
               <textarea
-                className="rounded-xl"
-                id="w3review"
-                name="w3review"
+                className="w-full p-3 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-400"
                 rows="4"
-                cols="100"
-                placeholder="Bio"
+                placeholder="Describe your group..."
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                required
               ></textarea>
             </div>
-            <button className="bg-[#c72c67] w-[13vw] m-auto py-3 rounded-xl text-white font-serif">
-              Create Groupe
-            </button>
-          </div>
+
+            <div className="text-center">
+              <button
+                type="submit"
+                className="bg-pink text-white py-2 px-6 rounded-full hover:bg-[#d326d6] transition"
+              >
+                Create Group
+              </button>
+            </div>
+          </form>
         </div>
       </div>
     </div>
