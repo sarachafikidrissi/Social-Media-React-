@@ -74,22 +74,39 @@ const WatchVideo = () => {
           {/* Vidéo correspondante à la recherche au centre */}
           <div className='w-[100%] '>
             {searchcat === '' ? (
-              <div className='grid grid-cols-4 gap-4'>
-                {arraywatch.map((video) => (
-                  <video key={video.id} src={video.video}
-                    className="w-full h-auto cursor-pointer" controls onClick={() => openModal(video)} />
-                ))}
-              </div>
+              <div className='grid grid-cols-2 gap-4'>
+              {arraywatch.map((video) => (
+                <div key={video.id} className="w-full h-auto cursor-pointer " onClick={() => openModal(video)}>
+                  <video src={video.video} className="w-full h-auto mb-3 rounded-xl mt-4 " controls />
+                  <div className="flex  gap-2 ps-3">
+                    <img src={video.imgUser} alt={video.nameUser} className="w-10 h-10 rounded-full" />
+                    <div className='flex flex-col ps-2'>
+                      <p className="text-lg font-semibold">{video.nameUser}</p>
+                    <p className='  text-slateGray font-light text-sm'> Casablanca,Anfa</p>
+                    </div>
+                    
+                  </div>
+                </div>
+              ))}
+            </div>
             ) : (
               <div>
                 <h2 className='font-bold text-2xl mb-4 text-[#772c4f]'>Search Results</h2>
                 {filteredVideos.length > 0 ? (
                   <div className='grid grid-cols-2 gap-4'>
                     {filteredVideos.map(video => (
-                      <video key={video.id} src={video.video}
-                        className="w-full h-auto cursor-pointer" controls
-                        onClick={() => openModal(video)} />
+                      <div key={video.id} className="w-full h-auto cursor-pointer " onClick={() => openModal(video)}>
+                        <video src={video.video} className="w-full h-auto mb-2 rounded-xl" controls />
+                        <div className="flex  gap-2">
+                          <img src={video.imgUser} alt={video.nameUser} className="w-10 h-10 rounded-full" />
+                          <div className='flex flex-col ps-2'>
+                      <p className="text-lg font-semibold">{video.nameUser}</p>
+                    <p className='  text-slateGray font-light text-sm'> Casablanca,Anfa</p>
+                    </div>
+                        </div>
+                      </div>
                     ))}
+                   
                   </div>
                 ) : (
                   <p className="text-center text-2xl text-red-700">No videos found</p>
@@ -104,7 +121,7 @@ const WatchVideo = () => {
               <h2 className='font-bold text-2xl mb-4 text-[#772c4f]'>List of other videos</h2>
               {arraywatch.map((video) => (
                 !filteredVideos.includes(video) && (
-                  <div key={video.id} className='mb-4 cursor-pointer' onClick={() => openModal(video)}>
+                  <div key={video.id} className='mb-4 cursor-pointer ' onClick={() => openModal(video)}>
                     <div className='flex items-start mb-3'>
                       <img src={video.imgUser} alt={video.nameUser} className='w-12 h-12 rounded-full' />
                       <div>
