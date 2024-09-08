@@ -19,7 +19,8 @@ export const AuthProvider = ({ children }) => {
       favoritePosts: [],
       isLoggedIn: false,
       friends: [],
-      groupsCreated: []
+      groupsCreated: [],
+      groupsJoined: []
     },
     {
       name: "user2",
@@ -33,7 +34,8 @@ export const AuthProvider = ({ children }) => {
       favoritePosts: [],
       isLoggedIn: false,
       friends: [],
-      groupsCreated: []
+      groupsCreated: [],
+      groupsJoined: []
     },
     {
       name: "user3",
@@ -47,7 +49,8 @@ export const AuthProvider = ({ children }) => {
       favoritePosts: [],
       isLoggedIn: false,
       friends: [],
-      groupsCreated: []
+      groupsCreated: [],
+      groupsJoined: []
     },
   ]);
 
@@ -75,35 +78,42 @@ export const AuthProvider = ({ children }) => {
       membres: "200K",
       joined: []
     },
-    {
-      id: 4,
-      nameGrp: "Tech Enthusiasts",
-      imgGrp: assets.grp1,
-      membres: "150K",
-      joined: []
-    },
-    {
-      id: 5,
-      nameGrp: "AI Researchers",
-      imgGrp: assets.grp2,
-      membres: "85K",
-      joined: []
-    },
-    {
-      id: 6,
-      nameGrp: "Web Developers",
-      imgGrp: assets.grp3,
-      membres: "200K",
-      joined: []
-    },
+    // {
+    //   id: 4,
+    //   nameGrp: "Tech Enthusiasts",
+    //   imgGrp: assets.grp1,
+    //   membres: "150K",
+    //   joined: []
+    // },
+    // {
+    //   id: 5,
+    //   nameGrp: "AI Researchers",
+    //   imgGrp: assets.grp2,
+    //   membres: "85K",
+    //   joined: []
+    // },
+    // {
+    //   id: 6,
+    //   nameGrp: "Web Developers",
+    //   imgGrp: assets.grp3,
+    //   membres: "200K",
+    //   joined: []
+    // },
   ]);
+
+
+   //!joined group array
+   const [joined, setJoined] = useState([]);
+  //!entered Group
+
+  const [enteredGroup, setEnteredGroup] = useState(null)
 
   const [profileImage, setProfileImage] = useState(null);
   const [coverImage, setCoverImage] = useState(null);
 
   console.log(users);
 
-  let filterConnectedUser = users.filter((e) => e.isLoggedIn == true);
+  let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
 
   // const { logedUser } = filterConnectedUser;
 
@@ -125,7 +135,8 @@ export const AuthProvider = ({ children }) => {
         favoritePosts: [],
         isLoggedIn: false,
         friends: [],
-        groups: []
+        groupsCreated: [],
+        groupsJoined: []
       },
     ]);
   };
@@ -133,8 +144,8 @@ export const AuthProvider = ({ children }) => {
 
 
   const addGroup = (admin, nameGrp, imgGrp, members) => {
-    setGroups((prevGroups) => [
-      ...prevGroups,
+    setGroups((prevUsers) => [
+      ...prevUsers,
       {
         admin,
         nameGrp,
@@ -145,6 +156,8 @@ export const AuthProvider = ({ children }) => {
       },
     ]);
   };
+
+
 
 
   return (
@@ -163,7 +176,7 @@ export const AuthProvider = ({ children }) => {
         setCoverImage,
         groups,
         setGroups,
-        addGroup
+        joined, setJoined, enteredGroup, setEnteredGroup
       }}
     >
       {children}
