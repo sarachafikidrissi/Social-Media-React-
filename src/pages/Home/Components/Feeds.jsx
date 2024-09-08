@@ -11,8 +11,9 @@ const Feeds = () => {
   let connectedUser = useParams();
   let newUsername = connectedUser["username"];
 
-  const { users, setUsers } = useAuth();
-  const [tasks, setTasks] = useState([]);
+  const { users, setUsers, tasks, setTasks } = useAuth();
+  // const [tasks, setTasks] = useState([]);
+
   const [inputChange, setInputChange] = useState('');
   const [selectedImages, setSelectedImages] = useState([]);
   const [selectedVideo, setSelectedVideo] = useState(null);

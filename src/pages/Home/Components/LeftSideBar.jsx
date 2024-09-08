@@ -40,7 +40,7 @@ const LeftSideBar = () => {
       <div className='text-slateGray text-2xl gap-5 flex flex-col'>
       <div  onClick={() => {navigate(`/${loggedInUser.name}`)}} className='flex justify-start items-center  gap-3  cursor-pointer'><div className='bg-[#CA8787] text-white p-2 rounded-full'><IoHomeOutline className='' /></div>  <h2>Feed</h2></div>
       <div onClick={() => {navigate(`/market`)}} className='flex justify-start items-center gap-3   cursor-pointer'><div className='bg-[#A87676] text-white p-2 rounded-full'><FiShoppingBag /></div> <h2>MarketPlace</h2></div>
-      <div className='flex justify-start items-center  gap-3   cursor-pointer'> <div className='bg-[#83375b] text-white p-2 rounded-full'><MdOndemandVideo /></div> <h2>Video</h2></div>
+      <div onClick={() => {navigate('/watch-video')}} className='flex justify-start items-center  gap-3   cursor-pointer'> <div className='bg-[#83375b] text-white p-2 rounded-full'><MdOndemandVideo /></div> <h2>Video</h2></div>
       <div className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#eca7a7] text-white p-2 rounded-full'><FiMessageSquare /></div> <h2>Messages</h2></div>
       <div onClick={() => {navigate('/myfavorite')}} className='flex justify-start items-center  gap-3   cursor-pointer '><div className='bg-[#99627A] text-white p-2 rounded-full'><CiBookmark  /> </div><h2>My Favorites</h2></div>
       <div onClick={() => {navigate('/groups')}}  className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#FC819E] text-white p-2 rounded-full'><FaUsers /> </div><h2>Groupes</h2></div>
