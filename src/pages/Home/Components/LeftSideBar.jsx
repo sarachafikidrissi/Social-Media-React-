@@ -20,7 +20,7 @@ const LeftSideBar = () => {
   const { users, image, coverImage}  = useAuth()
   let connectedUser = useParams()
   let newUsername = connectedUser["username"]
-  console.log(newUsername);
+
   let loggedInUser = users.find((e) => e.isLoggedIn === true);
 
   const navigate = useNavigate();
@@ -29,10 +29,10 @@ const LeftSideBar = () => {
   let isGroupsPage = location.pathname === '/groups';
 
   let isMarketPlace = location.pathname === '/market';
+  let iswatchVideo = location.pathname === '/watch-video';
  
 
   let filterConnectedUser = users.find((e) => e.isLoggedIn === true);
-  console.log(filterConnectedUser);
   // const { logedUser } = useAuth();
   return (
     
@@ -47,7 +47,7 @@ const LeftSideBar = () => {
       <div onClick={() => {navigate('/setting')}} className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#697565] text-white p-2 rounded-full'><CiSettings /> </div> <h2>Settings</h2></div>
       </div>
       
-      {!isGroupsPage && !isMarketPlace &&(
+      {!isGroupsPage && !isMarketPlace && !iswatchVideo && (
       <div className='flex flex-col pt-12 gap-5'>
         <h1 className='text-xl font-bold text-charcoal'>My Friends</h1>
         {

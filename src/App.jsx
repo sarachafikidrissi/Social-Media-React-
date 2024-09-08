@@ -16,6 +16,7 @@ import MyFavorites from "./pages/Myfavorites/myfavorites";
 import Accueil from "./pages/accueil/accueil";
 import GroupPage from "./pages/GroupPage/GroupPage";
 import CreateGroup from "./pages/CreateGroup/CreateGroup";
+import WatchVideo from "./pages/WatchVideo/WatchVideo";
 const App = () => {
   return (
     <AuthProvider>
@@ -35,6 +36,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
         <Route path="/myfavorite" element={<MyFavorites/>} />
+        <Route path="/watch-video" element={<WatchVideo />} />
       </Routes>
     </div>
     </AuthProvider>

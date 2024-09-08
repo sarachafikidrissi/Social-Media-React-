@@ -100,7 +100,8 @@ const MyFavorites = () => {
             <div className='flex items-center mb-4'>
               <img
                 className='w-10 h-10 rounded-full'
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-NV9q05F16g50huet5CWXj-AtbmH30NTR4A&s'
+                // 
+                src={filterConnectedUser.profileImage}
                 alt='User'
               />
               <div className='ml-3'>
@@ -110,7 +111,7 @@ const MyFavorites = () => {
             </div>
             <div className='mb-2'>
               <p>{task.name}</p>
-              {task.image && <img src={task.image} alt='Uploaded' className='mt-2 rounded-lg' />}
+              {task.images[0] && <img src={task.images[0]} alt='Uploaded' className='mt-2 rounded-lg' />}
               {task.video && (
                 <video controls className='mt-2 rounded-lg'>
                   <source src={task.video} type='video/mp4' />

@@ -2,59 +2,30 @@ import React, { useState } from "react";
 import { assets } from "../../assets";
 import LeftSideBar from "../Home/Components/LeftSideBar";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context";
 
 const Groups = () => {
+  const {users, setUsers, groups, setGroups, joined, setJoined, enteredGroup, setEnteredGroup} = useAuth()
+  let filterConnectedUser = users.filter((e) => e.isLoggedIn == true);
+
   const navigate = useNavigate()
-  const [joined, setJoined] = useState([]);
-  const [groups, setGroups] = useState([
-    {
-      id: 1,
-      nameGrp: "Tech Enthusiasts",
-      imgGrp: assets.grp1,
-      membres: "150K",
-    },
-    {
-      id: 2,
-      nameGrp: "AI Researchers",
-      imgGrp: assets.grp2,
-      membres: "85K",
-    },
-    {
-      id: 3,
-      nameGrp: "Web Developers",
-      imgGrp: assets.grp3,
-      membres: "200K",
-    },
-    {
-      id: 4,
-      nameGrp: "Tech Enthusiasts",
-      imgGrp: assets.grp1,
-      membres: "150K",
-    },
-    {
-      id: 5,
-      nameGrp: "AI Researchers",
-      imgGrp: assets.grp2,
-      membres: "85K",
-    },
-    {
-      id: 6,
-      nameGrp: "Web Developers",
-      imgGrp: assets.grp3,
-      membres: "200K",
-    },
-  ]);
+
+  
   const handleJoin = (id) => {
-    let newTab = [...groups];
-    let newJoined = [...joined];
-    let group = groups.findIndex((e) => e.id == id);
-    newJoined.push(newTab[group]);
-    setJoined(newJoined);
-    newTab.splice(group, 1);
-    setGroups(newTab);
+    let newGroupArr = [...groups]
+    let newJoined = [...joined]
+    let joinedGroupIs = newGroupArr.find(e => e.id == id)
+    newJoined.push(joinedGroupIs)
+    setJoined(newJoined)
+    let newUsers = [...users]
+    let userWhoJoinedGroupIs = newUsers.find(e => e == filterConnectedUser[0])
+    userWhoJoinedGroupIs.groupsJoined.push(joinedGroupIs)
+    setUsers(newUsers)
+    let indexOfGroupJoined = newGroupArr.findIndex(e => e === joinedGroupIs)
+    newGroupArr.splice(indexOfGroupJoined, 1)
+    setGroups(newGroupArr)
   };
 
-  console.log(joined);
 
   return (
     <div className="w-[100%] flex flex-row gap-8">
@@ -64,10 +35,10 @@ const Groups = () => {
           <h1 className="pt-1 text-xl font-bold ps-5 text-center text-pink">
             Groups
           </h1>
-          <div onClick={() => {navigate("/group-page")}} className="flex flex-col gap-y-4 cursor-pointer ">
+          <div className="flex flex-col gap-y-4 cursor-pointer ">
             {joined.length > 0 &&
               joined.map((e, index) => (
-                <div className="flex items-center gap-x-2 ps-5 ">
+                <div key={index} onClick={() => {{navigate("/group-page")}; setEnteredGroup(joined[index])}}  className="flex items-center gap-x-2 ps-5 ">
                   <img
                     src={e.imgGrp}
                     alt=""
