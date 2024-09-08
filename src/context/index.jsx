@@ -162,7 +162,8 @@ export const AuthProvider = ({ children }) => {
         coverImage,
         setCoverImage,
         groups,
-        setGroups
+        setGroups,
+        addGroup
       }}
     >
       {children}
