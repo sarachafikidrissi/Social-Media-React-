@@ -129,6 +129,9 @@ export const AuthProvider = ({ children }) => {
   const [image, setImage] = useState("");
   const [posts, setPosts] = useState([]);
 
+
+  const [darkmode, setDarkmode] = useState(false)
+
   const addUser = (name, email, birthday, gender, password, username) => {
     setUsers((prevUsers) => [
       ...prevUsers,
@@ -185,7 +188,7 @@ export const AuthProvider = ({ children }) => {
         setCoverImage,
         groups,
         setGroups,
-        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks, suggestedfriends, setSuggestedFriends
+        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks, suggestedfriends, setSuggestedFriends, darkmode, setDarkmode
       }}
     >
       {children}

@@ -126,16 +126,17 @@ const Feeds = () => {
       </div>
     );
   };
-
+  const { darkmode, setDarkmode } = useAuth();  
   return (
-    <div className=' w-[50%] flex flex-col  items-center my-4'>
+    
+    <div className={`w-[50%] flex flex-col  items-center my-4  ${darkmode && "bg-[#242424]" }`}  >
       {/* Input creating posts */}
-      <div className='w-[90%] p-4 m-3 bg-white rounded-lg shadow-md'>
+      <div className={`w-[90%] p-4 m-3 bg-white rounded-lg shadow-md ${darkmode && "bg-[#242424]" }`}>
         <div className='flex items-center mb-4 gap-2'>
           {
             profileImage ? (
               <img
-            className='w-10 h-10 rounded-full'
+            className={`w-10 h-10 rounded-full ${darkmode && "bg-[#242424]" }`}
             src={profileImage}
             // src='https://img.freepik.com/photos-gratuite/portrait-femme-souriante-espace-copie_23-2148784759.jpg?size=626&ext=jpg&ga=GA1.1.2008272138.1725235200&semt=ais_hybrid'
             alt='User'
