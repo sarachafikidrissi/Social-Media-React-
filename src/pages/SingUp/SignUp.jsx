@@ -229,7 +229,7 @@ const SignUp = () => {
               setSuccessModalIsOpen(false);
               navigate(`/login-profile/${userName}`);
             }}
-            className="rounded-full border border bg-btnColor hover:bg-hoverBtntext-white text-sm font-bold py-3 px-6 mt-4"
+            className="rounded-full  border bg-btnColor hover:bg-hoverBtntext-white text-sm font-bold py-3 px-6 mt-4"
           >
             Continue
           </button>
