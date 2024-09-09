@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import Navbar from '../../layout/navbar';
 import LeftSideBar from '../Home/Components/LeftSideBar';
 
 const CreateGroup = () => {
@@ -38,11 +37,11 @@ const CreateGroup = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen p-10">
-      <div className="flex gap-5">
+    <div className=" min-h-screen p-10">
+      <div className="flex gap-5 ">
         <LeftSideBar />
         <div className="w-full max-w-3xl mx-auto">
-          <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg">
+          <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl ">
             <h2 className="text-xl font-bold mb-4">Create a New Group</h2>
 
             <div onClick={handleClickImg} className="relative w-fit mx-auto mb-6 cursor-pointer">
@@ -101,7 +100,7 @@ const CreateGroup = () => {
             <div className="text-center">
               <button
                 type="submit"
-                className="bg-pink text-white py-2 px-6 rounded-full hover:bg-[#d326d6] transition"
+                className="bg-btnColor text-white py-2 px-6 rounded-full hover:bg-hoverBtn transition"
               >
                 Create Group
               </button>
