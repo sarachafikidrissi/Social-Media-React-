@@ -5,8 +5,8 @@ import Navbar from '../../layout/navbar';
 import Modal from 'react-modal';
 
 const Edit = () => {
-  const { users, setUsers } = useAuth(); 
-  const currentUser = users.find(e => e.isLoggedIn === true); 
+  const { users, setUsers } = useAuth();
+  const currentUser = users.find(e => e.isLoggedIn === true);
   const [successModalIsOpen, setSuccessModalIsOpen] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -40,10 +40,10 @@ const Edit = () => {
     const updatedUsers = users.map(user =>
       user.isLoggedIn ? updatedUser : user
     );
-    setSuccessModalIsOpen(true)
+    setSuccessModalIsOpen(true);
 
-    setUsers(updatedUsers); 
-    console.log( updatedUser);
+    setUsers(updatedUsers);
+    console.log(updatedUser);
   };
 
   const handleClickImage = () => {
@@ -53,7 +53,7 @@ const Edit = () => {
   const handleChangeImage = (event) => {
     const file = event.target.files[0];
     if (file) {
-      setImage(URL.createObjectURL(file)); 
+      setImage(URL.createObjectURL(file));
     }
   };
 
@@ -63,64 +63,67 @@ const Edit = () => {
       <div className='flex'>
         <LeftSideBar />
         <div className='mx-auto pt-2'>
-          <form onSubmit={handleSubmit}>
-            <div onClick={handleClickImage} className='w-fit cursor-pointer m-auto'>
-              {image ? (
-                <img src={image} className='rounded-full w-[15vw] h-[30vh]' alt="Profile" />
-              ) : (
-                <div className='bg-[#757575cc] w-[15vw] h-[30vh] rounded-full'></div>
-              )}
-              <input
-                type='file'
-                ref={inputRef}
-                onChange={handleChangeImage}
-                hidden
-              />
-            </div>
-
-            <div className='flex gap-2 pt-10'>
-              <div>
-                <label htmlFor="name" className='font-serif hover:text-[#9c1f51]'>Name: </label>
+          <div className="bg-white  rounded-xl p-8 w-[90vw] max-w-[70vw] mx-auto">
+            <h2 className="text-2xl font-bold text-center">Edit Profile</h2>
+            <form onSubmit={handleSubmit}>
+              <div onClick={handleClickImage} className='w-fit cursor-pointer m-auto'>
+                {image ? (
+                  <img src={image} className='rounded-full w-[150px] h-[150px] object-cover shadow-md' alt="Profile" />
+                ) : (
+                  <div className='bg-[#e4e6eb] w-[150px] h-[150px] rounded-full shadow-md'></div>
+                )}
                 <input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder='Change Name'
-                  className='rounded-xl w-[15.5vw] ms-5'
+                  type='file'
+                  ref={inputRef}
+                  onChange={handleChangeImage}
+                  hidden
                 />
               </div>
-              <div>
-                <label htmlFor="username" className='font-serif hover:text-[#9c1f51]'>Username: </label>
+
+             <div className='flex justify-between'>
+
+             <div className='mt-6'>
+             <label htmlFor="name" className='block font-semibold mb-1'>Name:</label>
+             <input
+               type="text"
+               name="name"
+               id="name"
+               value={formData.name}
+               onChange={handleChange}
+               placeholder='Change Name'
+               className='border border-gray-300 rounded-lg  py-2 px-4 w-[32vw]'
+             />
+           </div>
+
+           <div className='mt-6'>
+             <label htmlFor="username" className='block font-semibold mb-1'>Username:</label>
+             <input
+               type="text"
+               name="username"
+               id="username"
+               value={formData.username}
+               onChange={handleChange}
+               placeholder='Change Username'
+               className='border border-gray-300 rounded-lg  py-2 px-4 w-[32vw]'
+             />
+           </div>
+             </div>
+
+              <div className='mt-6'>
+                <label htmlFor="email" className='block font-semibold mb-1'>Email:</label>
                 <input
-                  type="text"
-                  name="username"
-                  id="username"
-                  value={formData.username}
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={formData.email}
                   onChange={handleChange}
-                  placeholder='Change Username'
-                  className='rounded-xl w-[15vw]'
+                  placeholder='Change Email'
+                  className='border border-gray-300 rounded-lg w-full py-2 px-4'
                 />
               </div>
-            </div>
 
-            <div className='pt-10'>
-              <label htmlFor="email" className='font-serif hover:text-[#9c1f51]'>Email: </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-                placeholder='Change Email'
-                className='rounded-xl w-[37.5vw] ms-6'
-              />
-            </div>
-
-            <div className='flex gap-2'>
-              <div className='pt-10'>
-                <label htmlFor="birthday" className='font-serif hover:text-[#9c1f51]'>Birthday: </label>
+              <div className='mt-6'>
+                <label htmlFor="birthday" className='block font-semibold mb-1'>Birthday:</label>
                 <input
                   type="date"
                   name="birthday"
@@ -128,11 +131,12 @@ const Edit = () => {
                   value={formData.birthday}
                   onChange={handleChange}
                   placeholder='Change Birthday'
-                  className='rounded-xl w-[15vw] ms-1'
+                  className='border border-gray-300 rounded-lg w-full py-2 px-4'
                 />
               </div>
-              <div className='pt-10 pb-10'>
-                <label htmlFor="password" className='font-serif hover:text-[#9c1f51]'>Password: </label>
+
+              <div className='mt-6'>
+                <label htmlFor="password" className='block font-semibold mb-1'>Password:</label>
                 <input
                   type="password"
                   name="password"
@@ -140,38 +144,37 @@ const Edit = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder='Change Password'
-                  className='rounded-xl w-[15vw] ms-3'
+                  className='border border-gray-300 rounded-lg w-full py-2 px-4'
                 />
               </div>
-            </div>
 
-            <button
-              type="submit"
-              className='bg-[#9c1f51] hover:bg-pink px-7 py-3 rounded-2xl ms-[15rem] font-bold font-serif'
-            >
-              Submit
-            </button>
-          </form>
+              <button
+                type="submit"
+                className='bg-btnColor hover:bg-hoverBtn text-white font-semibold py-3 px-6 rounded-lg mt-6 w-[15vw] ms-[20rem]'
+              >
+                Save Changes
+              </button>
+            </form>
+          </div>
         </div>
       </div>
-       {/* Modal fach kolshi nade */}
-       <Modal
+
+      {/* Success Modal */}
+      <Modal
         isOpen={successModalIsOpen}
         onRequestClose={() => setSuccessModalIsOpen(false)}
         contentLabel="Success"
         className="fixed inset-0 flex items-center justify-center p-4"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50"
       >
-        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md py-12">
-          <h2 className="text-2xl font-bold mb-4">Changes mades</h2>
-          <p className="text-lg">Your Changes has been made successfully.</p>
+        <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-4">Changes Saved</h2>
+          <p className="text-lg">Your profile has been updated successfully.</p>
           <button
-            onClick={() => {
-              setSuccessModalIsOpen(false);
-            }}
-            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+            onClick={() => setSuccessModalIsOpen(false)}
+            className="rounded-full border  bg-btnColor text-white text-sm font-bold py-3 px-6 mt-4"
           >
-            ok
+            OK
           </button>
         </div>
       </Modal>

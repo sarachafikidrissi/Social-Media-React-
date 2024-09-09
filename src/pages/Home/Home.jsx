@@ -8,7 +8,7 @@ import { FaBars } from 'react-icons/fa'; // Importing an icon for the sidebar to
 
 const Home = () => {
   const logedUser = useAuth();
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen , darkmode , setDarkmode] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -17,7 +17,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className='flex flex-col md:flex-row relative'>
+      <div className='flex flex-col md:flex-row relative '>
         {/* Button to toggle the sidebar on mobile */}
         <button 
           className='md:hidden p-2 absolute top-[-8vh] left-0 z-20' 
