@@ -242,7 +242,7 @@ const Feeds = () => {
             {task.comments.length > 0 && (
               <div className='mt-3'>
                 {task.comments.map((comment, commentIndex) => (
-                  <p key={commentIndex} className='text-slateGray text-sm mb-2'>
+                  <p key={commentIndex} className='text-slateGray text-sm mb-4'>
                     {comment}
                   </p>
                 ))}
