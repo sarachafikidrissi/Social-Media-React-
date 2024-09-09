@@ -5,7 +5,10 @@ import { IoBookmark, IoHeart, IoVideocam } from "react-icons/io5";
 import LeftSideBar from '../Home/Components/LeftSideBar';
 import { HiOutlineUserGroup } from 'react-icons/hi';
 import { useAuth } from '../../context';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../../layout/navbar';
 const GroupPage = () => {
+    const navigate = useNavigate()
     const {groups, setGroups, users, setUsers, enteredGroup, setEnteredGroup, joined, setJoined} = useAuth()
 
     console.log(enteredGroup);
@@ -13,7 +16,6 @@ const GroupPage = () => {
 
     let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
     console.log(filterConnectedUser);
-
 
   const [content, setContent] = useState('');
   const [images, setImages] = useState([]);
@@ -99,15 +101,18 @@ const GroupPage = () => {
    setGroups(newGroup)
   }
   return (
-    <div className="flex gap-5 items-center w-full justify-center">
-      <div className='w-1/4'>
+    <>
+    <Navbar />
+    <div className='flex '>
+     <div className='w-[25%]'>
         <LeftSideBar/>
       </div>
-    <div className=' pb-8 w-full  gap-10'>
+    <div className="flex gap-5 items-center w-[100%]  justify-center">
+    <div className=' pb-8 w-full  gap-10 '>
     {/* Group Header */}
     <img
-        className='w-[100%] h-20 rounded-sm object-cover'
-        src='https://i.pinimg.com/564x/2e/9d/7c/2e9d7cf85b7a811875c1561652e39b08.jpg'
+        className='w-[100%] h-[50vh] rounded-sm object-center'
+        src={enteredGroup.imgGrp}
         alt='User'
     />
     <div >
@@ -117,33 +122,31 @@ const GroupPage = () => {
     <div className='flex justify-between items-center px-10'>
         <div><p className='flex gap-2 items-center justify-center '> <HiOutlineUserGroup color="#c17d7d" size="30px" />
         {enteredGroup.membres} Membres</p></div>
-    <div className='flex justify-evenly gap-5'>
+    <div className='flex justify-evenly gap-5 '>
         <button className="mt-4 px-6 py-2 
-    bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
+   bg-btnColor hover:bg-hoverBtn
     hover:from-[#af7878] hover:to-[#ae385e]  
     text-white rounded-lg">{suivre == true ? `+Inviter` : `Join`}</button>
         <button className="mt-4 px-6 py-2 
-    bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
+   bg-btnColor hover:bg-hoverBtn
     hover:from-[#af7878] hover:to-[#ae385e] 
     text-white rounded-lg">Share</button>
-        <div className="relative">
+        <div className="relative ">
             <button
                 className="mt-4 px-6 py-2 
-        bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
+       bg-btnColor hover:bg-hoverBtn
     hover:from-[#af7878] hover:to-[#ae385e] 
     text-white rounded-lg"
                 onClick={toggleSettings}
               >
                 Setting
-              </button>
-              {showSettings && (
-                <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg">
-                    <button onClick={() => {setSuivre(false); nePlusSuivre()}} className="mt-4 px-6 py-2  bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
-    hover:from-[#af7878] hover:to-[#ae385e]
-            text-white block w-full text-center  rounded-lg shadow-lg"> Ne plus suivre </button>
-              <button className="mt-4 px-6 py-2  bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
-    hover:from-[#af7878] hover:to-[#ae385e] 
-            text-white block w-full text-center  rounded-lg shadow-lg"> Quitter le groupe </button>
+            </button>
+            {showSettings && (
+                <div className="  absolute right-0 w-[15vw] mt-2 bg-white border border-gray-300 rounded-lg shadow-lg p-4 flex flex-col gap-y-3">
+                    <button onClick={() => {setSuivre(false); nePlusSuivre()}} className="
+             block w-full text-center  font-medium py-2 cursor-pointer hover:bg-[#e7daed] hover:text-white hover:font-bold hover:rounded-md"> Ne plus suivre </button>
+              <button onClick={() => {navigate('/groups')}} className=" 
+             block w-full text-center  font-medium py-2 cursor-pointer hover:bg-[#e7daed] hover:text-white hover:rounded-md hover:font-bold "> Quitter le groupe </button>
                 </div>
               )}
             </div>
@@ -269,10 +272,12 @@ const GroupPage = () => {
                 </button>
               </div>
             </div>
-          </div>
-        )}
-      </div>
-    </div>
+        </div>
+    )}
+</div>
+</div>
+</div>
+</>
   )
 }
 
