@@ -125,6 +125,7 @@ const MarketPlace = () => {
       
       </div>
       <div className='flex flex-col pb-8 w-[85%] justify-center items-center gap-10'>
+
           <div className='flex flex-row items-end gap-10  w-[100%] justify-around'>
         <div className='shadow-lg bg-[#FBA1B7] mt-5 rounded-3xl relative '>
           <CiSearch className="text-2xl font-bold text-[#FF597B] absolute top-[50%] left-4 translate-y-[-50%] " />
