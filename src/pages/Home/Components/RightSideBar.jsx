@@ -122,7 +122,7 @@ const RightSideBar = () => {
 
 
   return (
-    <div className="w-[30%] p-2 flex flex-col gap-y-4">
+    <div className=" p-2 flex flex-col gap-y-4">
 
       {/* Stroy */}
 
