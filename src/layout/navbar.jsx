@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from "../../src/assets/images/logo_fw-removebg-preview.png"
+import logo from "../../src/assets/images/newLogo_black-removebg-preview.png"
 import { Link, useParams } from 'react-router-dom';
 import { FaMoon,  FaSun} from "react-icons/fa";
 import { useAuth } from '../context';

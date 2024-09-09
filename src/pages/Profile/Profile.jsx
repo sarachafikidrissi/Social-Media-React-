@@ -119,7 +119,7 @@ const Profile = () => {
                 <div className='bg-white w-[100%] flex rounded-t-md items-center gap-3 ps-2 py-2'>
                   <div className='profil border-2 border-[#99627a] w-[15%] rounded-full'>
                     {profileImage ? (
-                      <img src={profileImage} alt='Profile' />
+                      <img src={profileImage} alt='Profile' className='rounded-full'/>
                     ) : (
                       <div className="bg-gray-200" />
                     )}
