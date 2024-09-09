@@ -15,6 +15,7 @@ const GroupPage = () => {
     console.log(enteredGroup);
 
 
+
     let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
     console.log(filterConnectedUser);
 
@@ -207,6 +208,7 @@ const GroupPage = () => {
               </div>
               <p>{post.content}</p>
               {post.images && post.images.length > 0 && (
+                       
                 <Carousel images={post.images} />
               )}
               {post.video && (
