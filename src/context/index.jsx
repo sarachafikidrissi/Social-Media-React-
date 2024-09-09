@@ -5,6 +5,9 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
 
+  //! posts in feeds
+  const [tasks, setTasks] = useState([]);
+
   //! User Data
   const [users, setUsers] = useState([
     {
@@ -115,6 +118,12 @@ export const AuthProvider = ({ children }) => {
 
   let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
 
+
+  //! suggested friends data
+
+
+  const [suggestedfriends, setSuggestedFriends] = useState([])
+
   // const { logedUser } = filterConnectedUser;
 
   const [image, setImage] = useState("");
@@ -176,7 +185,7 @@ export const AuthProvider = ({ children }) => {
         setCoverImage,
         groups,
         setGroups,
-        joined, setJoined, enteredGroup, setEnteredGroup
+        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks, suggestedfriends, setSuggestedFriends
       }}
     >
       {children}

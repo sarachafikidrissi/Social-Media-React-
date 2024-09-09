@@ -3,6 +3,7 @@ import { assets } from "../../assets";
 import LeftSideBar from "../Home/Components/LeftSideBar";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context";
+import Navbar from "../../layout/navbar";
 
 const Groups = () => {
   const {users, setUsers, groups, setGroups, joined, setJoined, enteredGroup, setEnteredGroup} = useAuth()
@@ -28,14 +29,16 @@ const Groups = () => {
 
 
   return (
-    <div className="w-[100%] flex flex-row gap-8">
+    <>
+    <Navbar />
+    <div className="w-[100%] flex flex-row gap-8 ">
       <div className="w-[25%] flex flex-col ">
         <LeftSideBar />
-        <div className="border-t-2 p-3 flex flex-col gap-y-5">
-          <h1 className="pt-1 text-xl font-bold ps-5 text-center text-pink">
-            Groups
+        <div className="border-t-2 p-3 flex flex-col gap-y-5 mt-4 ">
+          <h1 className="pt-1 text-2xl text-[#3b1137] font-bold ps-5 text-center ">
+            Joined Groups
           </h1>
-          <div className="flex flex-col gap-y-4 cursor-pointer ">
+          <div className="flex flex-col gap-y-4 cursor-pointer  ">
             {joined.length > 0 &&
               joined.map((e, index) => (
                 <div key={index} onClick={() => {{navigate("/group-page")}; setEnteredGroup(joined[index])}}  className="flex items-center gap-x-2 ps-5 ">
@@ -43,7 +46,7 @@ const Groups = () => {
                     src={e.imgGrp}
                     alt=""
                     srcset=""
-                    className="rounded-full w-[45px] h-[45px]"
+                    className="rounded-full w-[45px] h-[45px] "
                   />
                     <h1 className="text-xl font-bold text-[#921A40] hover:text-[#b87b8f]">{e.nameGrp}</h1>
                     {/* <p className=" text-slateGray font-light"> </p> */}
@@ -53,28 +56,28 @@ const Groups = () => {
           
         </div>
       </div>
-      <div className="groups-container grid grid-cols-3 w-[65%] gap-5 ">
+      <div className="groups-container grid grid-cols-3 w-[65%] gap-5 p-5 ">
         {groups.map((group) => (
           <div
             key={group.id}
-            className="max-w-sm  border border-gray-200 rounded-lg shadow  "
+            className="max-w-sm h-[50vh] flex flex-col justify-between border border-gray-200 rounded-lg shadow "
           >
-            <div>
+            <div className=" h-[60%] ">
               <img
-                className="rounded-t-lg"
+                className="rounded-t-lg h-full bg-cover w-full"
                 src={group.imgGrp}
                 alt={group.nameGrp}
               />
             </div>
-            <div className="p-5">
+            <div className="p-5 ">
               <div>
-                <h1 className="pb-2 text-2xl font-bold tracking-tight text-[#921A40] ">
+                <h1 className="text-2xl font-bold tracking-tight text-[#921A40] ">
                   {group.nameGrp}
                 </h1>
               </div>
 
-              <div>
-                <p className="pb-3   text-xl">
+              <div className="">
+                <p className="   text-xl">
                   <span className="font-bold text-[#C75B7A]"> members:</span>{" "}
                   {group.membres}
                 </p>
@@ -85,7 +88,7 @@ const Groups = () => {
                   onClick={() => {
                     handleJoin(group.id);
                   }}
-                  className="inline-flex items-center px-12 py-2 text-xl font-semibold text-center bg-gradient-to-b from-[#c75b79e7]  to-[#fc819ea1] rounded-lg  text-back  "
+                  className="inline-flex items-center px-12 py-2 text-xl font-semibold text-center bg-hoverBtn hover:bg-btnColor rounded-lg  text-white  "
                 >
                   Join
                 </button>
@@ -95,6 +98,7 @@ const Groups = () => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
