@@ -1,9 +1,12 @@
-import React from 'react';
+import {React, useState} from 'react';
 import LeftSideBar from '../Home/Components/LeftSideBar';
 import Navbar from '../../layout/navbar';
 import { useAuth } from '../../context';
+import { RiGalleryView2 } from "react-icons/ri";
+import { PiArticle } from "react-icons/pi";
 
 const Profile = () => {
+  const [showPosts, setShowPosts] = useState(true);
   const { users } = useAuth();
   console.log(users);
   
@@ -13,20 +16,26 @@ const Profile = () => {
 
   const { profileImage, name, email, birthday, userPost, followers, following } = filterConnectedUser;
 
+
+  const handleShowPosts = () => setShowPosts(true);
+  const handleShowThreads = () => setShowPosts(false);
+
   return (
     <div>
       <Navbar />
-      <div className='flex'>
+      <div className='flex justify-between'>
         <LeftSideBar />
-        <div className='bg-[rgba(229,220,220,0.72)] w-[80%] ms-auto'>
-          <div>
-            <div className='flex'>
-              <div className='w-[30vw] flex justify-center items-center'>
-                <div className='w-[60%] h-[85%] rounded-full'>
+        <div className=' w-[80%]   bg-[#f5f7f9]'>
+          <div className='w-[100%] '>
+            {/* profile info */}
+
+            <div className=' flex gap-x-5 '>
+              <div className='w-[30vw]  flex  justify-center p-10'>
+                <div className='w-[60%]  rounded-full   border-4 border-[#83385b]'>
                   {profileImage ? (
                     <img
                       src={profileImage}
-                      className='w-[15vw] h-[30vh] rounded-full'
+                      className=''
                       alt='Profile'
                     />
                   ) : (
@@ -34,62 +43,108 @@ const Profile = () => {
                   )}
                 </div>
               </div>
-              <div className='w-[50vw] h-[45vh] flex items-center'>
-                <div className='flex flex-col gap-5'>
-                  <h1 className='text-2xl capitalize font-serif'>
-                    {name}
+              <div className='w-[30vw]  flex    p-10 '>
+                <div className='flex flex-col gap-3'>
+                  <h1 className='text-5xl capitalize font-semibold'>
+                    {filterConnectedUser.username}
                   </h1>
-                  <div className='flex gap-10 text-1xl font-serif'>
-                    <h1>{userPost ? userPost.length : 0} Posts</h1>
-                    <h1>{followers ? followers.length : 0} Followers</h1>
-                    <h1>{following ? following.length : 0} Following</h1>
+                  <div className='flex gap-10 text-1xl '>
+                    <h1> <span className='font-bold'>{userPost ? userPost.length : 0} </span>Posts</h1>
+                    <h1> <span className='font-bold'>{followers ? followers.length : 0}</span> Followers</h1>
+                    <h1> <span className='font-bold'>{following ? following.length : 0}</span> Following</h1>
                   </div>
-                  <h1 className='font-serif'>{email}</h1>
-                  <h1 className='font-serif'>{birthday}</h1>
+                  <h1 className='text-2xl '>{name}</h1>
+
                 </div>
               </div>
             </div>
 
-            <h1 className='w-14 pt-8 pb-10 m-auto'>
-              <span className='ms-[1rem] text-2xl border-b-2 border-red-600 font-serif'>
-                Posts
-              </span>
-            </h1>
-            <div className='flex gap-5 flex-wrap ms-[1rem] bg-[#a19a9a7a] rounded-md'>
-              {userPost && userPost.map((post, index) => (
-                <div key={index} className='w-[24vw] rounded-md'>
-                  <div className='bg-white flex gap-5 rounded-t-md border-b-4 p-2'>
-                    <div className='profil bg-[#fcfc] w-[4vw] h-[8vh] rounded-full'>
-                      {profileImage ? (
-                        <img
-                          src={profileImage}
-                          className='w-full h-full rounded-full'
-                          alt='Profile'
-                        />
-                      ) : (
-                        <div className="bg-gray-200 w-full h-full rounded-full" />
-                      )}
-                    </div>
-                    <div className='nameProfil capitalize font-serif'>
-                      {name}
-                    </div>
+<div>
+      <div className='flex items-center justify-center gap-x-10'>
+        <div 
+          onClick={handleShowPosts}
+          className={`flex items-center justify-center py-2 gap-x-2 cursor-pointer ${showPosts ? 'border-b-2 border-red-600' : ''}`}
+        >
+          <RiGalleryView2 className='text-2xl text-[#99627a]' />
+          <h1 className='m-0 p-0'>
+            <span className='text-2xl font-serif'>
+              Posts
+            </span>
+          </h1>
+        </div>
+        <div 
+          onClick={handleShowThreads}
+          className={`flex items-center justify-center py-2 gap-x-2 cursor-pointer ${!showPosts ? 'border-b-2 border-red-600' : ''}`}
+        >
+          <PiArticle className='text-2xl text-[#99627a]' />
+          <h1 className='m-0 p-0'>
+            <span className='text-2xl font-serif'>
+              Threads
+            </span>
+          </h1>
+        </div>
+      </div>
+
+      <div className='flex  flex-wrap gap-2 p-5'>
+        {userPost && userPost.map((post, index) => {
+          if (showPosts && post.images.length > 0) {
+            return (
+              <div key={index} className='w-[25vw]  rounded-md'>
+                <div className='bg-white w-[100%] flex rounded-t-md items-center gap-3 ps-2 py-2'>
+                  <div className='profil border-2 border-[#99627a] w-[15%] rounded-full'>
+                    {profileImage ? (
+                      <img src={profileImage} alt='Profile' />
+                    ) : (
+                      <div className="bg-gray-200" />
+                    )}
                   </div>
-                  <div className='w-[100%]'>
-                    <img
-                      className='h-[50vh] w-full bg-cover'
-                      src={post.images}
-                      alt='Post'
-                    />
-                  </div>
-                  <div className='bg-white w-[24vw] h-[10vh] rounded-b-md text-black flex justify-between items-center p-2'>
-                    <h1>{post.likes} Likes</h1>
-                    <h1>{post.comments.length} Comments</h1>
-                    <h1>{post.favorited} Favorites</h1>
+                  <div className='nameProfil capitalize font-bold'>
+                    {name}
                   </div>
                 </div>
-              ))}
+                <div className='w-[100%] bg-white'>
+                  {/* {post.name !== '' && <p className='ps-2 text-xl bg-red-300'>{post.name}</p>} */}
+                  <img className='h-[40vh] w-full bg-cover' src={post.images} alt='Post' />
+                </div>
+                <div className='bg-white w-[100%] h-[10vh] rounded-b-md text-black flex justify-between items-center p-2'>
+                  <h1><span className='font-bold'>{post.likes}</span> Likes</h1>
+                  <h1><span className='font-bold'>{post.comments.length}</span> Comments</h1>
+                  <h1><span className='font-bold'>{post.favorited}</span> Favorites</h1>
+                </div>
+              </div>
+            );
+          } else if (!showPosts && post.images.length === 0) {
+            return (
+              <div key={index} className='w-[25vw] rounded-md'>
+                <div className='bg-white w-[100%] flex rounded-t-md items-center gap-3 ps-2 py-2'>
+                  <div className='profil border-2 border-[#99627a] w-[15%] rounded-full'>
+                    {profileImage ? (
+                      <img src={profileImage} alt='Profile' />
+                    ) : (
+                      <div className="bg-gray-200" />
+                    )}
+                  </div>
+                  <div className='nameProfil capitalize font-bold'>
+                    {name}
+                  </div>
+                </div>
+                <div className='w-[100%] bg-white'>
+                  {post.name !== '' && <p className='ps-2 text-xl'>{post.name}</p>}
+                </div>
+                <div className='bg-white w-[100%] h-[10vh] rounded-b-md text-black flex justify-between items-center p-2'>
+                  <h1><span className='font-bold'>{post.likes}</span> Likes</h1>
+                  <h1><span className='font-bold'>{post.comments.length}</span> Comments</h1>
+                  <h1><span className='font-bold'>{post.favorited}</span> Favorites</h1>
+                </div>
+              </div>
+            );
+          }
+
+          return null; 
+        })}
+      </div>
+    </div>
             </div>
-          </div>
         </div>
       </div>
     </div>

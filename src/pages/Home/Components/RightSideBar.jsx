@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { assets } from "../../../assets";
 import { CiSearch } from "react-icons/ci";
 import { useAuth } from "../../../context";
+import { IoAddCircleOutline } from "react-icons/io5";
+import { useNavigate, useLocation } from 'react-router-dom';
+
 
 
 
@@ -9,9 +12,13 @@ import { useAuth } from "../../../context";
 
 const RightSideBar = () => {
 
+  const location = useLocation();
 
+  const navigate = useNavigate();
 
-  const {users, setUsers}  = useAuth()
+ let isFavorite = location.pathname === "./myfavorite"
+
+  const {users, setUsers, suggestedfriends, setSuggestedFriends}  = useAuth()
   const [stories, setStories] = useState([]);
   const [activeStories, setActiveStories] = useState({});
   const [state, setState] = useState(false);
@@ -77,7 +84,7 @@ const RightSideBar = () => {
 
 
 
-  const [suggestedfriends, setSuggestedFriends] = useState([])
+
 
  console.log(users);
 
@@ -122,7 +129,7 @@ const RightSideBar = () => {
       <div className="">
       {/* Stories Display */}
       <div className="flex no-scrollbar space-x-5 ps-2 py-2">
-      <div className="w-[80px] h-[80px] rounded-full bg-[#83375b]  flex-shrink-0 cursor-pointer relative">
+      <div className="w-[80px] h-[80px] rounded-full bg-[#b58fbf]  flex-shrink-0 cursor-pointer relative">
           {/* Hidden file input */}
           <input
             type="file"
@@ -131,13 +138,13 @@ const RightSideBar = () => {
             className="absolute inset-0 opacity-0 cursor-pointer"
           />
           <div className="flex justify-center items-center w-full h-full">
-            <span className="text-sm text-white font-bold">Add Story</span>
+            <span className="text-sm text-white font-bold"><IoAddCircleOutline className="text-8xl" /></span>
           </div>
         </div>
         {stories.map((story, index) => (
           <div
             key={index}
-            className="flex w-[80px] h-[80px]  rounded-full outline outline-offset-2 outline-pink outline-2 flex-shrink-0 cursor-pointer relative"
+            className="flex w-[80px] h-[80px]  rounded-full outline outline-offset-2 outline-[#b58fbf] outline-2 flex-shrink-0 cursor-pointer relative"
           >
             <img
               onClick={() => toggleStory(index)}
@@ -174,18 +181,18 @@ const RightSideBar = () => {
           </div> 
           
           
-  
+
           <div className="">
-            {suggestedfriends ? suggestedfriends.map((e, index) => (
-              <div key={index}>
-                <div className=" rounded-full flex gap-x-4 items-center  ">
+            {  suggestedfriends ? suggestedfriends.map((e, index) => (
+              <div key={index} className="border-b-2 pb-5">
+                <div className=" rounded-full flex gap-x-2 items-center  ">
                   <img src={e.profileImage} alt="" className="w-[50px] h-[50px]  rounded-full " />
-                  <span className="text-gray-300 font-bold">
+                  <span className=" font-bold">
                     {e.name.charAt(0).toUpperCase() + e.name.slice(1)}
                   </span>
                 </div>
                 <div className="flex justify-around pt-5">
-                  <button onClick={() => {handlFollow(index)} } className="bg-pink py-2 px-10 rounded-md text-white hover:bg-white hover:text-pink hover:border-pink hover:border-2">
+                  <button onClick={() => {handlFollow(index)} } className="bg-btnColor hover:bg-hoverBtn py-2 px-10 rounded-md text-white ">
                     Follow
                   </button>
                   <button onClick={() => {handleIgnore(index)}} className="py-2 px-10 rounded-md  text-gray-500 border-2 border-gray-500 hover:bg-gray-500 hover:text-white">

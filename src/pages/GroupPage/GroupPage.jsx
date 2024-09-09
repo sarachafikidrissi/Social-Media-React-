@@ -4,7 +4,19 @@ import { IoMdPhotos } from "react-icons/io";
 import { IoBookmark, IoHeart, IoVideocam } from "react-icons/io5";
 import LeftSideBar from '../Home/Components/LeftSideBar';
 import { HiOutlineUserGroup } from 'react-icons/hi';
+import { useAuth } from '../../context';
+import { useNavigate } from 'react-router-dom';
+import Navbar from '../../layout/navbar';
 const GroupPage = () => {
+    const navigate = useNavigate()
+    const {groups, setGroups, users, setUsers, enteredGroup, setEnteredGroup, joined, setJoined} = useAuth()
+
+    console.log(enteredGroup);
+
+
+    let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
+    console.log(filterConnectedUser);
+
   const [content, setContent] = useState('');
   const [images, setImages] = useState([]);
   const [video, setVideo] = useState(null);
@@ -75,39 +87,55 @@ const GroupPage = () => {
   };
 
   const [suivre, setSuivre] = useState(true)
-  const [join, setJoin] = useState(false)
+  const nePlusSuivre = () => {
+    let newUsers = [...users]
+    let newJoined = [...joined]
+    let newGroup = [...groups]
+    let userWhoJoinedgroup = newUsers.find(e => e === filterConnectedUser)
+   let groupToDelete = userWhoJoinedgroup.groupsJoined.findIndex(e => e === enteredGroup)
+   newGroup.push(userWhoJoinedgroup.groupsJoined[groupToDelete])
+  let groupInjoinedArr = joined.findIndex(e => e == userWhoJoinedgroup.groupsJoined[groupToDelete])
+    newJoined.splice(groupInjoinedArr, 1)
+   userWhoJoinedgroup.groupsJoined.splice(groupToDelete, 1)
+   setJoined(newJoined)
+   setUsers(newUsers)
+   setGroups(newGroup)
+  }
   return (
-    <div className="flex gap-5 items-center w-[100%]  justify-center">
+    <>
+    <Navbar />
+    <div className='flex '>
      <div className='w-[25%]'>
         <LeftSideBar/>
       </div>
-    <div className=' pb-8 w-full  gap-10'>
+    <div className="flex gap-5 items-center w-[100%]  justify-center">
+    <div className=' pb-8 w-full  gap-10 '>
     {/* Group Header */}
     <img
-        className='w-[100%] h-20 rounded-sm object-cover'
-        src='https://i.pinimg.com/564x/2e/9d/7c/2e9d7cf85b7a811875c1561652e39b08.jpg'
+        className='w-[100%] h-[50vh] rounded-sm object-center'
+        src={enteredGroup.imgGrp}
         alt='User'
     />
     <div >
-        <h1 className="text-4xl from-neutral-600 p-5">basma rajae</h1>
+        <h1 className="text-4xl from-neutral-600 p-5">{enteredGroup.nameGrp}</h1>
        
     </div>
     <div className='flex justify-between items-center px-10'>
         <div><p className='flex gap-2 items-center justify-center '> <HiOutlineUserGroup color="#c17d7d" size="30px" />
-        Membres</p></div>
-    <div className='flex justify-evenly gap-5'>
+        {enteredGroup.membres} Membres</p></div>
+    <div className='flex justify-evenly gap-5 '>
         <button className="mt-4 px-6 py-2 
-    bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
+   bg-btnColor hover:bg-hoverBtn
     hover:from-[#af7878] hover:to-[#ae385e]  
     text-white rounded-lg">{suivre == true ? `+Inviter` : `Join`}</button>
         <button className="mt-4 px-6 py-2 
-    bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
+   bg-btnColor hover:bg-hoverBtn
     hover:from-[#af7878] hover:to-[#ae385e] 
     text-white rounded-lg">Share</button>
-        <div className="relative">
+        <div className="relative ">
             <button
                 className="mt-4 px-6 py-2 
-        bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
+       bg-btnColor hover:bg-hoverBtn
     hover:from-[#af7878] hover:to-[#ae385e] 
     text-white rounded-lg"
                 onClick={toggleSettings}
@@ -115,13 +143,11 @@ const GroupPage = () => {
                 Setting
             </button>
             {showSettings && (
-                <div className="absolute right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg">
-                    <button onClick={() => setSuivre(false)} className="mt-4 px-6 py-2  bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
-    hover:from-[#af7878] hover:to-[#ae385e]
-            text-white block w-full text-center  rounded-lg shadow-lg"> Ne plus suivre </button>
-              <button className="mt-4 px-6 py-2  bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
-    hover:from-[#af7878] hover:to-[#ae385e] 
-            text-white block w-full text-center  rounded-lg shadow-lg"> Quitter le groupe </button>
+                <div className="  absolute right-0 w-[15vw] mt-2 bg-white border border-gray-300 rounded-lg shadow-lg p-4 flex flex-col gap-y-3">
+                    <button onClick={() => {setSuivre(false); nePlusSuivre()}} className="
+             block w-full text-center  font-medium py-2 cursor-pointer hover:bg-[#e7daed] hover:text-white hover:font-bold hover:rounded-md"> Ne plus suivre </button>
+              <button onClick={() => {navigate('/groups')}} className=" 
+             block w-full text-center  font-medium py-2 cursor-pointer hover:bg-[#e7daed] hover:text-white hover:rounded-md hover:font-bold "> Quitter le groupe </button>
                 </div>
             )}
         </div>
@@ -133,11 +159,11 @@ const GroupPage = () => {
     <div className='flex items-center mb-4'>
               <img
                 className='w-10 h-10 rounded-full'
-                src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-NV9q05F16g50huet5CWXj-AtbmH30NTR4A&s'
+                src={filterConnectedUser.profileImage}
                 alt='User'
               />
               <div className='ml-3'>
-                <h3 className='font-semibold'>Rajae Bensafy</h3>
+                <h3 className='font-semibold capitalize'>{filterConnectedUser.name}</h3>
                 <p className='text-slateGray text-sm'>Casablanca, Morocco</p>
               </div>
             </div>
@@ -248,6 +274,8 @@ const GroupPage = () => {
     )}
 </div>
 </div>
+</div>
+</>
   )
 }
 

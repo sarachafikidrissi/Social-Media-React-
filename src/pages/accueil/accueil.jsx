@@ -33,13 +33,14 @@ const Accueil = () => {
                         Social Media Influencer
                     </p>
                     <div className="h-10"></div>
-                    <p className={`max-w-3xl font-serif text-xl text-gray-400 md:text-2xl ms-[4rem] ${darkmode && "text-white" }`}>
+                    <p className={`max-w-3xl font-serif text-xl pb-5 text-gray-400 md:text-2xl ms-[4rem] ${darkmode && "text-white" }`}>
                     Passionné par la vie, amateur de découvertes et toujours à la recherche d’inspiration. 🌟 Partageons nos moments et nos idées!
                     </p>
+                    <button  className='text-white ms-[4rem] bg-gradient-to-b from-[#972150] to-[#91093f]  font-serif py-3 px-9 rounded-full  '>Join Now</button>
                 </div>
 
                 <div>
-                    <img className='w-[30vw] rounded-lg' src={accueil} alt="Social media concept" />
+                    <img className='w-[30vw] rounded-lg hover:p-3' src={accueil} alt="Social media concept" />
                 </div>
             </div>
         </div>
