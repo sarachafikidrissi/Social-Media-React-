@@ -7,11 +7,13 @@ import { HiOutlineUserGroup } from 'react-icons/hi';
 import { useAuth } from '../../context';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../layout/navbar';
+import { Carousel } from 'flowbite-react';
 const GroupPage = () => {
     const navigate = useNavigate()
     const {groups, setGroups, users, setUsers, enteredGroup, setEnteredGroup, joined, setJoined} = useAuth()
 
     console.log(enteredGroup);
+
 
 
     let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
@@ -204,6 +206,7 @@ const GroupPage = () => {
               </div>
               <p>{post.content}</p>
               {post.images && post.images.length > 0 && (
+                       
                 <Carousel images={post.images} />
               )}
               {post.video && (
