@@ -104,6 +104,30 @@ const GroupPage = () => {
    setUsers(newUsers)
    setGroups(newGroup)
   }
+  // Carousel component
+const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
+    const [currentIndex, setCurrentIndex] = useState(0);
+  
+    useEffect(() => {
+      if (!autoSlide) return;
+  
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+      }, slideInterval);
+  
+      return () => clearInterval(interval);
+    }, [currentIndex, images.length, autoSlide, slideInterval]);
+  
+    return (
+      <div className="relative w-full h-80">
+        <img
+          src={images[currentIndex]}
+          alt={`Post Image ${currentIndex}`}
+          className="w-full h-full object-contain rounded-lg"
+        />
+      </div>
+    );
+  };
   return (
     <>
     <Navbar />
@@ -191,10 +215,10 @@ const GroupPage = () => {
           </div>
         </div>
 
-        {/* Post Feed */}
-        <div className="mt-4">
+          {/* Post Feed */}
+          <div className="mt-4">
           {posts.map((post, index) => (
-            <div key={index} className="w-3/4 bg-[#FAF2EA] p-4 rounded-lg shadow-md mb-4 mx-40">
+            <div key={index} className="w-[70%]  bg-[#FAF2EA] p-4 rounded-lg shadow-md mb-4 mx-40">
               <div className='flex items-center mb-4'>
                 <img
                   className='w-10 h-10 rounded-full'
@@ -208,7 +232,6 @@ const GroupPage = () => {
               </div>
               <p>{post.content}</p>
               {post.images && post.images.length > 0 && (
-                       
                 <Carousel images={post.images} />
               )}
               {post.video && (
