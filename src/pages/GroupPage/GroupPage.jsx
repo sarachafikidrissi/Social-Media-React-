@@ -98,6 +98,8 @@ const GroupPage = () => {
   const toggleSettings = () => {
     setShowSettings(!showSettings);
   };
+  console.log(1);
+  
 
   const [suivre, setSuivre] = useState(true)
   const [join, setJoin] = useState(false)
