@@ -18,17 +18,6 @@ const Navbar = () => {
 
 
 
-    // let loggedInUserIndex = users.findIndex((user) => user.isLoggedIn);
-    // let user = users[loggedInUserIndex].username
-// const handleLogout = () => {
-
-//   if (loggedInUserIndex !== -1) {
-//     users[loggedInUserIndex].isLoggedIn = false;
-
-//     setUsers([...users]);  
-//   }
-// };
-
 const handleLogout = () => {
 
   if (user) {
@@ -37,7 +26,6 @@ const handleLogout = () => {
     userIn.isLoggedIn = false
     setUsers(newTab)
 
-    // setUsers([...users]);  
   }
 };
 
@@ -60,19 +48,19 @@ const handleLogout = () => {
       
       <div class="group relative cursor-pointer py-2">
 
-      <div class="flex items-center justify-between space-x-5 bg-white px-4">
+      <div class="flex items-center justify-between space-x-5 px-4">
 
-      <h3 className='text-black'>{userr.username}</h3>   
-          <img  src={userr.profileImage} className='menu-hover rounded-full  w-[50px] h-[50px] '/>
-          <button onClick={() => { setDarkmode(!darkmode) }} className="bg-[#ac2659] px-[1.3vw] py-[12px] text-white text-lg font-semi-bold rounded-full border-none">{darkmode ? <FaSun /> : <FaMoon />}</button>
+      <h3 className='text-black text-xl font-semibold'>{userr.username}</h3>   
+          <img  src={userr.profileImage} className='menu-hover rounded-full border-2 border-btnColor  w-[50px] h-[50px] '/>
+          <button onClick={() => { setDarkmode(!darkmode) }} className="bg-btnColor px-[1.3vw] py-[12px] text-white text-lg font-semi-bold rounded-full border-none">{darkmode ? <FaSun /> : <FaMoon />}</button>
       </div>
      
 
-      <div class="invisible absolute z-50 flex w-full flex-col bg-[#fcfc] py-5 px-4 text-gray-800 shadow-xl group-hover:visible">
+      <div class="invisible bg-white cursor-pointer absolute z-50 mt-2 rounded-md flex w-full flex-col py-5 px-4 text-gray-800 shadow-xl group-hover:visible">
             
-            <div  className=' hover:bg-[#D9ABAB] border-b-2 border-[#921A40] ps-5 text-xl pb-2 flex flex-row gap-4 items-center'><div><CiUser /></div><Link to={"/profile"}> Profile</Link></div>
-            <div className=' hover:bg-[#D9ABAB] border-b-2 border-[#921A40]  ps-5 text-xl pb-2 pt-1 flex flex-row gap-4 items-center'> <div><MdOutlineEdit /></div><Link to={"/edit-profile"}>Edit</Link></div>
-            <div className=' hover:bg-[#D9ABAB] border-b-2 border-[#921A40]  ps-5 text-xl pb-2 pt-1 flex flex-row gap-4 items-center'><div><CiLogout /></div><Link to={"/login"} onClick={handleLogout}>Logout</Link></div>
+            <div  className='cursor-pointer hover:bg-hoverBtn hover:rounded-md w-[100%] ps-5 text-xl pb-2 flex flex-row gap-4 items-center'><div><CiUser /></div><Link to={"/profile"}> Profile</Link></div>
+            <div className='cursor-pointer hover:bg-hoverBtn hover:rounded-md w-[100%]  ps-5 text-xl pb-2 pt-1 flex flex-row gap-4 items-center'> <div><MdOutlineEdit /></div><Link to={"/edit-profile"}>Edit</Link></div>
+            <div className='cursor-pointer hover:bg-hoverBtn hover:rounded-md w-[100%]  ps-5 text-xl pb-2 pt-1 flex flex-row gap-4 items-center'><div><CiLogout /></div><Link to={"/login"} onClick={handleLogout}>Logout</Link></div>
       </div>
   </div>
  

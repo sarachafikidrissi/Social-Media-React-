@@ -120,34 +120,40 @@ const MyFavorites = () => {
             </div>
             <div className='flex justify-between items-center border-t pt-2'>
               <button
-                className='flex items-center text-slateGray hover:text-royalBlue'
+                className='flex items-center gap-x-2 text-xl text-slateGray hover:text-hoverBtn'
                 onClick={() => handleLike(index)}
               >
                 {task.likes ?<IoHeart color='red' />:<IoHeart />}
                  Like 
               </button>
               <button
-                className='flex items-center text-slateGray hover:text-royalBlue'
+                className='flex items-center gap-x-2 text-xl text-slateGray hover:text-hoverBtn'
                 onClick={() => openCommentModal(index)}
               >
                 <FaRegCommentAlt />
                 Comments {task.comments.length > 0 && `(${task.comments.length})`}
               </button>
-              <button className='flex items-center text-slateGray hover:text-royalBlue'
+              <button className='flex items-center gap-x-2 text-xl text-slateGray hover:text-hoverBtn'
                 onClick={() => handleFavoris(index)}>
-                  {task.favoris ? <IoBookmark color='yellow' />:<IoBookmark />}
+                  {task.favoris ? <IoBookmark color='#d3b7e0' className='text-xl' />:<IoBookmark />}
                 favoris
                 
               </button>
             </div>
             {task.comments.length > 0 && (
-              <div className='mt-3'>
-                {task.comments.map((comment, commentIndex) => (
-                  <p key={commentIndex} className='text-slateGray text-sm mb-2'>
-                    {comment}
-                  </p>
-                ))}
-              </div>
+              <div className='mt-3 ps-4 py-2 flex flex-col gap-y-2'>
+              {task.comments.map((comment, commentIndex) => (
+                <div className='flex items-center gap-x-2 border border-btnColor bg-[#f5f7f9] rounded-full p-2'>
+                  <div className='flex  items-center gap-x-2'>
+                <img src={filterConnectedUser.profileImage} alt="" className='w-10 h-10 rounded-full border-2 border-hoverBtn' />
+                <p className='text-lg font-bold'>@{filterConnectedUser.username}</p>
+                  </div>
+                <p key={commentIndex} className='text-midnightBlue text-lg '>
+                  {comment}
+                </p>
+                </div>
+              ))}
+            </div>
             )}
           </div>
         ))} 

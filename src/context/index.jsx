@@ -118,6 +118,12 @@ export const AuthProvider = ({ children }) => {
 
   let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
 
+
+  //! suggested friends data
+
+
+  const [suggestedfriends, setSuggestedFriends] = useState([])
+
   // const { logedUser } = filterConnectedUser;
 
   const [image, setImage] = useState("");
@@ -179,7 +185,7 @@ export const AuthProvider = ({ children }) => {
         setCoverImage,
         groups,
         setGroups,
-        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks
+        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks, suggestedfriends, setSuggestedFriends
       }}
     >
       {children}

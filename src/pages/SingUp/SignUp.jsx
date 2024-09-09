@@ -94,8 +94,9 @@ const SignUp = () => {
   };
 
   return (
-    <div className="relative bg-white rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[93vh] overflow-hidden flex">
-      <div className="absolute top-0 right-0 h-full w-1/2 flex items-center justify-center">
+    <div className='h-screen bg-hero-pattern bg-left-bottom flex items-center justify-center'>
+    <div className="relative rounded-lg shadow-lg w-full max-w-4xl  h-[80vh] overflow-hidden flex ">
+      <div className="absolute top-0 right-0 h-full w-1/2 flex items-center justify-center  animate-slideInRight ">
         <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center">
           <h1 className="text-3xl font-bold m-0">Sign Up</h1>
           <div className="my-5 flex space-x-2">
@@ -141,17 +142,17 @@ const SignUp = () => {
           <a href="#" className="text-blue-500 text-md py-2">Forgot your password?</a>
           <button type="button"
             onClick={handleSignUpClick}
-            className="rounded-full bg-gradient-to-b from-[#c17d7db4] to-[#ae385e] hover:bg-gradient-to-b hover:from-[#c17d7d] hover:to-[#d76a83] hover:text-black text-white text-xl font-bold py-3 px-10 mt-2">
+            className="rounded-full bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-xl font-bold py-3 px-10 mt-2">
             Sign Up
           </button>
         </form>
       </div>
-      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center  bg-gradient-to-l from-[#af7878]  to-[#ae385e]">
+      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center  bg-gradient-to-l from-[#d3b7e0] via-[#b58fbf]  to-[#a675be] animate-slideInLeft ">
         <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
           <h1 className="text-3xl font-bold text-white">Welcome</h1>
-          <p className="text-xl  text-[#FFEBD4]">Please insert your information to join our platform</p>
+          <p className="text-xl  text-white">Please insert your information to join our platform</p>
           <button
-            className="border-none font-serif  text-black rounded-full py-2 px-8 text-2xl font-semi-bold bg-gradient-to-t from-[#F4D9D0]  to-[#ae385e] hover:bg-gradient-to-l hover:from-[#921A40] hover:to-[#D9ABAB] hover:text-white"
+            className="border-none font-serif  rounded-full py-2 px-8 text-2xl font-semi-bold bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white"
             onClick={() => navigate('/login')}>
             Login
           </button>
@@ -205,7 +206,7 @@ const SignUp = () => {
           <p className="text-lg">Please fill in all required fields before proceeding.</p>
           <button
             onClick={() => setEmptyFieldsModalIsOpen(false)}
-            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+            className="rounded-full border bg-btnColor hover:bg-hoverBtn text-white text-sm font-bold py-3 px-6 mt-4"
           >
             Close
           </button>
@@ -228,7 +229,7 @@ const SignUp = () => {
               setSuccessModalIsOpen(false);
               navigate(`/login-profile/${userName}`);
             }}
-            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+            className="rounded-full border border bg-btnColor hover:bg-hoverBtntext-white text-sm font-bold py-3 px-6 mt-4"
           >
             Continue
           </button>
@@ -248,12 +249,13 @@ const SignUp = () => {
           <p className="text-lg">{errorMessage}</p>
           <button
             onClick={() => setErrorModalIsOpen(false) && setModalIsOpen(false)}
-            className="rounded-full border border-pink bg-pink text-white text-sm font-bold py-3 px-6 mt-4"
+            className="rounded-full borderborder bg-btnColor hover:bg-hoverBtn text-white text-sm font-bold py-3 px-6 mt-4"
           >
             Close
           </button>
         </div>
       </Modal>
+    </div>
     </div>
   );
 };

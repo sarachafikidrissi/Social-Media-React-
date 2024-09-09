@@ -4,6 +4,7 @@ import LeftSideBar from '../Home/Components/LeftSideBar';
 import { CiSearch } from "react-icons/ci";
 import Modal from 'react-modal';
 import { IoMdAdd } from "react-icons/io";
+import Navbar from '../../layout/navbar';
 
 const MarketPlace = () => {
   const [selectedCategory, setSelectedCategory] = useState('vehicle');
@@ -115,6 +116,8 @@ const MarketPlace = () => {
   };
 
   return (
+    <>
+    <Navbar />
     <div className="flex gap-x-5  w-[100%]">
       <div className='w-[25%] pt-8'>
         <LeftSideBar />
@@ -127,11 +130,11 @@ const MarketPlace = () => {
         <div className='shadow-lg bg-[#FBA1B7] mt-5 rounded-3xl relative '>
           <CiSearch className="text-2xl font-bold text-[#FF597B] absolute top-[50%] left-4 translate-y-[-50%] " />
           < input type="text"
-            className='w-[25vw] p-1.5 rounded-3xl ps-11 bg-[#FFD1DA] py-2 border-none text-black flex justify-center placeholder:text-black '
+            className='w-[40vw] p-1.5 rounded-3xl ps-11 bg-[#F1E4F7] py-2 border-none text-black flex justify-center placeholder:text-black '
             placeholder='Search products'value={searchCategory} onChange={handleSearch}/>
         </div>    
         <div className='rounded-3xl '>
-          <button className='bg-gradient-to-t from-[#D9ABAB] to-[#F7B5CA] hover:from-[#af7878] hover:to-[#ae385e] hover:text-white px-9 py-2 text-xl text-[#701a36] rounded-2xl font-semibold  ' 
+          <button className='bg-btnColor hover:bg-hoverBtn text-white px-9 py-2 text-xl rounded-2xl font-semibold  ' 
           onClick={AfficherModal}>Add Article</button>
         </div>  
           </div>
@@ -139,32 +142,32 @@ const MarketPlace = () => {
         
         
         
-        <div className="flex justify-center gap-5 py-3">
+        <div className="flex justify-center gap-5 py-3 ">
           <button
-            className={`text-xl py-2 px-10 rounded-3xl  ${selectedCategory === 'vehicle' ? 'bg-gradient-to-b from-[#af7878]  to-[#ae385e] text-white font-semibold' : 'bg-gradient-to-b from-[#c17d7d] to-[#d76a83]  font-semibold text-white  hover:text-white'}`}
+            className={`text-xl py-2 px-10 rounded-3xl  ${selectedCategory === 'vehicle' ? 'bg-hoverBtn text-white font-semibold' : 'bg-[#f3c1db] font-semibold text-white  hover:text-white'}`}
             onClick={() => activeCategory('vehicle')}
           >Vehicle</button>
           <button
-            className={`text-xl py-2 px-10 rounded-3xl ${selectedCategory === 'electronics' ? 'bg-gradient-to-b from-[#af7878]  to-[#ae385e] text-white font-semibold' : 'bg-gradient-to-b from-[#c17d7d] to-[#d76a83]  font-semibold text-white hover:text-white'}`}
+            className={`text-xl py-2 px-10 rounded-3xl ${selectedCategory === 'electronics' ? 'bg-hoverBtn text-white font-semibold' : 'bg-[#f3c1db] font-semibold text-white hover:text-white'}`}
             onClick={() => activeCategory('electronics')}
           >Electronics</button>
           <button
-            className={`text-xl py-2 px-10 rounded-3xl ${selectedCategory === 'appliance' ? 'bg-gradient-to-b from-[#af7878]  to-[#ae385e] text-white font-semibold' : 'bg-gradient-to-b from-[#c17d7d] to-[#d76a83]  font-semibold text-white hover:text-white'}`}
+            className={`text-xl py-2 px-10 rounded-3xl ${selectedCategory === 'appliance' ? 'bg-hoverBtn text-white font-semibold' : 'bg-[#f3c1db] font-semibold text-white hover:text-white'}`}
             onClick={() => activeCategory('appliance')}
           >Appliance</button>
           <button
-            className={`text-xl py-2 px-10 rounded-3xl ${selectedCategory === 'beauty' ? 'bg-gradient-to-b from-[#af7878]  to-[#ae385e] text-white font-semibold' : 'bg-gradient-to-b from-[#c17d7d] to-[#d76a83]  font-semibold text-white hover:text-white'}`}
+            className={`text-xl py-2 px-10 rounded-3xl ${selectedCategory === 'beauty' ? 'bg-hoverBtn text-white font-semibold' : 'bg-[#f3c1db] font-semibold text-white hover:text-white'}`}
             onClick={() => activeCategory('beauty')}
           >Beauty</button>
         </div>
-        <div className="grid grid-cols-3  gap-5 py-8 w-[100%] h-[50%]  ">
+        <div className="grid grid-cols-3  gap-2 py-8 w-[100%]">
           {arrayCategory[selectedCategory].map((item, index) => (
-            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3  pb-10">
-             <div className='h-[30vh] w-[90%] mb-2 border-b-2 border-b-[#ff8db1a6] '><img src={item.imgSrc} alt={item.title} className='w-[90%] h-[100%]' /></div> 
+            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3">
+             <div className='h-[30vh]   border-b-2  border-[#ff8db1a6]'><img src={item.imgSrc} alt={item.title} className='w-[90%] h-[100%]' /></div> 
               <div className='w-[100%] h-[15%] '><h3 className="text-xl font-bold    text-[#402B3A]">{item.title}</h3></div>
-              <div className=" font-bold pb-3 w-[100%] h-[10%] text-[#921A40] text-lg">{item.price} DH</div>
+              <div className=" font-bold  w-[100%]  text-[#921A40] text-lg ">{item.price} DH</div>
               <div className='flex justify-center'>
-                <button className='bg-gradient-to-b from-[#c75b79e7]  to-[#fc819e75] px-4 py-2 rounded-xl text-black text-xl font-semibold hover:text-[#571f39] mt-2' onClick={() => AfficherModalInfo(item)}>
+                <button className='bg-gradient-to-b from-[#ce629f]  to-[#fc819e75] px-4 py-2 rounded-xl text-black text-xl font-semibold hover:text-[#571f39] mt-2' onClick={() => AfficherModalInfo(item)}>
                   More information
                 </button>
 
@@ -205,8 +208,8 @@ const MarketPlace = () => {
       )}
       {selectedItem && (
         <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
-          <div className='bg-white p-8 rounded-lg shadow-lg w-[90%] h-[95%] flex gap-4'>
-            <div className='w-[50%]'>
+          <div className='bg-white p-8 rounded-lg shadow-lg w-[80%]  flex gap-4'>
+            <div className='w-[50%]  shadow-lg rounded-md'>
               <img src={selectedItem.imgSrc} alt={selectedItem.title} className='w-50 h-50' />
             </div>
             <div className='w-[50%] p-4'>
@@ -221,7 +224,7 @@ const MarketPlace = () => {
                   value={message} onChange={(e) => setMessage(e.target.value)} />
                 {error && <p className="text-red-500">{error}</p>}
                 <div className='flex flex-row gap-5 justify-center mt-4'>
-                  <button className='bg-[#c17d7d] px-6 py-2 text-xl font-semibold text-white rounded-lg' onClick={() => AcheterArticle()}> Buy Article</button>
+                  <button className='bg-btnColor hover:bg-hoverBtn px-6 py-2 text-xl font-semibold text-white rounded-lg' onClick={() => AcheterArticle()}> Send a message</button>
                   <button className=' bg-gray-500 px-6 py-2 text-xl font-semibold text-white rounded-lg' onClick={() => setSelectedItem(false)}> Close</button>
                 </div>
               </div>
@@ -248,8 +251,8 @@ const MarketPlace = () => {
         className="fixed inset-0 flex items-center justify-center p-4"
         overlayClassName="fixed inset-0 bg-black bg-opacity-50">
         <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-4 text-[#89375F]">Achat Successful</h2>
-          <p className="text-lg">You Achat has been made  successfully.</p>
+          <h2 className="text-2xl font-bold mb-4 text-[#89375F]">Message Sent !</h2>
+          <p className="text-lg">We will contact you as soon as possible!</p>
           <button
             onClick={() => {
               setSuccessModalIsOpen(false);
@@ -266,7 +269,7 @@ const MarketPlace = () => {
       
     </div>
 
-   
+    </>
   );
 };
 

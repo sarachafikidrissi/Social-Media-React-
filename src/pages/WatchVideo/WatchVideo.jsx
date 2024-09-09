@@ -7,6 +7,7 @@ import { LiaComments } from "react-icons/lia";
 import { FcLike } from 'react-icons/fc';
 import { IoBookmark } from 'react-icons/io5';
 import { MdClose } from 'react-icons/md';
+import Navbar from '../../layout/navbar';
 
 const WatchVideo = () => {
   const [searchcat, setSearchcat] = useState('');
@@ -103,6 +104,8 @@ const WatchVideo = () => {
   }, [comments]);
 
   return (
+    <>
+  <Navbar />
     <div className='flex flex-row gap-10 pt-6'>
       <div>
         <LeftSideBar />
@@ -253,6 +256,7 @@ const WatchVideo = () => {
         </div>
       )}
     </div>
+    </>
   );
 };
 
