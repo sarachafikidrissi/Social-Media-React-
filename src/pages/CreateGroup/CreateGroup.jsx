@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import Navbar from '../../layout/navbar';
 import LeftSideBar from '../Home/Components/LeftSideBar';
 
 const CreateGroup = () => {
@@ -39,7 +38,7 @@ const CreateGroup = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen p-10">
-      <div className="flex gap-5">
+      <div className="flex gap-5 ">
         <LeftSideBar />
         <div className="w-full max-w-3xl mx-auto">
           <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl shadow-lg">
