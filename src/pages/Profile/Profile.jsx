@@ -16,7 +16,7 @@ const Profile = () => {
   
   if (!filterConnectedUser) return <div>No user logged in</div>;
 
-  const { profileImage, name, email, birthday, userPost, followers, following } = filterConnectedUser;
+  const { profileImage, name, email, birthday, userPost, friends, following } = filterConnectedUser;
 
 
   const handleShowPosts = () => setShowPosts(true);

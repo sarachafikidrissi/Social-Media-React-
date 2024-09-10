@@ -6,7 +6,7 @@ import { useAuth } from "../../context";
 import Navbar from "../../layout/navbar";
 
 const Groups = () => {
-  const {users, setUsers, groups, setGroups, joined, setJoined, enteredGroup, setEnteredGroup} = useAuth()
+  const {users, setUsers, groups, setGroups, joined, setJoined, enteredGroup, setEnteredGroup, addedGroup, setAddedGroup} = useAuth()
   let filterConnectedUser = users.filter((e) => e.isLoggedIn == true);
 
   const navigate = useNavigate()
