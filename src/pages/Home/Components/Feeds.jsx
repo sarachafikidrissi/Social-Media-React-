@@ -137,10 +137,17 @@ const Feeds = () => {
   // Remove Post
   const removePost = (index) => {
     console.log("Remove post for index:", index);
-    const newTasks = [...tasks];
-    newTasks.splice(index, 1);
-    setTasks(newTasks);
+    let newTab = [...users]
+    let userIndex = newTab.findIndex(e => e === loggedInUser)
+    console.log(newTab[userIndex].userPost[index]);
+    newTab[userIndex].userPost.splice(index, 1)
+    setUsers(newTab)
+    // const newTasks = [...loggedInUser.userPost];
+    // console.log(newTasks);
+    // newTasks.splice(index, 1);
+    // setTasks(newTasks);
   };
+  // console.log(loggedInUser);
 
   //* friends Posts
 
@@ -271,7 +278,6 @@ const Feeds = () => {
 
       <div className="w-[90%]">
         {/* user posts and friends posts */}
-
         {loggedInUser && (
           <>
             {/* Display logged-in user's posts */}
@@ -370,10 +376,7 @@ const Feeds = () => {
                     key={`friend-${index}`}
                     className="p-4 bg-white mt-4 rounded-lg shadow-md relative"
                   >
-                    <FaTrash
-                      onClick={() => removePost(index)}
-                      className="absolute right-4 text-xl text-pink"
-                    />
+                  
                     <div className="flex items-center mb-4">
                       <img
                         className="w-10 h-10 rounded-full"

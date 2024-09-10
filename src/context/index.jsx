@@ -132,6 +132,7 @@ export const AuthProvider = ({ children }) => {
 
   const [image, setImage] = useState("");
   const [posts, setPosts] = useState([]);
+  console.log(posts);
 
 
   //! friends posts
