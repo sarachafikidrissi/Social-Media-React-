@@ -1,19 +1,14 @@
-import React, { useState } from 'react';
-import Feeds from './Components/Feeds';
-import LeftSideBar from './Components/LeftSideBar';
-import RightSideBar from './Components/RightSideBar';
-import Navbar from '../../layout/navbar';
-import { useAuth } from '../../context';
-import { FaBars } from 'react-icons/fa'; 
+import React from 'react'
+import Feeds from './Components/Feeds'
+import LeftSideBar from './Components/LeftSideBar'
+import RightSideBar from './Components/RightSideBar'
+import Navbar from '../../layout/navbar'
+import { useAuth } from '../../context'
 
 const Home = () => {
-  const logedUser = useAuth();
-  const [isSidebarOpen, setIsSidebarOpen ] = useState(false);
+  const logedUser = useAuth()
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-  const { darkmode, setDarkmode } = useAuth();
+  
   return (
     <>
     <Navbar/>
@@ -23,7 +18,7 @@ const Home = () => {
       <RightSideBar />
     </div>
     </>
-  );
+  )
 }
 
-export default Home;
+export default Home
