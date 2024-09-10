@@ -14,7 +14,7 @@ const Profile = () => {
   
   if (!filterConnectedUser) return <div>No user logged in</div>;
 
-  const { profileImage, name, email, birthday, userPost, followers, following } = filterConnectedUser;
+  const { profileImage, name, email, birthday, userPost, friends, following } = filterConnectedUser;
 
 
   const handleShowPosts = () => setShowPosts(true);
@@ -50,7 +50,7 @@ const Profile = () => {
                   </h1>
                   <div className='flex gap-10 text-1xl '>
                     <h1> <span className='font-bold'>{userPost ? userPost.length : 0} </span>Posts</h1>
-                    <h1> <span className='font-bold'>{followers ? followers.length : 0}</span> Followers</h1>
+                    <h1> <span className='font-bold'>{friends ? friends.length : 0}</span> Followers</h1>
                     <h1> <span className='font-bold'>{following ? following.length : 0}</span> Following</h1>
                   </div>
                   <h1 className='text-2xl '>{name}</h1>

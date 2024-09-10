@@ -45,6 +45,7 @@ const LeftSideBar = () => {
       <div className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#ce629f] text-white p-2 rounded-full'><FiMessageSquare /></div> <h2>Messages</h2></div>
       <div onClick={() => {navigate('/myfavorite')}} className='flex justify-start items-center  gap-3   cursor-pointer '><div className='bg-[#e8a9ce] text-white p-2 rounded-full'><CiBookmark  /> </div><h2>My Favorites</h2></div>
       <div onClick={() => {navigate('/groups')}}  className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#a675be] text-white p-2 rounded-full'><FaUsers /> </div><h2>Groupes</h2></div>
+      <div onClick={() => {navigate('/create-group')}} className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#7a5e81] text-white p-2 rounded-full'><CiSettings /> </div> <h2>Add a Group</h2></div>
       <div onClick={() => {navigate('/setting')}} className='flex justify-start items-center  gap-3   cursor-pointer'><div className='bg-[#b58fbf] text-white p-2 rounded-full'><CiSettings /> </div> <h2>Settings</h2></div>
       </div>
       
