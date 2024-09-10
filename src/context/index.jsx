@@ -124,10 +124,19 @@ export const AuthProvider = ({ children }) => {
 
   const [suggestedfriends, setSuggestedFriends] = useState([])
 
+  //!posts group data
+
+  const [groupPosts, setGroupPosts] = useState([]);
+
   // const { logedUser } = filterConnectedUser;
 
   const [image, setImage] = useState("");
   const [posts, setPosts] = useState([]);
+
+
+  //! friends posts
+
+  const [friendsPost, setFriendsPost] = useState([])
 
   const addUser = (name, email, birthday, gender, password, username) => {
     setUsers((prevUsers) => [
@@ -185,7 +194,7 @@ export const AuthProvider = ({ children }) => {
         setCoverImage,
         groups,
         setGroups,
-        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks, suggestedfriends, setSuggestedFriends
+        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks, suggestedfriends, setSuggestedFriends, groupPosts, setGroupPosts, friendsPost, setFriendsPost
       }}
     >
       {children}
