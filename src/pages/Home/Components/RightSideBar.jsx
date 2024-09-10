@@ -138,7 +138,7 @@ otherUsers.forEach(e => {
 
 
   return (
-    <div className=" p-2 flex flex-col gap-y-4">
+    <div className="w-[25vw] p-2 flex flex-col gap-y-4">
 
       {/* Stroy */}
 
@@ -207,7 +207,7 @@ otherUsers.forEach(e => {
                     {e.name.charAt(0).toUpperCase() + e.name.slice(1)}
                   </span>
                 </div>
-                <div className="flex justify-around pt-5">
+                <div className="flex justify-between pt-5">
                   <button onClick={() => {handlFollow(index)} } className="bg-btnColor hover:bg-hoverBtn py-2 px-10 rounded-md text-white ">
                     Follow
                   </button>
