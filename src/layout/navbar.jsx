@@ -8,7 +8,7 @@ import { MdOutlineEdit } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 
 const Navbar = () => {
-  const [darkmode, setDarkmode] = useState(false)
+    const { darkmode, setDarkmode } = useAuth(); 
 
     const { users, setUsers } = useAuth();  
     let connectedUser = useParams();
