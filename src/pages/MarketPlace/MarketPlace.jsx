@@ -5,6 +5,7 @@ import { CiSearch } from "react-icons/ci";
 import Modal from 'react-modal';
 import { IoMdAdd } from "react-icons/io";
 import Navbar from '../../layout/navbar';
+import { useAuth } from '../../context';
 
 const MarketPlace = () => {
   const [selectedCategory, setSelectedCategory] = useState('vehicle');
@@ -114,14 +115,13 @@ const MarketPlace = () => {
   const AfficherModalInfo = (item) => {
     setSelectedItem(item);
   };
-
   return (
     <>
     <Navbar />
-    <div className="flex gap-x-5  w-[100%]">
+    <div className={`flex gap-x-5  w-[100%]  ${darkmode && "bg-[#242424]"}`}>
       <div className='w-[25%] pt-8'>
         <LeftSideBar />
-        <div className='flex justify-start items-center text-2xl gap-3  cursor-pointer ps-10 pt-5'><div className='bg-gradient-to-t from-[#c17d7d] to-[#ad3e58] text-white p-2 rounded-full'><IoMdAdd className='' onClick={AfficherModal} /></div>  <button className='text-slateGray text-2xl hover:text-[#ae385e] hover:font-bold'onClick={AfficherModal} >Add Article</button></div >
+        <div className={`flex justify-start items-center text-2xl gap-3  cursor-pointer ps-10 pt-5`}><div className={` p-2 rounded-full ${darkmode ? 'bg-white text-black':'bg-gradient-to-t from-[#c17d7d] to-[#ad3e58] text-white'}`}><IoMdAdd  onClick={AfficherModal} /></div>  <button className={` text-2xl  hover:font-bold ${darkmode ? 'text-[#fff]':'text-slateGray hover:text-[#ae385e]'}`}onClick={AfficherModal} >Add Article</button></div >
       
       </div>
       <div className='flex flex-col pb-8 w-[85%] justify-center items-center gap-10'>
@@ -134,7 +134,7 @@ const MarketPlace = () => {
             placeholder='Search products'value={searchCategory} onChange={handleSearch}/>
         </div>    
         <div className='rounded-3xl '>
-          <button className='bg-btnColor hover:bg-hoverBtn text-white px-9 py-2 text-xl rounded-2xl font-semibold  ' 
+          <button className={`bg-btnColor hover:bg-hoverBtn text-white px-9 py-2 text-xl rounded-2xl font-semibold `} 
           onClick={AfficherModal}>Add Article</button>
         </div>  
           </div>
@@ -160,14 +160,14 @@ const MarketPlace = () => {
             onClick={() => activeCategory('beauty')}
           >Beauty</button>
         </div>
-        <div className="grid grid-cols-3  gap-2 py-8 w-[100%]">
+        <div className={`grid grid-cols-3  gap-2 py-8 w-[100%]`} >
           {arrayCategory[selectedCategory].map((item, index) => (
-            <div key={index} className=" py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3">
+            <div key={index} className={`py-3 px-5 rounded-2xl shadow-2xl w-[85%] flex flex-col gap-3 ${darkmode && "bg-[#5a5858de]"}`} >
              <div className='h-[30vh]   border-b-2  border-[#ff8db1a6]'><img src={item.imgSrc} alt={item.title} className='w-[90%] h-[100%]' /></div> 
-              <div className='w-[100%] h-[15%] '><h3 className="text-xl font-bold    text-[#402B3A]">{item.title}</h3></div>
+              <div className='w-[100%] h-[15%] '><h3 className={`text-xl font-bold  ${darkmode ? 'text-white':'text-[#402B3A]'}`}>{item.title}</h3></div>
               <div className=" font-bold  w-[100%]  text-[#921A40] text-lg ">{item.price} DH</div>
               <div className='flex justify-center'>
-                <button className='bg-gradient-to-b from-[#ce629f]  to-[#fc819e75] px-4 py-2 rounded-xl text-black text-xl font-semibold hover:text-[#571f39] mt-2' onClick={() => AfficherModalInfo(item)}>
+                <button className={`px-4 py-2 rounded-xl text-xl font-semibold hover:text-[#571f39] mt-2 ${darkmode ? 'bg-white text-black':'text-black bg-gradient-to-b from-[#ce629f]  to-[#fc819e75]'}`} onClick={() => AfficherModalInfo(item)}>
                   More information
                 </button>
 

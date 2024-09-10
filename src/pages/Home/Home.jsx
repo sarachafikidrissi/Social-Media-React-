@@ -12,7 +12,7 @@ const Home = () => {
   return (
     <>
     <Navbar/>
-    <div className={`flex gap-x-2 h-[100%] ${darkmode && "bg-[#242424]"}`}>
+    <div className={`flex gap-x-2 h-[100vh] ${darkmode && "bg-[#242424]"}`}>
       <LeftSideBar />
       <Feeds />
       <RightSideBar />
