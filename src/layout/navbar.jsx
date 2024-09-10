@@ -8,9 +8,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 
 const Navbar = () => {
-  const [darkmode, setDarkmode] = useState(false)
 
-    const { users, setUsers } = useAuth();  
+    const { users, setUsers, darkmode, setDarkmode } = useAuth();  
     let connectedUser = useParams();
     let newUsername = connectedUser["username"];
     let user = users.find((user)=>user.username== newUsername )
@@ -32,8 +31,8 @@ const handleLogout = () => {
 
 
     return (
-        <div className='navbar flex justify-between flex-row  px-5 '>
-      <div className='leftNav flex gap-52'>
+        <div className={`navbar flex justify-between flex-row  px-5 ${darkmode && "bg-[#242424]" }`}>
+      <div className={`leftNav flex gap-52   `}>
         <img width={70} src={logo} />
         <div class="relative  items-center hidden md:inline-flex">
         <input type="text" placeholder="Search" class="border border-gray-200 rounded-md py-1 px-2 w-[35vw]"/>
@@ -46,11 +45,11 @@ const handleLogout = () => {
       </div>
       
       
-      <div class="group relative cursor-pointer py-2">
+      <div class="group relative cursor-pointer py-2 ">
 
       <div class="flex items-center justify-between space-x-5 px-4">
 
-      <h3 className='text-black text-xl font-semibold'>{userr.username}</h3>   
+      <h3 className={`text-black text-xl font-semibold ${darkmode && "text-[#fff]" }`}>{userr.username}</h3>   
           <img  src={userr.profileImage} className='menu-hover rounded-full border-2 border-btnColor  w-[50px] h-[50px] '/>
           <button onClick={() => { setDarkmode(!darkmode) }} className="bg-btnColor px-[1.3vw] py-[12px] text-white text-lg font-semi-bold rounded-full border-none">{darkmode ? <FaSun /> : <FaMoon />}</button>
       </div>
