@@ -94,71 +94,80 @@ const SignUp = () => {
   };
 
   return (
-    <div className='h-screen bg-hero-pattern bg-left-bottom flex items-center justify-center'>
-    <div className="relative rounded-lg shadow-lg w-full max-w-4xl  h-[80vh] overflow-hidden flex ">
-      <div className="absolute top-0 right-0 h-full w-1/2 flex items-center justify-center  animate-slideInRight ">
-        <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center">
-          <h1 className="text-3xl font-bold m-0">Sign Up</h1>
-          <div className="my-5 flex space-x-2">
-            <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 text-xl hover:bg-[#C75B7A]">
-              <FaFacebookF className="text-gray-700 hover:text-white" />
-            </a>
-            <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 text-xl hover:bg-[#C75B7A]">
-              <FaGoogle className="text-gray-700 hover:text-white" />
-            </a>
-            <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 text-xl hover:bg-[#C75B7A]">
-              <FaLinkedinIn className="text-gray-700 hover:text-white" />
-            </a>
-          </div>
-          <span className="text-md text-[#3D0C11]">or use your account</span>
-          <input type="text"placeholder="Name"className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
-            value={name}onChange={(e) => setName(e.target.value)}
-          />
-          <input type="text"
-            placeholder="UserName"className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
-            value={userName}onChange={(e) => setUserName(name + "123")}
-          />
-          <input type="email"
-            placeholder="Email"className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
-            value={email}onChange={(e) => setEmail(e.target.value)}
-          />
-          <input type="date"
-            placeholder="Birthday"
-            className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
-            value={birthday}onChange={(e) => setBirthday(e.target.value)}
-          />
-          <select value={gender}onChange={(e) => setGender(e.target.value)}
-            className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
-          >
-            <option value="" disabled>Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-          </select>
-          <input
-            type="password"placeholder="Password"
-            className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
-            value={password}onChange={(e) => setPassword(e.target.value)}
-          />
-          <a href="#" className="text-blue-500 text-md py-2">Forgot your password?</a>
-          <button type="button"
-            onClick={handleSignUpClick}
-            className="rounded-full bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-xl font-bold py-3 px-10 mt-2">
-            Sign Up
-          </button>
-        </form>
-      </div>
-      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center  bg-gradient-to-l from-[#d3b7e0] via-[#b58fbf]  to-[#a675be] animate-slideInLeft ">
-        <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
-          <h1 className="text-3xl font-bold text-white">Welcome</h1>
-          <p className="text-xl  text-white">Please insert your information to join our platform</p>
-          <button
-            className="border-none font-serif  rounded-full py-2 px-8 text-2xl font-semi-bold bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white"
-            onClick={() => navigate('/login')}>
-            Login
-          </button>
+    <div className='h-screen flex items-center justify-center bg-hero-pattern bg-left-bottom md:bg-none'>
+      <div className="relative rounded-lg shadow-lg w-full max-w-4xl md:h-[80vh] h-screen md:overflow-hidden flex flex-col md:flex-row">
+        <div className="absolute md:top-0 md:right-0 h-full md:w-1/2 w-full md:flex items-center justify-center md:animate-slideInRight bg-white">
+          <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center">
+            <h1 className="text-3xl font-bold m-0">Sign Up</h1>
+            <div className="my-5 flex space-x-2">
+              <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 text-xl hover:bg-[#C75B7A]">
+                <FaFacebookF className="text-gray-700 hover:text-white" />
+              </a>
+              <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 text-xl hover:bg-[#C75B7A]">
+                <FaGoogle className="text-gray-700 hover:text-white" />
+              </a>
+              <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 text-xl hover:bg-[#C75B7A]">
+                <FaLinkedinIn className="text-gray-700 hover:text-white" />
+              </a>
+            </div>
+            <span className="text-md text-[#3D0C11]">or use your account</span>
+            <input type="text" placeholder="Name" className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
+              value={name} onChange={(e) => setName(e.target.value)}
+            />
+            <input type="text"
+              placeholder="UserName" className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
+              value={userName} onChange={(e) => setUserName(name + "123")}
+            />
+            <input type="email"
+              placeholder="Email" className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
+              value={email} onChange={(e) => setEmail(e.target.value)}
+            />
+            <input type="date"
+              placeholder="Birthday"
+              className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
+              value={birthday} onChange={(e) => setBirthday(e.target.value)}
+            />
+            <select value={gender} onChange={(e) => setGender(e.target.value)}
+              className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
+            >
+              <option value="" disabled>Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+            </select>
+            <input
+              type="password" placeholder="Password"
+              className="bg-gray-200 border-none p-3 my-2 w-full rounded-xl ps-3"
+              value={password} onChange={(e) => setPassword(e.target.value)}
+            />
+            <a href="#" className="text-blue-500 text-md py-2">Forgot your password?</a>
+           <div className='flex gap-x-4'>
+           <button type="button"
+              onClick={handleSignUpClick}
+              className="rounded-full bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-xl font-bold py-3 px-10 mt-2">
+              Sign Up
+            </button>
+            <button type="button"
+              onClick={() => navigate('/login')}
+              className="lg:hidden rounded-full bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-xl font-bold py-3 px-10 mt-2">
+              Log in
+            </button>
+           </div>
+          </form>
         </div>
-      </div>
 
+        <div className="hidden md:flex absolute top-0 left-0 h-full w-1/2 items-center justify-center bg-gradient-to-l from-[#d3b7e0] via-[#b58fbf]  to-[#a675be] animate-slideInLeft">
+          <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
+            <h1 className="text-3xl font-bold text-white">Welcome</h1>
+            <p className="text-xl  text-white">Please insert your information to join our platform</p>
+            <button
+              className="border-none font-serif  rounded-full py-2 px-8 text-2xl font-semi-bold bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white"
+              onClick={() => navigate('/login')}>
+              Login
+            </button>
+          </div>
+        </div>
+
+        
       {/* Modal dyal verefication */}
       <Modal
         isOpen={modalIsOpen}
@@ -255,7 +264,7 @@ const SignUp = () => {
           </button>
         </div>
       </Modal>
-    </div>
+      </div>
     </div>
   );
 };
