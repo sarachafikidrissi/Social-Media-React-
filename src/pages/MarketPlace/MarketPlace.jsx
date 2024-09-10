@@ -115,6 +115,7 @@ const MarketPlace = () => {
   const AfficherModalInfo = (item) => {
     setSelectedItem(item);
   };
+  const { darkmode, setDarkmode } = useAuth();  
   return (
     <>
     <Navbar />
