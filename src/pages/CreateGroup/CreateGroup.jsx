@@ -1,12 +1,21 @@
 import React, { useRef, useState } from 'react';
 import LeftSideBar from '../Home/Components/LeftSideBar';
+import { useAuth } from '../../context';
 
 const CreateGroup = () => {
+
+
+  
   const inputRef = useRef(null);
-  const [image, setImage] = useState("");
-  const [title, setTitle] = useState("");
+  const [imgGrp, setImgGrp] = useState("");
+  const [nameGrp, setNameGrp] = useState("");
   const [description, setDescription] = useState("");
   const [privacy, setPrivacy] = useState("Public");
+  const [id, setId] = useState(null)
+  
+  const {addedGroup, setAddedGroup, addGroup, users, groups, setGroups} = useAuth()
+  console.log(addedGroup);
+  let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
 
   const handleClickImg = () => {
     inputRef.current.click();
@@ -14,27 +23,48 @@ const CreateGroup = () => {
 
   const handleChangeImg = (event) => {
     const file = event.target.files[0];
-    setImage(file);
+    if (file) {
+      const imageUrl = URL.createObjectURL(file);
+      setImgGrp(imageUrl); 
+  }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("title", title);
+    formData.append("title", nameGrp);
     formData.append("description", description);
     formData.append("privacy", privacy);
-    formData.append("image", image);
+    formData.append("image", imgGrp);
 
     console.log({
-      title,
+      nameGrp,
       description,
       privacy,
-      image
+      imgGrp
     });
+
+    let admin = filterConnectedUser
+    let obj = {admin,nameGrp, description, privacy, imgGrp, id: Date.now()}
+    let newTab = [...groups]
+    newTab.push(obj)
+    setGroups(newTab)
+
+    setImgGrp("")
+    setDescription("")
+    setNameGrp("")
+    setPrivacy("public")
+    setId("")
+
+
+
+
 
     alert('Group created successfully!');
   };
+  console.log(groups);
+
 
   return (
     <div className=" min-h-screen p-10">
@@ -45,10 +75,10 @@ const CreateGroup = () => {
             <h2 className="text-xl font-bold mb-4">Create a New Group</h2>
 
             <div onClick={handleClickImg} className="relative  mx-auto mb-6 cursor-pointer">
-              {image ? (
+              {imgGrp ? (
                 <img
-                  className="w-[60vw] h-40 bg-cover"
-                  src={URL.createObjectURL(image)}
+                  className="w-[60vw] h-40 bg-cover object-cover"
+                  src={imgGrp}
                   alt="Group"
                 />
               ) : (
@@ -66,8 +96,8 @@ const CreateGroup = () => {
                   className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-400"
                   type="text"
                   placeholder="Enter group name"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  value={nameGrp}
+                  onChange={(e) => setNameGrp(e.target.value)}
                   required
                 />
               </div>

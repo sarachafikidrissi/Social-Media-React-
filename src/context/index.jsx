@@ -58,6 +58,11 @@ export const AuthProvider = ({ children }) => {
   ]);
 
 
+  //! added group 
+
+
+  const [addedGroup, setAddedGroup] = useState([])
+
   //! Group Data
   const [groups, setGroups] = useState([
     {
@@ -163,8 +168,8 @@ export const AuthProvider = ({ children }) => {
 
 
   const addGroup = (admin, nameGrp, imgGrp, members) => {
-    setGroups((prevUsers) => [
-      ...prevUsers,
+    setGroups((prevGroups) => [
+      ...prevGroups,
       {
         admin,
         nameGrp,
@@ -172,6 +177,10 @@ export const AuthProvider = ({ children }) => {
         members,
         joined: [],
         id: Date.now(),
+        description: "",
+        title: "",
+        privacy: "public"
+
       },
     ]);
   };
@@ -185,6 +194,7 @@ export const AuthProvider = ({ children }) => {
         users,
         setUsers,
         addUser,
+        addGroup,
         posts,
         setPosts,
         image,
@@ -195,7 +205,7 @@ export const AuthProvider = ({ children }) => {
         setCoverImage,
         groups,
         setGroups,
-        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks, suggestedfriends, setSuggestedFriends, groupPosts, setGroupPosts, friendsPost, setFriendsPost
+        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks, suggestedfriends, setSuggestedFriends, groupPosts, setGroupPosts, friendsPost, setFriendsPost, addedGroup, setAddedGroup
       }}
     >
       {children}
