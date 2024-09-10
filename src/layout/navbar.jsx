@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from "../../src/assets/images/logo_fw-removebg-preview.png"
+import logo from "../../src/assets/images/newLogo_black-removebg-preview.png"
 import { Link, useParams } from 'react-router-dom';
 import { FaMoon,  FaSun} from "react-icons/fa";
 import { useAuth } from '../context';
@@ -8,9 +8,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 
 const Navbar = () => {
-    const { darkmode, setDarkmode } = useAuth(); 
 
-    const { users, setUsers } = useAuth();  
+    const { users, setUsers, darkmode, setDarkmode } = useAuth();  
     let connectedUser = useParams();
     let newUsername = connectedUser["username"];
     let user = users.find((user)=>user.username== newUsername )
@@ -32,8 +31,8 @@ const handleLogout = () => {
 
 
     return (
-        <div className='navbar flex justify-between flex-row  px-5 '>
-      <div className='leftNav flex gap-52 ml-4 md:ml-0'>
+        <div className={`navbar flex justify-between flex-row  px-5 ${darkmode && "bg-[#242424]" }`}>
+      <div className={`leftNav flex gap-52   `}>
         <img width={70} src={logo} />
         <div class="relative  items-center hidden md:inline-flex">
         <input type="text" placeholder="Search" class="border border-gray-200 rounded-md py-1 px-2 w-[35vw]"/>
@@ -46,7 +45,7 @@ const handleLogout = () => {
       </div>
       
       
-      <div class="group relative cursor-pointer py-2">
+      <div class="group relative cursor-pointer py-2 ">
 
       <div class="flex items-center justify-between space-x-5 px-4">
 
