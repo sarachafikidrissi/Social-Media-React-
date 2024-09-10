@@ -44,15 +44,15 @@ const CreateGroup = () => {
           <form onSubmit={handleSubmit} className="bg-white p-6 rounded-xl ">
             <h2 className="text-xl font-bold mb-4">Create a New Group</h2>
 
-            <div onClick={handleClickImg} className="relative w-fit mx-auto mb-6 cursor-pointer">
+            <div onClick={handleClickImg} className="relative  mx-auto mb-6 cursor-pointer">
               {image ? (
                 <img
-                  className="w-40 h-40 rounded-full object-cover"
+                  className="w-[60vw] h-40 bg-cover"
                   src={URL.createObjectURL(image)}
                   alt="Group"
                 />
               ) : (
-                <div className="bg-gray-200 w-40 h-40 rounded-full flex items-center justify-center">
+                <div className="bg-gray-200 w-[60vw] h-40  flex items-center justify-center">
                   <span className="text-gray-500">Upload Image</span>
                 </div>
               )}
