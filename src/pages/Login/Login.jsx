@@ -33,11 +33,25 @@ const Login = () => {
   };
 
   return (
-    <div className=' flex items-center h-screen bg-hero-pattern bg-right-bottom'>
-    <div className="relative rounded-lg shadow-lg w-full max-w-4xl mx-auto h-[70%] overflow-hidden flex">
-      <div className="absolute top-0 right-0 h-full w-1/2 flex items-center justify-center animate-slideInRight ">
-        <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center">
-          <h1 className="text-3xl font-bold m-0">Login</h1>
+    <div className='flex min-h-screen items-center justify-center md:bg-hero-pattern bg-right-bottom'>
+      <div className="w-full max-w-4xl flex flex-col lg:flex-row">
+        {/* Left Section (Desktop Only) */}
+        <div className="hidden lg:flex flex-1 bg-gradient-to-l from-[#d3b7e0] via-[#b58fbf] to-[#a675be] p-12 text-center items-center justify-center">
+          <div className="flex flex-col items-center justify-center h-full">
+            <h1 className="text-3xl font-bold text-white mb-4">Welcome Back!</h1>
+            <p className="text-xl text-white mb-8">To keep connected with us please login with your personal info</p>
+            <button
+              className="border-none font-serif text-white rounded-full py-2 px-8 text-2xl font-semi-bold bg-gradient-to-t from-[#F4D9D0] to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB]"
+              onClick={() => navigate('/sign-up')}
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+
+        {/* Right Section (Desktop and Mobile) */}
+        <div className="flex-1 bg-white p-12 flex flex-col items-center justify-center md:h-screen lg:h-auto">
+          <h1 className="text-3xl font-bold mb-6">Login</h1>
           <div className="my-5 flex space-x-2">
             <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 hover:bg-[#f3c1db]">
               <FaFacebookF className="text-gray-700" />
@@ -49,44 +63,42 @@ const Login = () => {
               <FaLinkedinIn className="text-gray-700" />
             </a>
           </div>
-          <span className="text-sm">or use your account</span>
+          <span className="text-sm mb-4">or use your account</span>
           <input
             type="text"
             placeholder="UserName"
             value={loginUsername}
             onChange={(e) => setLoginusername(e.target.value)}
-            className="bg-gray-200 border-none p-3 my-2 w-full"
+            className="bg-gray-200 border-none p-3 my-2 w-full max-w-sm"
           />
           <input
             type="password"
             placeholder="Password"
             value={loginpassword}
             onChange={(e) => setLoginPassword(e.target.value)}
-            className="bg-gray-200 border-none p-3 my-2 w-full"
+            className="bg-gray-200 border-none p-3 my-2 w-full max-w-sm"
           />
           <a href="#" className="text-blue-500 text-lg py-2">Forgot your password?</a>
-          <button
+         <div className='flex gap-x-4'>
+         <button
             type="button"
             onClick={check}
-            className="rounded-full border bg-gradient-to-b from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-lg font-bold py-3 px-10"
+            className="rounded-full border bg-gradient-to-b from-[#F4D9D0] to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-lg font-bold py-3 px-10 mt-4"
           >
             Login
           </button>
-        </form>
-      </div>
-      <div className="absolute top-0 left-0 h-full w-1/2 flex items-center justify-center bg-gradient-to-l from-[#d3b7e0] via-[#b58fbf]  to-[#a675be] animate-slideInLeft">
-        <div className="absolute flex flex-col items-center justify-center gap-y-8 p-12 text-center">
-          <h1 className="text-3xl font-bold text-white">Welcome Back!</h1>
-          <p className="text-xl  text-white">To keep connected with us please login with your personal info</p>
           <button
-            className="border-none font-serif  text-white rounded-full py-2 px-8 text-2xl font-semi-bold bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB]"
-            onClick={() => navigate('/sign-up')}>
+            type="button"
+            onClick={() => navigate('/sign-up')}
+            className="md:hidden rounded-full border bg-gradient-to-b from-[#F4D9D0] to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-lg font-bold py-3 px-10 mt-4"
+          >
             Sign Up
           </button>
+         </div>
         </div>
       </div>
 
-      {/* Modal inputs khawin */}
+      {/* Modal for Empty Fields */}
       <Modal
         isOpen={emptyFieldsModalIsOpen}
         onRequestClose={() => setEmptyFieldsModalIsOpen(false)}
@@ -99,14 +111,14 @@ const Login = () => {
           <p className="text-lg">Please fill in all required fields before proceeding.</p>
           <button
             onClick={() => setEmptyFieldsModalIsOpen(false)}
-            className="rounded-full border  bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-sm font-bold py-3 px-6 mt-4"
+            className="rounded-full border bg-gradient-to-t from-[#F4D9D0] to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-sm font-bold py-3 px-6 mt-4"
           >
             Close
           </button>
         </div>
       </Modal>
 
-      {/* Modal dyal kolshi nade */}
+      {/* Modal for Success */}
       <Modal
         isOpen={successModalIsOpen}
         onRequestClose={() => setSuccessModalIsOpen(false)}
@@ -122,7 +134,7 @@ const Login = () => {
               setSuccessModalIsOpen(false);
               navigate(`/${loginUsername}`);
             }}
-            className="rounded-full border  bg-gradient-to-t from-[#F4D9D0]  to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-sm font-bold py-3 px-6 mt-4"
+            className="rounded-full border bg-gradient-to-t from-[#F4D9D0] to-[#a675be] hover:bg-gradient-to-l hover:from-[#a675be] hover:to-[#D9ABAB] text-white text-sm font-bold py-3 px-6 mt-4"
           >
             Continue
           </button>
@@ -148,7 +160,6 @@ const Login = () => {
           </button>
         </div>
       </Modal>
-    </div>
     </div>
   );
 };
