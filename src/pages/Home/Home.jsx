@@ -8,11 +8,11 @@ import { useAuth } from '../../context'
 const Home = () => {
   const logedUser = useAuth()
 
-  
+  const { darkmode, setDarkmode } = useAuth();  
   return (
     <>
     <Navbar/>
-    <div className='flex gap-x-2'>
+    <div className={`flex gap-x-2 h-[100%] ${darkmode && "bg-[#242424]"}`}>
       <LeftSideBar />
       <Feeds />
       <RightSideBar />

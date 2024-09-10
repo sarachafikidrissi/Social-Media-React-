@@ -49,9 +49,14 @@ const handleLogout = () => {
 
       <div class="flex items-center justify-between space-x-5 px-4">
 
-      <h3 className={`text-black text-xl font-semibold ${darkmode && "text-[#fff]" }`}>{userr.username}</h3>   
+      <h3 className={` text-xl font-semibold ${darkmode ? 'text-[#fff]' :'text-black' }`}>{userr.username}</h3>   
           <img  src={userr.profileImage} className='menu-hover rounded-full border-2 border-btnColor  w-[50px] h-[50px] '/>
-          <button onClick={() => { setDarkmode(!darkmode) }} className="bg-btnColor px-[1.3vw] py-[12px] text-white text-lg font-semi-bold rounded-full border-none">{darkmode ? <FaSun /> : <FaMoon />}</button>
+          <button 
+  onClick={() => { setDarkmode(!darkmode) }} 
+  className={`px-[1.3vw] py-[12px]  text-lg font-semi-bold rounded-full border-none ${darkmode ? 'bg-white text-[#000]'  :'bg-btnColor text-white' }`}
+>
+  {darkmode ? <FaSun  /> : <FaMoon />}
+</button>
       </div>
      
 
