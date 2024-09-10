@@ -134,7 +134,7 @@ export const AuthProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   console.log(posts);
 
-
+  const [darkmode, setDarkmode] = useState(false)
   //! friends posts
 
   const [friendsPost, setFriendsPost] = useState([])
