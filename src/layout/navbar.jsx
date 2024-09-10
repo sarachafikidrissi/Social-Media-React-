@@ -15,46 +15,38 @@ const Navbar = () => {
     let user = users.find((user)=>user.username== newUsername )
     let userr = users.find((user)=>user.isLoggedIn== true )
 
-  const handleLogout = () => {
-    if (user) {
-      let newTab = [...users];
-      let userIn = newTab.find(e => e.isLoggedIn === true);
-      userIn.isLoggedIn = false;
-      setUsers(newTab);
-    }
-  };
-
-
-
-
-
+    const handleLogout = () => {
+      if (user) {
+        let newTab = [...users];
+        let userIn = newTab.find(e => e.isLoggedIn === true);
+        userIn.isLoggedIn = false;
+        setUsers(newTab);
+      }
+    };
 
     return (
-        <div className={`navbar flex justify-between flex-row  px-5 ${darkmode && "bg-[#242424]" }`}>
-      <div className={`leftNav flex gap-52   `}>
-        <img width={70} src={logo} />
-        <div class="relative  items-center hidden md:inline-flex">
-        <input type="text" placeholder="Search" class="border border-gray-200 rounded-md py-1 px-2 w-[35vw]"/>
-        <svg class="absolute right-2 h-6 w-6 text-gray-400 hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"
-              d="M21 21l-6-6m2-5a7 7 0 1114 0 7 7 0 0114 0z" />
-          </svg>
+      <div className={`navbar flex justify-between flex-row px-5 ${darkmode && "bg-[#242424]"}`}>
+        <div className={`leftNav flex gap-52 ml-4 md:ml-0`}> {/* Margin-left for mobile, removed on larger screens */}
+          <img width={70} src={logo} />
+          <div class="relative items-center hidden md:inline-flex">
+            <input type="text" placeholder="Search" class="border border-gray-200 rounded-md py-1 px-2 w-[35vw]" />
+            <svg class="absolute right-2 h-6 w-6 text-gray-400 hover:text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 1114 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="group relative cursor-pointer py-2">
+          <div class="flex items-center justify-between space-x-5 px-4">
+            <h3 className={`text-black text-xl font-semibold ${darkmode && "text-[#fff]"}`}>{userr.username}</h3>
+            <img src={userr.profileImage} className='menu-hover rounded-full border-2 border-btnColor w-[50px] h-[50px]' />
+            <button onClick={() => { setDarkmode(!darkmode) }} className="bg-btnColor px-[1.3vw] py-[12px] text-white text-lg font-semi-bold rounded-full border-none">
+              {darkmode ? <FaSun /> : <FaMoon />}
+            </button>
+          </div>
         </div>
       </div>
-      
-      
-      <div class="group relative cursor-pointer py-2 ">
-
-      <div class="flex items-center justify-between space-x-5 px-4">
-
-      <h3 className={`text-black text-xl font-semibold ${darkmode && "text-[#fff]" }`}>{userr.username}</h3>   
-          <img  src={userr.profileImage} className='menu-hover rounded-full border-2 border-btnColor  w-[50px] h-[50px] '/>
-          <button onClick={() => { setDarkmode(!darkmode) }} className="bg-btnColor px-[1.3vw] py-[12px] text-white text-lg font-semi-bold rounded-full border-none">{darkmode ? <FaSun /> : <FaMoon />}</button>
-      </div>
-    </div>
-    </div>
-  );
+    );
 };
 
 export default Navbar;
