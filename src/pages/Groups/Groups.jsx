@@ -27,15 +27,15 @@ const Groups = () => {
     setGroups(newGroupArr)
   };
 
-
+  const { darkmode, setDarkmode } = useAuth();  
   return (
     <>
     <Navbar />
-    <div className="w-[100%] flex flex-row gap-8 ">
+    <div className={`w-[100%] min-h-[100vh] flex flex-row gap-8 ${darkmode && "bg-[#242424]"}`}>
       <div className="w-[25%] flex flex-col ">
         <LeftSideBar />
         <div className="border-t-2 p-3 flex flex-col gap-y-5 mt-4 ">
-          <h1 className="pt-1 text-2xl text-[#3b1137] font-bold ps-5 text-center ">
+          <h1 className={`pt-1 text-2xl  font-bold ps-5 text-center ${darkmode ? 'text-white':'text-[#3b1137]'}`}>
             Joined Groups
           </h1>
           <div className="flex flex-col gap-y-4 cursor-pointer  ">
@@ -60,25 +60,23 @@ const Groups = () => {
         {groups.map((group) => (
           <div
             key={group.id}
-            className="max-w-sm h-[50vh] flex flex-col justify-between border border-gray-200 rounded-lg shadow "
+            className={`max-w-sm h-[50vh] flex flex-col justify-between border border-gray-200 rounded-lg shadow ${darkmode && "bg-[#5a5858de]"}`}
           >
             <div className=" h-[60%] ">
-              <img
-                className="rounded-t-lg h-full bg-cover w-full"
-                src={group.imgGrp}
-                alt={group.nameGrp}
+              <img className="rounded-t-lg h-full bg-cover w-full"
+                src={group.imgGrp} alt={group.nameGrp}
               />
             </div>
             <div className="p-5 ">
               <div>
-                <h1 className="text-2xl font-bold tracking-tight text-[#921A40] ">
+                <h1 className={`text-2xl font-bold tracking-tight ${darkmode ? "text-[#fff]":"text-[#921A40]"}`}>
                   {group.nameGrp}
                 </h1>
               </div>
 
               <div className="">
                 <p className="   text-xl">
-                  <span className="font-bold text-[#C75B7A]"> members:</span>{" "}
+                  <span className={`font-bold  ${darkmode ? 'text-white':'text-[#C75B7A]'}`}> members:</span>{" "}
                   {group.membres}
                 </p>
               </div>
@@ -86,10 +84,8 @@ const Groups = () => {
                 {" "}
                 <button
                   onClick={() => {
-                    handleJoin(group.id);
-                  }}
-                  className="inline-flex items-center px-12 py-2 text-xl font-semibold text-center bg-hoverBtn hover:bg-btnColor rounded-lg  text-white  "
-                >
+                    handleJoin(group.id);}}
+                  className={`inline-flex items-center px-12 py-2 text-xl font-semibold text-center  rounded-lg  text-white ${darkmode ? 'bg-black text-white' :'bg-hoverBtn hover:bg-btnColor'}`}>
                   Join
                 </button>
               </div>

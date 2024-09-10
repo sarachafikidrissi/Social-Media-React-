@@ -8,6 +8,7 @@ import { FcLike } from 'react-icons/fc';
 import { IoBookmark } from 'react-icons/io5';
 import { MdClose } from 'react-icons/md';
 import Navbar from '../../layout/navbar';
+import { useAuth } from '../../context';
 
 const WatchVideo = () => {
   const [searchcat, setSearchcat] = useState('');
@@ -102,15 +103,16 @@ const WatchVideo = () => {
   useEffect(() => {
     commentsEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [comments]);
+  const { darkmode, setDarkmode } = useAuth();  
 
   return (
     <>
   <Navbar />
-    <div className='flex flex-row gap-10 pt-6'>
+    <div className={`flex flex-row gap-10 pt-6 ${darkmode && "bg-[#242424]"}`}>
       <div>
         <LeftSideBar />
       </div>
-      <div className='flex flex-col w-[80%] '>
+      <div className={`flex flex-col w-[80%] ${darkmode && "bg-[#242424]"}`}>
         <div className='relative'>
           <CiSearch className="text-2xl font-bold text-black absolute top-[50%] left-4 translate-y-[-50%]" />
           <input type="text"
@@ -127,9 +129,9 @@ const WatchVideo = () => {
                 <div key={video.id} className="w-full h-auto cursor-pointer " onClick={() => openModal(video)}>
                   <video src={video.video} className="w-full h-auto mb-3 rounded-xl mt-4 " controls />
                   <div className="flex  gap-2 ps-3">
-                    <img src={video.imgUser} alt={video.nameUser} className="w-10 h-10 rounded-full" />
+                    <img src={video.imgUser} alt={video.nameUser} className={`w-10 h-10 rounded-full `} />
                     <div className='flex flex-col ps-2'>
-                      <p className="text-lg font-semibold">{video.nameUser}</p>
+                      <p className={`text-lg font-semibold ${darkmode && "text-white"}`}>{video.nameUser}</p>
                     <p className='  text-slateGray font-light text-sm'> Casablanca,Anfa</p>
                     </div>
                     
@@ -139,7 +141,7 @@ const WatchVideo = () => {
             </div>
             ) : (
               <div>
-                <h2 className='font-bold text-2xl mb-4 text-[#772c4f]'>Search Results</h2>
+                <h2 className={`font-bold text-2xl mb-4 ${darkmode ? 'text-white':'text-[#772c4f]'}`}>Search Results</h2>
                 {filteredVideos.length > 0 ? (
                   <div className='grid grid-cols-2 gap-4'>
                     {filteredVideos.map(video => (
@@ -148,7 +150,7 @@ const WatchVideo = () => {
                         <div className="flex  gap-2">
                           <img src={video.imgUser} alt={video.nameUser} className="w-10 h-10 rounded-full" />
                           <div className='flex flex-col ps-2'>
-                      <p className="text-lg font-semibold">{video.nameUser}</p>
+                      <p className={`text-lg font-semibold ${darkmode && 'text-white'}`}>{video.nameUser}</p>
                     <p className='  text-slateGray font-light text-sm'> Casablanca,Anfa</p>
                     </div>
                         </div>
@@ -157,7 +159,7 @@ const WatchVideo = () => {
                    
                   </div>
                 ) : (
-                  <p className="text-center text-2xl text-red-700">No videos found</p>
+                  <p className={`text-center text-2xl text-red-700 ${darkmode && "text-white"}`}>No videos found</p>
                 )}
               </div>
             )}
@@ -165,14 +167,14 @@ const WatchVideo = () => {
 
           {searchcat !== '' && (
             <div className='w-[35%] flex flex-col'>
-              <h2 className='font-bold text-2xl mb-4 text-[#772c4f]'>List of other videos</h2>
+              <h2 className={`font-bold text-2xl mb-4 ${darkmode ? 'text-white':'text-[#772c4f]'}`}>List of other videos</h2>
               {arraywatch.map((video) => (
                 !filteredVideos.includes(video) && (
                   <div key={video.id} className='mb-4 cursor-pointer ' onClick={() => openModal(video)}>
                     <div className='flex items-start mb-3'>
                       <img src={video.imgUser} alt={video.nameUser} className='w-12 h-12 rounded-full' />
-                      <div>
-                        <p className='ml-1 text-lg font-bold'>{video.nameUser}</p>
+                      <div className='ps-2'>
+                        <p className={`ml-1 text-lg font-bold ${darkmode && 'text-[#fff]'}`}>{video.nameUser}</p>
                         <p className=' text-slateGray font-light text-sm'> Casablanca,Anfa</p>
                       </div>
                     </div>
@@ -187,7 +189,7 @@ const WatchVideo = () => {
 
       {selectedVideo && (
         <div className='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50'>
-          <div className='bg-white w-[80vw] h-[80vh] p-4 relative flex'>
+          <div className={` w-[80vw] h-[80vh] p-4 relative flex ${darkmode ? 'bg-[#414141cb]':'bg-white'}`}>
             <div className='w-[60%] h-[80%]'>
               <video src={selectedVideo.video} className="w-full h-full" controls />
               <div className='flex justify-between mt-4'>
@@ -198,9 +200,9 @@ const WatchVideo = () => {
                       <div className='bg-yellow-400 rounded-full px-1 py-1'><CiFaceSmile className='text-white' /></div>
                       <div className='bg-red-700 px-1 py-1 rounded-full'><CiHeart className="text-white font-bold" /></div>
                     </div>
-                    <div className='ps-2 text-lg '>{selectedVideo.likes}</div>
+                    <div className={`ps-2 text-lg ${darkmode && "text-white"}` }>{selectedVideo.likes}</div>
                   </div>
-                  <div className={`flex flex-row items-center gap-3 text-lg`} onClick={() => handleLike(selectedVideo.id)}>
+                  <div className={`flex flex-row items-center gap-3 text-lg ${darkmode && "text-white"} `} onClick={() => handleLike(selectedVideo.id)}>
                     {selectedVideo.liked ? (
                       <FcLike color='red' />
                     ) : (
@@ -209,12 +211,12 @@ const WatchVideo = () => {
                   </div>
                 </div>
                 <div className='flex flex-col gap-3'>
-                  <div className='text-lg'>{selectedVideo.comments} comments</div>
-                  <div className='flex flex-row items-center gap-3 text-lg'>
-                    <LiaComments className='text-2xl' />Comments
+                  <div className={`text-lg ${darkmode && "text-white"}`}>{selectedVideo.comments} comments</div>
+                  <div className={`flex flex-row items-center gap-3 text-lg ${darkmode && "text-white"}`}>
+                    <LiaComments className={`text-2xl ${darkmode && "text-white"}`} />Comments
                   </div>
                 </div>
-                <button className='flex items-center text-slateGray hover:text-royalBlue'
+                <button className={`flex items-center text-lg hover:text-royalBlue ${darkmode ? "text-white":"text-slateGray"}`}
                   onClick={() => handleFavoris(selectedVideo.id)}>
                   {selectedVideo.favoris ? <IoBookmark color='yellow' /> : <IoBookmark />}
                   favoris
@@ -223,7 +225,14 @@ const WatchVideo = () => {
             </div>
 
             <div className='w-[40%] pl-6 flex flex-col gap-5'>
-              <div className='text-2xl text-slateGray'>
+            <div className='flex items-start mb-3'>
+                      <img src={selectedVideo.imgUser} alt={selectedVideo.nameUser} className='w-12 h-12 rounded-full' />
+                      <div className='ps-2'>
+                        <p className={`ml-1 text-lg font-bold ${darkmode && 'text-[#fff]'}`}>{selectedVideo.nameUser}</p>
+                        <p className=' text-slateGray font-light text-sm'> Casablanca,Anfa</p>
+                      </div>
+                    </div>
+              <div className={`text-2xl  ${darkmode ? "text-white" :"text-slateGray"}`}>
                 {selectedVideo.titre}
               </div>
               <div className='flex gap-2 items-center'>
@@ -234,8 +243,7 @@ const WatchVideo = () => {
                   onChange={(e) => setNewComment(e.target.value)}
                   placeholder='Write a comment...'
                 />
-                <button className='bg-gradient-to-b from-[#c17d7d] to-[#d76a83] 
-    hover:from-[#af7878] hover:to-[#ae385e] text-white rounded-md px-4 py-2' onClick={handleAddComment}>
+                <button className={` rounded-md px-4 py-2 ${darkmode ? 'text-black bg-gradient-to-b from-[#fff] to-[#fff]':'bg-gradient-to-b from-[#c17d7d] to-[#d76a83] hover:from-[#af7878] hover:to-[#ae385e] text-white'}`}  onClick={handleAddComment} >
                   Comment
                 </button>
               </div>

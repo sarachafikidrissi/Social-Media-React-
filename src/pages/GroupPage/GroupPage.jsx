@@ -128,10 +128,11 @@ const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
       </div>
     );
   };
+  const { darkmode, setDarkmode } = useAuth();  
   return (
     <>
     <Navbar />
-    <div className='flex '>
+    <div className={`flex ${darkmode && "bg-[#242424]"}`}>
      <div className='w-[25%]'>
         <LeftSideBar/>
       </div>
@@ -144,7 +145,7 @@ const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
         alt='User'
     />
     <div >
-        <h1 className="text-4xl from-neutral-600 p-5">{enteredGroup.nameGrp}</h1>
+        <h1 className={`text-4xl  p-5 ${darkmode ? 'text-white':'from-neutral-600'}`}>{enteredGroup.nameGrp}</h1>
        
     </div>
     <div className='flex justify-between items-center px-10'>

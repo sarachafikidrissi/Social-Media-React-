@@ -7,7 +7,9 @@ import { PiArticle } from "react-icons/pi";
 
 const Profile = () => {
   const [showPosts, setShowPosts] = useState(true);
+  const { darkmode, setDarkmode } = useAuth();
   const { users } = useAuth();
+  
   console.log(users);
   
   const filterConnectedUser = users.find(e => e.isLoggedIn === true);
@@ -20,12 +22,13 @@ const Profile = () => {
   const handleShowPosts = () => setShowPosts(true);
   const handleShowThreads = () => setShowPosts(false);
 
+      
   return (
     <div>
       <Navbar />
-      <div className='flex justify-between'>
+      <div className={`flex justify-between ${darkmode && "bg-[#242424]"}`}>
         <LeftSideBar />
-        <div className=' w-[80%]   bg-[#f5f7f9]'>
+        <div className={` w-[80%] min-h-[100vh]   ${darkmode ? 'bg-[#242424]':'bg-[#f5f7f9]'}`} >
           <div className='w-[100%] '>
             {/* profile info */}
 
@@ -34,10 +37,8 @@ const Profile = () => {
                 <div className='w-[60%]  rounded-full   border-4 border-[#83385b]'>
                   {profileImage ? (
                     <img
-                      src={profileImage}
-                      className='rounded-full'
-                      alt='Profile'
-                    />
+                      src={profileImage} className='rounded-full'
+                      alt='Profile'/>
                   ) : (
                     <div className="bg-white w-full h-full rounded-full" />
                   )}
@@ -45,15 +46,15 @@ const Profile = () => {
               </div>
               <div className='w-[30vw]  flex    p-10 '>
                 <div className='flex flex-col gap-3'>
-                  <h1 className='text-5xl capitalize font-semibold'>
+                  <h1 className={`text-5xl capitalize font-semibold ${darkmode && 'text-white'}`}>
                     {filterConnectedUser.username}
                   </h1>
                   <div className='flex gap-10 text-1xl '>
-                    <h1> <span className='font-bold'>{userPost ? userPost.length : 0} </span>Posts</h1>
-                    <h1> <span className='font-bold'>{followers ? followers.length : 0}</span> Followers</h1>
-                    <h1> <span className='font-bold'>{following ? following.length : 0}</span> Following</h1>
+                    <h1 className={` ${darkmode && 'text-white'}`}> <span className={`font-bold ${darkmode && 'text-white'}`}>{userPost ? userPost.length : 0} </span>Posts</h1>
+                    <h1 className={` ${darkmode && 'text-white'}`}> <span className={`font-bold ${darkmode && 'text-white'}`}>{followers ? followers.length : 0}</span> Followers</h1>
+                    <h1 className={` ${darkmode && 'text-white'}`}> <span className={`font-bold ${darkmode && 'text-white'}`}>{following ? following.length : 0}</span> Following</h1>
                   </div>
-                  <h1 className='text-2xl '>{name}</h1>
+                  <h1 className={`text-2xl ${darkmode && "text-white"}`}>{name}</h1>
 
                 </div>
               </div>
@@ -63,7 +64,7 @@ const Profile = () => {
       <div className='flex items-center justify-center gap-x-10'>
         <div 
           onClick={handleShowPosts}
-          className={`flex items-center justify-center py-2 gap-x-2 cursor-pointer ${showPosts ? 'border-b-2 border-red-600' : ''}`}
+          className={`flex items-center justify-center py-2 gap-x-2 cursor-pointer ${showPosts ? 'border-b-2 border-red-600' : ''} ${darkmode && 'text-white'} `}
         >
           <RiGalleryView2 className='text-2xl text-[#99627a]' />
           <h1 className='m-0 p-0'>
@@ -74,7 +75,7 @@ const Profile = () => {
         </div>
         <div 
           onClick={handleShowThreads}
-          className={`flex items-center justify-center py-2 gap-x-2 cursor-pointer ${!showPosts ? 'border-b-2 border-red-600' : ''}`}
+          className={`flex items-center justify-center py-2 gap-x-2 cursor-pointer ${!showPosts ? 'border-b-2 border-red-600' : ''} ${darkmode && 'text-white'} `}
         >
           <PiArticle className='text-2xl text-[#99627a]' />
           <h1 className='m-0 p-0'>

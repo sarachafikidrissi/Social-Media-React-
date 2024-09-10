@@ -83,11 +83,11 @@ const MyFavorites = () => {
 //  setPost(addedPost)
 //  console.log(post);
  
-
+const { darkmode, setDarkmode } = useAuth();  
   return (
     <>
     <Navbar />
-      <div className="flex w-full  justify-between">
+      <div className={`flex w-full  justify-between min-h-[100vh] ${darkmode && "bg-[#242424]"}`}>
         <div className="w-1/4">
           <LeftSideBar  />
         </div>
