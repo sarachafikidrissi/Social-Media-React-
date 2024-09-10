@@ -195,7 +195,9 @@ export const AuthProvider = ({ children }) => {
         setCoverImage,
         groups,
         setGroups,
-        joined, setJoined, enteredGroup, setEnteredGroup, tasks, setTasks, suggestedfriends, setSuggestedFriends, groupPosts, setGroupPosts, friendsPost, setFriendsPost
+        joined, setJoined, enteredGroup, setEnteredGroup,
+         tasks, setTasks, suggestedfriends, setSuggestedFriends,
+          darkmode, setDarkmode
       }}
     >
       {children}
