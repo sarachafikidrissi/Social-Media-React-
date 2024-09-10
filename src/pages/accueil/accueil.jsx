@@ -22,8 +22,10 @@ const Accueil = () => {
                     <button className={`self-start px-8 py-3 leading-none  hover:bg-hoverBtn rounded-full font-serif ${darkmode ? 'bg-white text-[#000]'  :'bg-btnColor text-white' }`}>
                     <Link to={"/sign-up"}>Sign Up</Link> </button>
 
-                    <button  onClick={() => { setDarkmode(!darkmode) }} 
-  className={`px-[1.3vw] py-[12px]  text-lg font-semi-bold rounded-full border-none ${darkmode ? 'bg-white text-[#000]'  :'bg-btnColor text-white' }`}>
+                    <button 
+  onClick={() => { setDarkmode(!darkmode) }} 
+  className={`px-[1.3vw] py-[12px]  text-lg font-semi-bold rounded-full border-none ${darkmode ? 'bg-white text-[#000]'  :'bg-btnColor text-white' }`}
+>
   {darkmode ? <FaSun  /> : <FaMoon />}
 </button>
                 </div>
@@ -51,3 +53,4 @@ const Accueil = () => {
 };
 
 export default Accueil;
+
