@@ -4,7 +4,7 @@ import LeftSideBar from './Components/LeftSideBar';
 import RightSideBar from './Components/RightSideBar';
 import Navbar from '../../layout/navbar';
 import { useAuth } from '../../context';
-import { FaBars } from 'react-icons/fa'; // Importing an icon for the sidebar toggle
+import { FaBars } from 'react-icons/fa'; 
 
 const Home = () => {
   const logedUser = useAuth();
@@ -35,7 +35,7 @@ const Home = () => {
         {isSidebarOpen && (
           <div 
             className='fixed  inset-0 z-10 md:hidden'
-            onClick={toggleSidebar} // Close sidebar when background is clicked
+            onClick={toggleSidebar}
           ></div>
         )}
 
