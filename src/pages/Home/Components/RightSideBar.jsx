@@ -18,7 +18,7 @@ const RightSideBar = () => {
 
  let isFavorite = location.pathname === "./myfavorite"
 
-  const {users, setUsers, suggestedfriends, setSuggestedFriends}  = useAuth()
+  const {users, setUsers, suggestedfriends, setSuggestedFriends, friendsPost, setFriendsPost}  = useAuth()
   const [stories, setStories] = useState([]);
   const [activeStories, setActiveStories] = useState({});
   const [state, setState] = useState(false);
@@ -26,6 +26,10 @@ const RightSideBar = () => {
 
   let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
   console.log(filterConnectedUser);
+
+
+    //user friends
+
 
   const toggleStory = (index) => {
     if (storyTimeouts[index]) {
@@ -88,29 +92,41 @@ const RightSideBar = () => {
 
  console.log(users);
 
+ let otherUsers = users.filter(e => e.isLoggedIn === false)
+ let userFriends = users.find((user) => user.isLoggedIn).friends
+ console.log(otherUsers);
+ console.log(userFriends);
+ let a = []
+//  userFriends
+otherUsers.forEach(e => {
+  if(!userFriends.includes(e)){
+    a.push(e)
+  }
+})
+
   useEffect(() => {
-    setSuggestedFriends(users.filter((e) => e.isLoggedIn === false))
+    // setSuggestedFriends(users.filter((e) => e.isLoggedIn === false))
+    setSuggestedFriends(a)
   }, [])
 
   const handlFollow = (index) => {
     const currentUsers = [...users];
-  
     const loggedInUserIndex = currentUsers.findIndex((user) => user.isLoggedIn);
-
-  
     if (loggedInUserIndex !== -1 && suggestedfriends[index]) {
       const loggedInUser = currentUsers[loggedInUserIndex];
       const suggestedFriend = suggestedfriends[index];
-
       
-  
       loggedInUser.friends = [...loggedInUser.friends, suggestedFriend];
-  
       currentUsers[loggedInUserIndex] = loggedInUser;
+      let user2 = currentUsers.findIndex(e => e === suggestedfriends[index])
+      currentUsers[user2].friends.push(loggedInUser)
+      console.log(currentUsers[user2]);
       setUsers(currentUsers);
       suggestedfriends.splice(index, 1)
+
     }
   };
+
 
 
   const handleIgnore = (index) => {

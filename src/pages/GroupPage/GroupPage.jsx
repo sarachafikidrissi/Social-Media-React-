@@ -10,7 +10,7 @@ import Navbar from '../../layout/navbar';
 import { Carousel } from 'flowbite-react';
 const GroupPage = () => {
     const navigate = useNavigate()
-    const {groups, setGroups, users, setUsers, enteredGroup, setEnteredGroup, joined, setJoined} = useAuth()
+    const {groups, setGroups, users, setUsers, enteredGroup, setEnteredGroup, joined, setJoined, groupPosts, setGroupPosts} = useAuth()
 
     console.log(enteredGroup);
 
@@ -22,7 +22,7 @@ const GroupPage = () => {
   const [content, setContent] = useState('');
   const [images, setImages] = useState([]);
   const [video, setVideo] = useState(null);
-  const [posts, setPosts] = useState([]);
+  // const [posts, setPosts] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentPostIndex, setCurrentPostIndex] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
@@ -44,7 +44,7 @@ const GroupPage = () => {
   const submitPost = () => {
     if (content || images.length > 0 || video) {
       const newPost = { content, images, video, comments: [], likes: false, favoris: false };
-      setPosts([newPost, ...posts]); 
+      setGroupPosts([newPost, ...groupPosts]); 
       setImages([]); 
       setVideo(null); 
       setContent('');
@@ -53,16 +53,16 @@ const GroupPage = () => {
 
   // Function to handle liking a post
   const handleLike = (index) => {
-    const newPosts = [...posts];
+    const newPosts = [...groupPosts];
     newPosts[index].likes = !newPosts[index].likes; 
-    setPosts(newPosts);
+    setGroupPosts(newPosts);
   };
 
   // Function to handle favoriting a post
   const handleFavoris = (index) => {
-    const newPosts = [...posts];
+    const newPosts = [...groupPosts];
     newPosts[index].favoris = !newPosts[index].favoris; 
-    setPosts(newPosts);
+    setGroupPosts(newPosts);
   };
 
   // Function to open the comment modal
@@ -74,9 +74,9 @@ const GroupPage = () => {
   // Function to handle adding a comment
   const handleAddComment = () => {
     if (commentInput.trim()) {
-      const newPosts = [...posts];
+      const newPosts = [...groupPosts];
       newPosts[currentPostIndex].comments.push(commentInput);
-      setPosts(newPosts);
+      setGroupPosts(newPosts);
       setCommentInput('');
       setShowModal(false);
     }
@@ -217,7 +217,7 @@ const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
 
           {/* Post Feed */}
           <div className="mt-4">
-          {posts.map((post, index) => (
+          {groupPosts.map((post, index) => (
             <div key={index} className="w-[70%]  bg-[#FAF2EA] p-4 rounded-lg shadow-md mb-4 mx-40">
               <div className='flex items-center mb-4'>
                 <img
