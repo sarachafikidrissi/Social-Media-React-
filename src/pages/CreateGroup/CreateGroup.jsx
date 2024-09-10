@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import LeftSideBar from '../Home/Components/LeftSideBar';
 import { useAuth } from '../../context';
+import Navbar from '../../layout/navbar';
 
 const CreateGroup = () => {
 
@@ -67,7 +68,9 @@ const CreateGroup = () => {
 
 
   return (
-    <div className=" min-h-screen p-10">
+    <>
+    <Navbar />
+    <div className=" min-h-screen">
       <div className="flex gap-5 ">
         <LeftSideBar />
         <div className="w-full max-w-3xl mx-auto">
@@ -139,6 +142,7 @@ const CreateGroup = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

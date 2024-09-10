@@ -16,6 +16,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { Navbar } from 'flowbite-react';
 import { useAuth } from '../../../context';
 import { useParams } from 'react-router-dom';
+import { IoAdd } from "react-icons/io5";
 const LeftSideBar = () => {
   const { users, image, coverImage, suggestedfriends, setSuggestedFriends}  = useAuth()
   let connectedUser = useParams()
@@ -45,7 +46,7 @@ const LeftSideBar = () => {
       <div className='flex justify-start items-center  gap-3   cursor-pointer'><div className={` p-2 rounded-full ${darkmode ? 'bg-[#fff] text-black':'bg-[#ce629f] text-white'} `}><FiMessageSquare /></div> <h2>Messages</h2></div>
       <div onClick={() => {navigate('/myfavorite')}} className='flex justify-start items-center  gap-3   cursor-pointer '><div className={`p-2 rounded-full ${darkmode ? 'bg-[#fff] text-black':'bg-[#e8a9ce] text-white '}`}><CiBookmark  /> </div><h2>My Favorites</h2></div>
       <div onClick={() => {navigate('/groups')}}  className='flex justify-start items-center  gap-3   cursor-pointer'><div className={` p-2 rounded-full ${darkmode ? 'bg-[#fff] text-black':'bg-[#a675be] text-white'}`}><FaUsers /> </div><h2>Groupes</h2></div>
-      <div onClick={() => {navigate('/setting')}} className='flex justify-start items-center  gap-3   cursor-pointer'><div className={`p-2 rounded-full ${darkmode ? 'bg-[#fff] text-black':'bg-[#b58fbf] text-white'}`} ><CiSettings /> </div> <h2>Settings</h2></div>
+      <div onClick={() => {navigate('/create-group')}} className='flex justify-start items-center  gap-3   cursor-pointer'><div className={`p-2 rounded-full ${darkmode ? 'bg-[#fff] text-black':'bg-[#b58fbf] text-white'}`} ><IoAdd /> </div> <h2>Add Group</h2></div>
       </div>
       
       {!isGroupsPage && !isMarketPlace && !iswatchVideo && (
