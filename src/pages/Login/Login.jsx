@@ -36,7 +36,7 @@ const Login = () => {
     <div className='flex min-h-screen items-center justify-center md:bg-hero-pattern bg-right-bottom'>
       <div className="w-full max-w-4xl flex flex-col lg:flex-row">
         {/* Left Section (Desktop Only) */}
-        <div className="hidden lg:flex flex-1 bg-gradient-to-l from-[#d3b7e0] via-[#b58fbf] to-[#a675be] p-12 text-center items-center justify-center">
+        <div className="hidden lg:flex flex-1 bg-gradient-to-l from-[#d3b7e0] via-[#b58fbf] to-[#a675be] p-12 text-center items-center justify-center md:animate-slideInRight">
           <div className="flex flex-col items-center justify-center h-full">
             <h1 className="text-3xl font-bold text-white mb-4">Welcome Back!</h1>
             <p className="text-xl text-white mb-8">To keep connected with us please login with your personal info</p>
@@ -50,7 +50,7 @@ const Login = () => {
         </div>
 
         {/* Right Section (Desktop and Mobile) */}
-        <div className="flex-1 bg-white p-12 flex flex-col items-center justify-center md:h-screen lg:h-auto">
+        <div className="flex-1 bg-white p-12 flex flex-col items-center justify-center md:h-screen lg:h-auto animate-slideInLeft">
           <h1 className="text-3xl font-bold mb-6">Login</h1>
           <div className="my-5 flex space-x-2">
             <a href="#" className="border border-gray-300 rounded-full flex justify-center items-center h-12 w-12 hover:bg-[#f3c1db]">
