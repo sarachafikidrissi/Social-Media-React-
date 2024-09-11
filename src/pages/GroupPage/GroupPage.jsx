@@ -11,12 +11,11 @@ import { Carousel } from 'flowbite-react';
 const GroupPage = () => {
     const navigate = useNavigate()
     const {groups, setGroups, users, setUsers, enteredGroup, setEnteredGroup, joined, setJoined, groupPosts, setGroupPosts} = useAuth()
-    console.log(groupPosts);
 
     console.log(enteredGroup);
 
 
-
+console.log(joined);
     let filterConnectedUser = users.find((e) => e.isLoggedIn == true);
     console.log(filterConnectedUser);
 
@@ -129,11 +128,10 @@ const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
       </div>
     );
   };
-  const { darkmode, setDarkmode } = useAuth();  
   return (
     <>
     <Navbar />
-    <div className={`flex ${darkmode && "bg-[#242424]"}`}>
+    <div className='flex '>
      <div className='w-[25%]'>
         <LeftSideBar/>
       </div>
@@ -146,7 +144,7 @@ const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
         alt='User'
     />
     <div >
-        <h1 className={`text-4xl  p-5 ${darkmode ? 'text-white':'from-neutral-600'}`}>{enteredGroup.nameGrp}</h1>
+        <h1 className="text-4xl from-neutral-600 p-5">{enteredGroup.nameGrp}</h1>
        
     </div>
     <div className='flex justify-between items-center px-10'>
@@ -218,62 +216,64 @@ const Carousel = ({ images, autoSlide = true, slideInterval = 3000 }) => {
         </div>
 
           {/* Post Feed */}
-          <div className="mt-4">
-          {groupPosts.map((post, index) => (
-            <div key={index} className="w-[70%]  bg-[#FAF2EA] p-4 rounded-lg shadow-md mb-4 mx-40">
-              <div className='flex items-center mb-4'>
-                <img
-                  className='w-10 h-10 rounded-full'
-                  src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-NV9q05F16g50huet5CWXj-AtbmH30NTR4A&s'
-                  alt='User'
-                />
-                <div className='ml-3'>
-                  <h3 className='font-semibold'>Rajae Bensafy</h3>
-                  <p className='text-slateGray text-sm'>Casablanca, Morocco</p>
-                </div>
-              </div>
-              <p>{post.content}</p>
-              {post.images && post.images.length > 0 && (
-                <Carousel images={post.images} />
-              )}
-              {post.video && (
-                <video src={post.video} controls className="w-full h-auto rounded-lg shadow-lg mt-4"></video>
-              )}
-              <div className='flex justify-between items-center border-t pt-2'>
-                <button
-                  className='flex items-center text-slateGray hover:text-royalBlue'
-                  onClick={() => handleLike(index)}
-                >
-                  <IoHeart color={post.likes ? 'red' : 'black'} />
-                  Like
-                </button>
-                <button
-                  className='flex items-center text-slateGray hover:text-royalBlue'
-                  onClick={() => openCommentModal(index)}
-                >
-                  <FaRegCommentAlt />
-                  Comments {post.comments.length > 0 && `(${post.comments.length})`}
-                </button>
-                <button
-                  className='flex items-center text-slateGray hover:text-royalBlue'
-                  onClick={() => handleFavoris(index)}
-                >
-                  <IoBookmark color={post.favoris ? 'yellow' : 'black'} />
-                  Favoris
-                </button>
-              </div>
-              {post.comments.length > 0 && (
-              <div className='mt-3'>
-                {post.comments.map((comment, commentIndex) => (
-                  <p key={commentIndex} className='text-slateGray text-sm mb-4'>
-                    {comment}
-                  </p>
-                ))}
-              </div>
-            )}
-            </div>
+
+<div className="mt-4">
+  {joined.map((post, index) => (
+    <div key={index} className="w-[70%] bg-[#FAF2EA] p-4 rounded-lg shadow-md mb-4 mx-40">
+      <div className='flex items-center mb-4'>
+        <img
+          className='w-10 h-10 rounded-full'
+          src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-NV9q05F16g50huet5CWXj-AtbmH30NTR4A&s'
+          alt='User'
+        />
+        <div className='ml-3'>
+          <h3 className='font-semibold'>Rajae Bensafy</h3>
+          <p className='text-slateGray text-sm'>Casablanca, Morocco</p>
+        </div>
+      </div>
+      <p>{post.content}</p>
+      {post.images && post.images.length > 0 && (
+        <Carousel images={post.images} />
+      )}
+      {post.video && (
+        <video src={post.video} controls className="w-full h-auto rounded-lg shadow-lg mt-4"></video>
+      )}
+      <div className='flex justify-between items-center border-t pt-2'>
+        <button
+          className='flex items-center text-slateGray hover:text-royalBlue'
+          onClick={() => handleLike(index)}
+        >
+          <IoHeart color={post.likes ? 'red' : 'black'} />
+          Like
+        </button>
+        <button
+          className='flex items-center text-slateGray hover:text-royalBlue'
+          onClick={() => openCommentModal(index)}
+        >
+          <FaRegCommentAlt />
+          Comments {post.comments && post.comments.length > 0 && `(${post.comments.length})`}
+        </button>
+        <button
+          className='flex items-center text-slateGray hover:text-royalBlue'
+          onClick={() => handleFavoris(index)}
+        >
+          <IoBookmark color={post.favoris ? 'yellow' : 'black'} />
+          Favoris
+        </button>
+      </div>
+      {post.comments && post.comments.length > 0 && (
+        <div className='mt-3'>
+          {post.comments.map((comment, commentIndex) => (
+            <p key={commentIndex} className='text-slateGray text-sm mb-4'>
+              {comment}
+            </p>
           ))}
         </div>
+      )}
+    </div>
+  ))}
+</div>
+
 
         {/* Comment Modal */}
         {showModal && (
