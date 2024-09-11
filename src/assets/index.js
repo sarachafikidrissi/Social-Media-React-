@@ -39,6 +39,10 @@ import profile2 from "./profile2.jpg";
 import profile3 from "./profile3.jpg";
 import profile4 from "./profile4.jpg";
 
+import cooking from './cooking-grp.jpg'
+import jobs from './jobs-grp.jpg'
+import news from './news-grp.jpeg'
+
 
 
 export const assets = {
@@ -70,5 +74,5 @@ export const assets = {
     profile1,
     profile2,
     profile3,
-    profile4,music2,music3,music4,ann1,ann2,ann3,ann4
+    profile4,music2,music3,music4,ann1,ann2,ann3,ann4, news, cooking, jobs
 }

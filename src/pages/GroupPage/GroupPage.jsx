@@ -11,6 +11,7 @@ import { Carousel } from 'flowbite-react';
 const GroupPage = () => {
     const navigate = useNavigate()
     const {groups, setGroups, users, setUsers, enteredGroup, setEnteredGroup, joined, setJoined, groupPosts, setGroupPosts} = useAuth()
+    console.log(groupPosts);
 
     console.log(enteredGroup);
 

@@ -94,7 +94,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className='h-screen flex items-center justify-center bg-hero-pattern bg-left-bottom md:bg-none'>
+    <div className='h-screen flex items-center justify-center bg-hero-pattern bg-left-bottom '>
       <div className="relative rounded-lg shadow-lg w-full max-w-4xl md:h-[80vh] h-screen md:overflow-hidden flex flex-col md:flex-row">
         <div className="absolute md:top-0 md:right-0 h-full md:w-1/2 w-full md:flex items-center justify-center md:animate-slideInRight bg-white">
           <form className="bg-white flex flex-col items-center justify-center p-12 w-full h-full text-center">
