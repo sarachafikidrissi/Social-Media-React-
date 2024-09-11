@@ -201,7 +201,7 @@ const Feeds = () => {
   const { darkmode, setDarkmode } = useAuth();  
   return (
     
-    <div className={`w-[50%] flex flex-col  items-center my-4   ${darkmode && "bg-[#242424]" }`}  >
+    <div className={` flex flex-col  items-center my-4   ${darkmode && "bg-[#242424]" }`}  >
       {/* Input creating posts */}
       <div className={`w-[90%] p-4 m-3  rounded-lg shadow-md ${darkmode ? 'bg-[#5a5858de] text-[#fff]'  :' bg-white' }`}>
         <div className={`flex items-center mb-4 gap-2 `}>

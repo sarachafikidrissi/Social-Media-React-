@@ -32,7 +32,7 @@ const handleLogout = () => {
 
     return (
         <div className={`navbar flex justify-between flex-row  px-5 ${darkmode && "bg-[#242424]" }`}>
-      <div className={`leftNav flex gap-52   `}>
+      <div className={`leftNav flex gap-52 ml-4 md:ml-0  `}>
         <img width={70} src={logo} />
         <div class="relative  items-center hidden md:inline-flex">
         <input type="text" placeholder="Search" class="border border-gray-200 rounded-md py-1 px-2 w-[35vw]"/>
