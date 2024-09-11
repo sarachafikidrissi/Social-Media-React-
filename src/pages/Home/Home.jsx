@@ -18,7 +18,7 @@ const Home = () => {
 
     <>
     <Navbar/>
-    <div className={`flex flex-col md:flex-row relative ${darkmode && "bg-[#242424]"}`}>
+    <div className={`h-[100vh] flex flex-col md:flex-row relative ${darkmode && "bg-[#242424]"}`}>
        <button 
           className='md:hidden p-2 absolute top-[-8vh] left-0 z-20' 
           onClick={toggleSidebar}
